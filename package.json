@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@wagmi/cli": "^1.0.0",
+    "encoding": "^0.1.13",
+    "lokijs": "^1.5.12",
     "next": "^13.4.0",
+    "pino-pretty": "^10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "~0.3.36",
-    "wagmi": "^1.0.6"
+    "wagmi": "^1.0.6",
+    "walletconnect": "^1.7.8"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
