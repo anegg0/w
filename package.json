@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "npm run wagmi && next dev",
-    "build": "npm run wagmi && next build",
+    "dev": "yarn run wagmi && next dev",
+    "build": "yarn run wagmi && next build",
     "start": "next start",
     "lint": "next lint",
     "wagmi": "wagmi generate"
