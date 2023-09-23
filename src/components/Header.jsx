@@ -26,8 +26,8 @@ export function Header() {
                 <img
                   src="../../logo.png"
                   alt="Sigvant"
-                  width={200}
-                  height={100}
+                  width={50}
+                  height={50}
                 ></img>
               </div>
             </Link>
