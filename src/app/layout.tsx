@@ -1,13 +1,15 @@
-import { Providers } from './providers'
-
-export const metadata = {
-  title: 'wagmi',
-}
+import type { Metadata } from "next";
+import { Providers } from "./providers";
+import "./globals.css";
+export const metadata: Metadata = {
+  title: "W",
+  description: "W, a watermarked NFT solution",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -15,5 +17,5 @@ export default function RootLayout({
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
