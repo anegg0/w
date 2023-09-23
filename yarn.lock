@@ -528,7 +528,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rainbow-me/rainbowkit@^1.0.11":
+"@rainbow-me/rainbowkit@^1.0.2":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-1.0.11.tgz#5d03a8b1f8b8d7f8b3dee14dae378574ea3e6f8b"
   integrity sha512-+cm6+WUPG9iPgkfJKbvlowcrSHu266Zk20LVRsYLcmb6v29gVMHcWQvyI4T6EVC9TxNjnyq/jIlen++uiUBmmQ==
@@ -1859,12 +1859,12 @@ babel-plugin-polyfill-corejs2@^0.4.5:
     semver "^6.3.1"
 
 babel-plugin-polyfill-corejs3@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.8.3.tgz#b4f719d0ad9bb8e0c23e3e630c0c8ec6dd7a1c52"
-  integrity sha512-z41XaniZL26WLrvjy7soabMXrfPWARN25PZoriDEiLMxAp50AUW3t35BGQUMg5xK3UrpVTtagIDklxYa+MhiNA==
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.8.4.tgz#1fac2b1dcef6274e72b3c72977ed8325cb330591"
+  integrity sha512-9l//BZZsPR+5XjyJMPtZSK4jv0BsTO1zDac2GC6ygx9WLGlcsnRd1Co0B2zT5fF5Ic6BZy+9m3HNZ3QcOeDKfg==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.4.2"
-    core-js-compat "^3.31.0"
+    core-js-compat "^3.32.2"
 
 babel-plugin-polyfill-regenerator@^0.5.2:
   version "0.5.2"
@@ -2344,7 +2344,7 @@ copy-to-clipboard@^3.3.1, copy-to-clipboard@^3.3.3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-compat@^3.31.0:
+core-js-compat@^3.32.2:
   version "3.32.2"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.32.2.tgz#8047d1a8b3ac4e639f0d4f66d4431aa3b16e004c"
   integrity sha512-+GjlguTDINOijtVRUxrQOv3kfu9rl+qPNdX2LTbJ/ZyVTuxK+ksVSAGX1nHstu4hrv1En/uPTtWgq2gI5wt4AQ==
@@ -2636,9 +2636,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.4.526:
-  version "1.4.527"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.527.tgz#5acf0bcc5bf015eb31dd2279989a3712e341a554"
-  integrity sha512-EafxEiEDzk2aLrdbtVczylHflHdHkNrpGNHIgDyA63sUQLQVS2ayj2hPw3RsVB42qkwURH+T2OxV7kGPUuYszA==
+  version "1.4.528"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.528.tgz#7c900fd73d9d2e8bb0dab0e301f25f0f4776ef2c"
+  integrity sha512-UdREXMXzLkREF4jA8t89FQjA8WHI6ssP38PMY4/4KhXFQbtImnghh4GkCgrtiZwLKUKVD2iTVXvDVQjfomEQuA==
 
 elliptic@^6.5.2, elliptic@^6.5.4:
   version "6.5.4"
@@ -6525,7 +6525,7 @@ viem@~0.3.36:
     isomorphic-ws "5.0.0"
     ws "8.12.0"
 
-wagmi@^1.0.6:
+wagmi@^1.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-1.4.2.tgz#cd681b1d35cf36613a11852cf25c2c39ce456f9f"
   integrity sha512-Cxu0LatB44stqHoqdc6dgsTb9woYH1bEquJFq9PbTkePmnRCvceAD4aFUREUTaBWzIBcouhFlanWweDzEnb3mg==

@@ -11,17 +11,26 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     publicProvider(),
   ]
 );
-
-export const config = createConfig({
+const projectId = "130c92c32b5cfbac34b8cff6780340e7";
+const { wallets } = getDefaultWallets({
+  appName: "W",
+  projectId,
+  chains,
+});
+const connector = connectorsForWallets([
+  ...wallets,
+  {
+    groupName: "Other",
+    wallets: [
+      argentWallet({ projectId, chains }),
+      trustWallet({ projectId, chains }),
+      ledgerWallet({ projectId, chains }),
+    ],
+  },
+]);
+export const WagmiConfig = createConfig({
   autoConnect: true,
-  connectors: [
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: "130c92c32b5cfbac34b8cff6780340e7",
-      },
-    }),
-  ],
+  connectors: [connector],
   publicClient,
   webSocketPublicClient,
 });

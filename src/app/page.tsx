@@ -1,27 +1,27 @@
-import { Account } from "../components/Account";
-import { Connect } from "../components/Connect";
-import { Connected } from "../components/Connected";
-import { MintNFT } from "../components/MintNFT";
-import { NetworkSwitcher } from "../components/NetworkSwitcher";
+"use client";
 
-export function Page() {
+import React from "react";
+import "./globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { goerli } from "wagmi/chains";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+
+// Configure the blockchain providers and chains to use
+
+// Export the App component as the default export
+export default function App({ Component, pageProps }) {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">
-        W, a watermarked NFT solution
-      </h1>
-
-      <Connect />
-
-      <Connected>
-        <Account />
-        <hr />
-        <MintNFT />
-        <hr />
-        <NetworkSwitcher />
-      </Connected>
-    </>
+    // Set up the Wagmi configuration for the app
+    <WagmiConfig client={WagmiConfig}>
+      {/* Set up the RainbowKit provider for the app */}
+      <RainbowKitProvider chains={chains}>
+        {/* Render the specified component with its page props */}
+        <Component {...pageProps} />
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
-
-export default Page;
