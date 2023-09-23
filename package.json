@@ -5,13 +5,14 @@
   "scripts": {
     "dev": "yarn run wagmi && next dev",
     "build": "yarn run wagmi && next build",
+    "wagmi": "wagmi generate",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "wagmi": "wagmi generate"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^1.0.2",
-    "@wagmi/cli": "^1.0.0",
+    "@rainbow-me/rainbowkit": "^1.0.0",
     "dotenv": "^16.3.1",
     "encoding": "^0.1.13",
     "lokijs": "^1.5.12",
@@ -20,8 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "~0.3.36",
-    "wagmi": "^1.2",
-    "walletconnect": "^1.7.8"
+    "wagmi": "^1.0.6"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
