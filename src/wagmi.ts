@@ -3,10 +3,13 @@ import { configureChains, createConfig } from "wagmi";
 import { goerli, mainnet } from "wagmi/chains";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { publicProvider } from "wagmi/providers/public";
-
+import { alchemyProvider } from "wagmi/providers/alchemy";
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, ...(process.env.NODE_ENV === "development" ? [goerli] : [])],
-  [publicProvider()]
+  [mainnet],
+  [
+    alchemyProvider({ apiKey: "Tsg7s-QM2dz5O3pPqLAH-FUL1zTtk0FS" }),
+    publicProvider(),
+  ]
 );
 
 export const config = createConfig({
