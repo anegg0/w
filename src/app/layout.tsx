@@ -1,11 +1,11 @@
-/* import type { Metadata } from "next"; */
+import type { Metadata } from "next";
 import { Providers } from "./providers";
-import "./globals.css";
-/* export const metadata: Metadata = {
- *   title: "W",
- *   description: "W, a watermarked NFT solution",
- * };
- *  */
+import "@rainbow-me/rainbowkit/styles.css";
+export const metadata: Metadata = {
+  title: "W",
+  description: "W, a watermarked NFT solution",
+};
+
 export default function RootLayout({
   children,
 }: {

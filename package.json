@@ -6,13 +6,11 @@
     "dev": "yarn run wagmi && next dev",
     "build": "yarn run wagmi && next build",
     "wagmi": "wagmi generate",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^1.0.0",
+    "@wagmi/cli": "^1.5.1",
     "dotenv": "^16.3.1",
     "encoding": "^0.1.13",
     "lokijs": "^1.5.12",
