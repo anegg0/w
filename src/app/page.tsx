@@ -12,6 +12,7 @@ import { NetworkSwitcher } from "../components/NetworkSwitcher";
 import { ReadContract } from "../components/ReadContract";
 import { ReadContracts } from "../components/ReadContracts";
 import { ReadContractsInfinite } from "../components/ReadContractsInfinite";
+import { Header } from "../components/Header";
 import { SendTransaction } from "../components/SendTransaction";
 import { SendTransactionPrepared } from "../components/SendTransactionPrepared";
 import { SignMessage } from "../components/SignMessage";
@@ -21,15 +22,20 @@ import { WatchContractEvents } from "../components/WatchContractEvents";
 import { WatchPendingTransactions } from "../components/WatchPendingTransactions";
 import { WriteContract } from "../components/WriteContract";
 import { WriteContractPrepared } from "../components/WriteContractPrepared";
+import { Welcome } from "../components/Welcome";
+import { useAccount } from "wagmi";
 
 export function Page() {
-  return (
-    <>
-      <h1>wagmi + RainbowKit + Next.js</h1>
+  const { address, isConnecting, isDisconnected } = useAccount();
 
-      <ConnectButton />
-
-      <Connected>
+  if (isConnecting) return <div>Connecting…</div>;
+  if (isDisconnected) {
+    return <Welcome />;
+  }
+  {
+    return (
+      <>
+        <Header />
         <hr />
         <h2>Network</h2>
         <NetworkSwitcher />
@@ -93,9 +99,9 @@ export function Page() {
         <hr />
         <h2>Write Contract (Prepared)</h2>
         <WriteContractPrepared />
-      </Connected>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default Page;

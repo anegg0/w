@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import React from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "./ConnectButton";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
@@ -14,7 +14,7 @@ function ConnectWallet({ show = "always" }) {
   return <ConnectButton />;
 }
 
-function Header() {
+export function Header() {
   return (
     <header aria-label="Site Header">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -24,8 +24,10 @@ function Header() {
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
                 <img
-                  className="h-20 w-50 object-cover"
-                  src="https://ik.imagekit.io/bayc/assets/bayc-logo-z.png"
+                  src="../../logo.png"
+                  alt="Sigvant"
+                  width={200}
+                  height={100}
                 ></img>
               </div>
             </Link>
@@ -47,38 +49,6 @@ function Header() {
                     href="/#collection"
                   >
                     Collection
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/#roadmap"
-                  >
-                    Roadmap
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/#subscribe"
-                  >
-                    Subscribe
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/mint"
-                  >
-                    Mint
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/wallet"
-                  >
-                    Wallet
                   </Link>
                 </li>
               </ul>
@@ -112,5 +82,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
