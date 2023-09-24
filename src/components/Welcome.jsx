@@ -19,12 +19,7 @@ export function Welcome() {
         className="my-8 dark:bg-gray-800 dark:text-gray-100 items-center"
       >
         <div className="container flex flex-col items-center p-4 mx-auto space-y-6 md:p-8">
-          <img
-            src="../../logo.png"
-            alt="Sigvant"
-            width={200}
-            height={100}
-          ></img>
+          <img src="../logo.png" alt="w" width={200} height={100}></img>
           <p className="text-lg font-normal text-white lg:text-xl dark:text-gray-400 text-center">
             NFT watermarking solution
           </p>{" "}

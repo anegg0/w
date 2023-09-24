@@ -24,7 +24,7 @@ export function Header() {
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
                 <img
-                  src="../../logo.png"
+                  src="../public/logo.png"
                   alt="Sigvant"
                   width={50}
                   height={50}
