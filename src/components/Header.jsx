@@ -4,6 +4,9 @@ import { ConnectButton } from "./ConnectButton";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
+import logo from "../app/logo-sm.png";
+import Image from "next/image";
+
 function ConnectWallet({ show = "always" }) {
   const { isConnected } = useAccount();
   if (
@@ -19,16 +22,11 @@ export function Header() {
     <header aria-label="Site Header">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="md:flex md:items-center md:gap-12">
+          <div className="md:flex max-w-sm md:items-center md:gap-12">
             <Link href="/">
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
-                <img
-                  src="../public/logo.png"
-                  alt="Sigvant"
-                  width={50}
-                  height={50}
-                ></img>
+                <Image src={logo} alt="W Logo" />
               </div>
             </Link>
           </div>
