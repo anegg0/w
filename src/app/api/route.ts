@@ -1,41 +1,51 @@
-import { parseForm, FormidableError } from '../../lib/parse-form';
 
-const handler = async (req, res) => {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    res.status(405).json({
-      data: null,
-      error: 'Method Not Allowed',
-    });
-    return;
+import { NextRequest, NextResponse } from "next/server";
+import { existsSync } from "fs";
+import fs from "fs/promises";
+import path from "path";
+
+export async function POST(req: NextRequest) {
+  const formData = await req.formData();
+  console.log(formData);
+
+  const f = formData.get("file");
+
+  if (!f) {
+    return NextResponse.json({}, { status: 400 });
   }
 
-  try {
-    const { fields, files } = await parseForm(req);
+  const file = f as File;
+  console.log(`File name: ${file.name}`);
+  console.log(`Content-Length: ${file.size}`);
 
-    const file = files.media;
-    let url = Array.isArray(file) ? file.map((f) => f.filepath) : file.filepath;
+  const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
+  console.log(destinationDirPath);
 
-    res.status(200).json({
-      data: {
-        url,
-      },
-      error: null,
-    });
-  } catch (e) {
-    if (e instanceof FormidableError) {
-      res.status(e.httpCode || 400).json({ data: null, error: e.message });
-    } else {
-      console.error(e);
-      res.status(500).json({ data: null, error: 'Internal Server Error' });
-    }
+  const fileArrayBuffer = await file.arrayBuffer();
+
+  if (!existsSync(destinationDirPath)) {
+    await fs.mkdir(destinationDirPath, { recursive: true });
   }
-};
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+  let filename = file.name;
+  while (existsSync(path.join(destinationDirPath, filename))) {
+    filename = `(1)` + filename;
+  }
 
-export default handler;
+  await fs.writeFile(
+    path.join(destinationDirPath, filename),
+    Buffer.from(fileArrayBuffer)
+  );
+
+  const [extension, ...name] = filename.split(".").reverse();
+
+  return NextResponse.json({
+    fileName: file.name,
+    size: file.size,
+    lastModified: new Date(file.lastModified),
+    url: `http://localhost:3000/api/file/${file.name}`,
+    preview: ["mp4"].includes(extension.toLowerCase())
+      ? `http://192.168.33.112:3000/play?filename=${filename}`
+      : undefined,
+  });
+}
