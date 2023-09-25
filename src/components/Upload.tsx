@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import upload from "../app/upload.png";
 
 const FileUploader: NextPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -24,7 +25,7 @@ const FileUploader: NextPage = () => {
 
     /** File validation */
     if (!file.type.startsWith("image")) {
-      alert("Please select a valide image");
+      alert("Please select a valid image");
       return;
     }
 
@@ -66,9 +67,9 @@ const FileUploader: NextPage = () => {
         error,
       }: {
         data: {
-          url: string | string[],
-        } | null,
-        error: string | null,
+          url: string | string[];
+        } | null;
+        error: string | null;
       } = await res.json();
 
       if (error || !data) {
@@ -110,20 +111,7 @@ const FileUploader: NextPage = () => {
                   </div>
                 ) : (
                   <label className="flex flex-col items-center justify-center h-full py-3 transition-colors duration-150 cursor-pointer hover:text-gray-600">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-14 h-14"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-                      />
-                    </svg>
+                    <Image src={upload} alt="W Logo" />
                     <strong className="text-sm font-medium">
                       Select an image
                     </strong>
