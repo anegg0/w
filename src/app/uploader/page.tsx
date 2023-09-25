@@ -29,7 +29,7 @@ export default async function PlayerPage({
 
   return (
     <>
-      <MyPlayer url={url} />
+      <p>url</p>
     </>
   );
 }
