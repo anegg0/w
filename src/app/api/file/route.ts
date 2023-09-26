@@ -1,6 +1,5 @@
-
 import { NextRequest, NextResponse } from "next/server";
-import { existsSync } from "fs";
+import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
 
@@ -15,21 +14,33 @@ export async function POST(req: NextRequest) {
   }
 
   const file = f as File;
-  console.log(`File name: ${file.name}`);
-  console.log(`Content-Length: ${file.size}`);
 
+  // Change the incoming file's name to "wowm.png"
+  const newFileName = "wowm.png";
+
+  // Get the destination directory path
   const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
-  console.log(destinationDirPath);
+
+  // Check if "wowm.png" already exists and delete it if so
+  const existingFilePath = path.join(destinationDirPath, newFileName);
+  if (existsSync(existingFilePath)) {
+    try {
+      unlinkSync(existingFilePath);
+      console.log(`Deleted existing file: ${existingFilePath}`);
+    } catch (error) {
+      console.error(`Error deleting existing file: ${existingFilePath}`, error);
+    }
+  }
 
   const fileArrayBuffer = await file.arrayBuffer();
 
   if (!existsSync(destinationDirPath)) {
-    await fs.mkdir(destinationDirPath, { recursive: true });
+    await fs.mkdir(destinationDirPath);
   }
 
-  let filename = file.name;
+  let filename = newFileName;
   while (existsSync(path.join(destinationDirPath, filename))) {
-    filename = `(1)` + filename;
+    filename = filename;
   }
 
   await fs.writeFile(
@@ -40,10 +51,10 @@ export async function POST(req: NextRequest) {
   const [extension, ...name] = filename.split(".").reverse();
 
   return NextResponse.json({
-    fileName: file.name,
+    fileName: newFileName,
     size: file.size,
     lastModified: new Date(file.lastModified),
-    url: `http://localhost:3000/api/file/${file.name}`,
+    url: `http://localhost:3000/api/file/${newFileName}`,
     preview: ["mp4"].includes(extension.toLowerCase())
       ? `http://192.168.33.112:3000/play?filename=${filename}`
       : undefined,

@@ -1,39 +1,31 @@
+
 "use client";
-import React, { useState } from "react";
-import { existsSync } from "fs";
-import { notFound } from "next/navigation";
-import path from "path";
+import { useEffect, useState } from "react";
 
+export function UploadedFileManager({ url }: { url: string }) {
+  const [loaded, setLoaded] = useState(false);
 
-export default async function PlayerPage({
-  searchParams: { filename },
-}: {
-  searchParams: { filename: string };
-}) {
-  if (!filename) {
-    notFound();
-  }
-  const filePath = path.join(process.cwd(), process.env.STORE_PATH!, filename);
+  const [fileURL, setFileURL] = useState<string>();
 
-  if (!existsSync(filePath)) {
-    notFound();
-  }
-
-  const [step, setStep] = useState(1);
-  const [extension, ...name] = filename.split(".").reverse();
-
-  if (!["mp4"].includes(extension.toLowerCase())) {
-    notFound();
-  }
-
-  const [step, setStep] = useState(1);
-
-  const url = `/api/file/${filename}`;
-  console.log(url);
+  useEffect(() => {
+    setLoaded(true);
+    fetch(url, {
+      method: "get",
+    })
+      .then((res) => {
+        console.log(res);
+        return res.blob();
+      })
+      .then((fileBlob) => {
+        setFileURL(URL.createObjectURL(fileBlob));
+      });
+  }, []);
 
   return (
-    <>
-      <div>{url}</div>
-    </>
+    <div className="relative w-screen h-screen">
+      {loaded && (
+        <video src={fileURL} className="object-cover w-full h-full" controls playsInline/>
+      )}
+    </div>
   );
 }
