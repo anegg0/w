@@ -43,11 +43,7 @@ export function SignMessage() {
           >
             <input name="message" type="text" required />
 
-            <button
-              disabled={isLoading}
-              type="submit"
-              className="block mt-4 px-3 py-2 bg-blue-500 text-white rounded-md"
-            >
+            <button disabled={isLoading} type="submit">
               {isLoading ? "Check Wallet" : "Sign Message"}
             </button>
           </form>
