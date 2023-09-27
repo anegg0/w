@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { existsSync, unlinkSync } from "fs";
+import { existsSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
   console.log(formData);
 
@@ -15,32 +15,22 @@ export async function POST(req: NextRequest) {
 
   const file = f as File;
 
-  // Change the incoming file's name to "wowm.png"
-  const newFileName = "wowm.png";
+  console.log(`File name: ${file.name}`);
+  console.log(`Content-Length: ${file.size}`);
 
-  // Get the destination directory path
+  const newFileName = "wowm.png";
+  console.log(`path.join(process.cwd(): ${path.join(process.cwd())}`);
   const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
-  console.log(`destinationDirPath is: ${destinationDirPath}`);
-  // Check if "wowm.png" already exists and delete it if so
-  const existingFilePath = path.join(destinationDirPath, newFileName);
-  if (existsSync(existingFilePath)) {
-    try {
-      unlinkSync(existingFilePath);
-      console.log(`Deleted existing file: ${existingFilePath}`);
-    } catch (error) {
-      console.error(`Error deleting existing file: ${existingFilePath}`, error);
-    }
-  }
 
   const fileArrayBuffer = await file.arrayBuffer();
 
   if (!existsSync(destinationDirPath)) {
-    await fs.mkdir(destinationDirPath);
+    await fs.mkdir(destinationDirPath, { recursive: true });
   }
 
-  let filename = newFileName;
+  let filename = file.name;
   while (existsSync(path.join(destinationDirPath, filename))) {
-    filename = filename;
+    filename = `(1)` + filename;
   }
 
   await fs.writeFile(
@@ -51,10 +41,10 @@ export async function POST(req: NextRequest) {
   const [extension, ...name] = filename.split(".").reverse();
 
   return NextResponse.json({
-    fileName: newFileName,
+    fileName: file.name,
     size: file.size,
     lastModified: new Date(file.lastModified),
-    url: `http://localhost:3000/api/file/${newFileName}`,
+    url: `http://localhost:3000/api/file/${file.name}`,
     preview: ["mp4"].includes(extension.toLowerCase())
       ? `http://192.168.33.112:3000/play?filename=${filename}`
       : undefined,
