@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-export function FileUploader() {
+import { page } from "../page";
+export function FileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -35,8 +35,8 @@ export function FileUploader() {
       });
 
       if (response.ok) {
-        // Handle a successful upload response here
-        alert("File uploaded successfully.");
+        /* alert("File uploaded successfully."); */
+        onSuccessfulUpload(2);
       } else {
         // Handle an error response here
         alert("File upload failed.");

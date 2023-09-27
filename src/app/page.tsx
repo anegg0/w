@@ -15,7 +15,6 @@ import { ReadContractsInfinite } from "../components/ReadContractsInfinite";
 import { Header } from "../components/Header";
 import { SendTransaction } from "../components/SendTransaction";
 import { SendTransactionPrepared } from "../components/SendTransactionPrepared";
-import { SignMessage } from "../components/SignMessage";
 import { SignTypedData } from "../components/SignTypedData";
 import { Token } from "../components/Token";
 import { WatchContractEvents } from "../components/WatchContractEvents";
@@ -23,14 +22,20 @@ import { WatchPendingTransactions } from "../components/WatchPendingTransactions
 import { WriteContract } from "../components/WriteContract";
 import { WriteContractPrepared } from "../components/WriteContractPrepared";
 import { Welcome } from "../components/Welcome";
-import { Sequence } from "../components/Sequence";
-import { FileUploader } from "../components/FileUploader";
 import { useAccount } from "wagmi";
+import { FileUploader } from "../components/FileUploader";
+import { SignMessage } from "../components/SignMessage";
 import logo from "./logo.png";
-export function Page() {
+
+export function Page({ level }) {
+  const [step, setStep] = useState(1);
   const { address, isConnecting, isDisconnected } = useAccount();
 
-  const [step, setStep] = useState(1);
+  // Function to update the step value
+  const updateStep = (newStep) => {
+    setStep(newStep);
+  };
+
   if (isConnecting) return <div>Connecting…</div>;
   if (isDisconnected) {
     return (
@@ -48,13 +53,19 @@ export function Page() {
         <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left"></div>
       </main>
     );
-  }
-  {
+  } else if ({ Connected } && step === 1) {
     return (
       <>
         <Header />
-
-        <FileUploader />
+        <FileUploader onSuccessfulUpload={updateStep} />;
+      </>
+    );
+  } else if ({ Connected } && step === 2) {
+    /* return console.log("Step 2"); */
+    return (
+      <>
+        <Header />
+        <SignMessage />;
       </>
     );
   }
