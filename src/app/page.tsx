@@ -24,7 +24,7 @@ import { WriteContract } from "../components/WriteContract";
 import { WriteContractPrepared } from "../components/WriteContractPrepared";
 import { Welcome } from "../components/Welcome";
 import { Sequence } from "../components/Sequence";
-import { Uploader } from "../components/Uploader";
+import { FileUploader } from "../components/FileUploader";
 import { useAccount } from "wagmi";
 import logo from "./logo.png";
 export function Page() {
@@ -54,7 +54,7 @@ export function Page() {
       <>
         <Header />
 
-        <Uploader />
+        <FileUploader />
       </>
     );
   }

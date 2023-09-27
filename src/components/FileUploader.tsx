@@ -1,146 +1,94 @@
-"use client";
-import * as React from "react";
-import Image from "next/image";
-import upload from "../app/upload.png";
-import { NextRequest, NextResponse } from "next/server";
+import React, { useState } from "react";
 
-export function FileUploader(req: NextRequest, res: NextResponse) {
-  const [file, setFile] = React.useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = React.useState<string | null>(null);
+export function FileUploader() {
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
-  const onFileUploadChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fileInput = e.target;
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
 
-    if (!fileInput.files) {
-      alert("No file was chosen");
-      return;
+    if (selectedFile) {
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setFile(selectedFile);
+      setPreviewUrl(objectUrl);
     }
-
-    if (!fileInput.files || fileInput.files.length === 0) {
-      alert("Files list is empty");
-      return;
-    }
-
-    const file = fileInput.files[0];
-
-    /** File validation */
-    if (!file.type.startsWith("image")) {
-      alert("Please select a valid image");
-      return;
-    }
-
-    /** Setting file state */
-    setFile(file); // we will use the file state, to send it later to the server
-    setPreviewUrl(URL.createObjectURL(file)); // we will use this to show the preview of the image
-
-    /** Reset file input */
-    e.currentTarget.type = "text";
-    e.currentTarget.type = "file";
   };
 
-  const onCancelFile = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!previewUrl && !file) {
-      return;
-    }
+  const handleCancel = () => {
     setFile(null);
     setPreviewUrl(null);
   };
 
-  const onUploadFile = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    debugger;
+  const handleUpload = async () => {
     if (!file) {
+      alert("No file selected.");
       return;
     }
-    try {
-      const formData = new FormData();
-      formData.append("media", file);
 
-      const res = await fetch("/api/file", {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/file", {
         method: "POST",
         body: formData,
       });
 
-      const {
-        data,
-        error,
-      }: {
-        data: {
-          url: string | string[];
-        } | null;
-        error: string | null;
-      } = await res.json();
-
-      if (error || !data) {
-        alert(error || "Sorry! something went wrong.");
-        return;
+      if (response.ok) {
+        // Handle a successful upload response here
+        alert("File uploaded successfully.");
+      } else {
+        // Handle an error response here
+        alert("File upload failed.");
       }
-
-      console.log("File was uploaded successfylly:", data);
     } catch (error) {
-      console.error(error);
-      alert("Sorry! something went wrong.");
+      console.error("Error uploading file:", error);
+      alert("An error occurred while uploading the file.");
     }
   };
 
   return (
-    <div>
-      <main className="py-10">
-        <div className="w-full max-w-3xl px-3 mx-auto">
-          <form
-            className="w-full p-3 border border-gray-500 border-dashed rounded-lg"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="flex flex-col md:flex-row gap-1.5 md:py-4">
-              <div className="flex-grow">
-                {previewUrl ? (
-                  <div className="mx-auto w-80">
-                    <Image
-                      alt="file uploader preview"
-                      objectFit="cover"
-                      src={previewUrl}
-                      width={320}
-                      height={218}
-                      layout="fixed"
-                    />
-                  </div>
-                ) : (
-                  <label className="flex flex-col items-center justify-center h-full py-3 transition-colors duration-150 cursor-pointer hover:text-gray-600">
-                    <Image src={upload} alt="W Logo" />
-                    <strong className="text-sm font-medium">
-                      Select an image
-                    </strong>
-                    <input
-                      className="block w-0 h-0"
-                      name="file"
-                      type="file"
-                      onChange={onFileUploadChange}
-                    />
-                  </label>
-                )}
-              </div>
-              <div className="flex mt-4 md:mt-0 md:flex-col justify-center gap-1.5">
-                <button
-                  disabled={!previewUrl}
-                  onClick={onCancelFile}
-                  className="w-1/2 px-4 py-3 text-sm font-medium text-white transition-colors duration-300 bg-gray-700 rounded-md md:w-auto md:text-base disabled:bg-gray-400 hover:bg-gray-600"
-                >
-                  Cancel file
-                </button>
-                <button
-                  disabled={!previewUrl}
-                  onClick={onUploadFile}
-                  className="w-1/2 px-4 py-3 text-sm font-medium text-white transition-colors duration-300 bg-gray-700 rounded-md md:w-auto md:text-base disabled:bg-gray-400 hover:bg-gray-600"
-                >
-                  Upload file
-                </button>
-              </div>
-            </div>
-          </form>
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-1/2 p-4">
+        <div className="mb-4 text-2xl font-bold rounded-lg">
+          {file ? "File Preview" : "Get started by uploading your file (PNG)"}
         </div>
-      </main>
+        {file ? (
+          <div>
+            <img src={previewUrl} alt="Preview" className="max-w-full h-auto" />
+            <button
+              onClick={handleCancel}
+              className="block mt-4 px-3 py-2 bg-red-500 text-white rounded-md"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleUpload}
+              className="block mt-4 px-3 py-2 bg-blue-800 text-white rounded-md"
+            >
+              Upload
+            </button>
+          </div>
+        ) : (
+          <div>
+            <input
+              type="file"
+              name="file"
+              required
+              onChange={handleFileChange}
+              accept=".png"
+            />
+            <button
+              onClick={handleUpload}
+              className="block mt-4 px-3 py-2 bg-blue-800 text-white rounded-md"
+            >
+              Upload
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
+
+export default FileUploader;
