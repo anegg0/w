@@ -3,7 +3,7 @@ import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest, req: NextResponse) {
   const formData = await req.formData();
   console.log(formData);
 

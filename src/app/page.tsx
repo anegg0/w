@@ -25,6 +25,7 @@ import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
 import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
+import { SignMessage2Json } from "@c/SignMessage2Json";
 import logo from "@a/logo.png";
 
 export function Page({ level }) {
