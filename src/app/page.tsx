@@ -31,7 +31,7 @@ export function Page({ level }) {
   const [step, setStep] = useState(1);
   const { address, isConnecting, isDisconnected } = useAccount();
 
-  // Function to update the step value
+  // Update step value
   const updateStep = (newStep) => {
     setStep(newStep);
   };
@@ -61,7 +61,6 @@ export function Page({ level }) {
       </>
     );
   } else if ({ Connected } && step === 2) {
-    /* return console.log("Step 2"); */
     return (
       <>
         <Header />
