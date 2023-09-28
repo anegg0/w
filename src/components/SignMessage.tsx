@@ -29,8 +29,11 @@ export function SignMessage() {
     <>
       <div className="flex justify-center items-center h-screen">
         <div className="w-1/2 p-4">
-          <div className="mb-4 text-2xl font-bold rounded-lg">
-            {"Sign the motherfucking message"}
+          <div className="mb-2 text-2xl font-bold rounded-lg">
+            {"Sign a message with your wallet"}
+          </div>
+          <div className="mb-4 text-2xl  rounded-lg">
+            <p>You can enter any message,example: "MyGraphicStudio ©"</p>
           </div>
           <form
             onSubmit={(event) => {
