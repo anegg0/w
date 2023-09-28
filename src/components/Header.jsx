@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ConnectButton } from "./ConnectButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
