@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { page } from "../page";
+
+import "@a/globals.css";
+import { page } from "@a/page";
 export function FileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -35,10 +37,8 @@ export function FileUploader({ onSuccessfulUpload }) {
       });
 
       if (response.ok) {
-        /* alert("File uploaded successfully."); */
         onSuccessfulUpload(2);
       } else {
-        // Handle an error response here
         alert("File upload failed.");
       }
     } catch (error) {
