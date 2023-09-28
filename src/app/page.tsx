@@ -25,7 +25,7 @@ import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
 import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
-import logo from "./logo.png";
+import logo from "@a/logo.png";
 
 export function Page({ level }) {
   const [step, setStep] = useState(1);
