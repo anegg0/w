@@ -24,16 +24,15 @@ export function SignMessage() {
       }
     })();
   }, [signature, variables?.message]);
-
   return (
     <>
       <div className="flex justify-center items-center h-screen">
         <div className="w-1/2 p-4">
-          <div className="mb-2 text-2xl font-bold rounded-lg">
+          <div className="mb-4 text-2xl font-bold rounded-lg">
             {"Sign a message with your wallet"}
           </div>
-          <div className="mb-4 text-2xl  rounded-lg">
-            <p>You can enter any message,example: "MyGraphicStudio ©"</p>
+          <div className="mb-5 text-1xl  rounded-lg">
+            <p>You can enter any message. For example: WreckageStudio©</p>
           </div>
           <form
             onSubmit={(event) => {
@@ -44,9 +43,19 @@ export function SignMessage() {
               signMessage({ message });
             }}
           >
-            <input name="message" type="text" required />
+            <input
+              name="message"
+              type="text"
+              className="text-gray-500"
+              required
+              placeholder="WreckageStudio©"
+            />
 
-            <button disabled={isLoading} type="submit">
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="block mt-4 px-3 py-2 bg-blue-500 text-white rounded-md"
+            >
               {isLoading ? "Check Wallet" : "Sign Message"}
             </button>
           </form>
