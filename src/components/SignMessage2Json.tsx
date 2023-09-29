@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { recoverMessageAddress } from "viem";
 import { type Address, useSignMessage } from "wagmi";
+import { SignMessage } from "@c/SignMessage";
 
 interface SignMessage2JsonProps {
 	message: string | null;
@@ -12,20 +13,17 @@ interface SignMessage2JsonProps {
 	onCreateJsonData: () => void;
 }
 
-export const SignMessage2Json: React.FC<SignMessage2JsonProps> = ({
-	message,
-	recoveredAddress,
-	signMessageData,
-	onCreateJsonData,
-}) => {
-	const handleCreateJsonData = () => {
+export function SignMessage2Json({ message, signature }) {
+	console.log(`message is: ${message}`);
+	console.log(`signature is: ${signature}`);
+	const handleCreateJsonData = async () => {
 		// Create JSON data here
 		const jsonData = {
 			message,
 			recoveredAddress,
 			signMessageData,
 		};
-
+		const jsonSignatureObject = await JSON.stringify(jsonData);
 		// Log the JSON string to the console
 		console.log("JSON Data:", JSON.stringify(jsonData));
 
@@ -42,4 +40,4 @@ export const SignMessage2Json: React.FC<SignMessage2JsonProps> = ({
 			{signMessageData && <p>Sign Message Data: {signMessageData}</p>}
 		</div>
 	);
-};
+}
