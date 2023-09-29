@@ -10,27 +10,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
     try {
       const jsonData = await req.json();
 
-  console.log(`jsonData upstream is: ${ jsonData }`);
-
-  const destinationDirPath = path.join(
+  const signatureFileDirectory = path.join(
     process.cwd(),
     process.env.STORE_SIGNATURE_PATH!
   );
 
-      const newFileName = `signature.json`; // Generate a unique filename
-      const existingFilePath = path.join(destinationDirPath, newFileName);
+      const signatureFileName = `signature.json`; // Generate a unique filename
+      const signatureFilePath = path.join(signatureFileDirectory, signatureFileName);
 
-      if (existsSync(existingFilePath)) {
-          unlinkSync(existingFilePath);
+      if (existsSync(signatureFilePath)) {
+          unlinkSync(signatureFilePath);
         }
 
-      if (!existsSync(destinationDirPath)) {
-        await fs.mkdir(destinationDirPath);
+      if (!existsSync(signatureFileDirectory)) {
+        await fs.mkdir(signatureFileDirectory);
       }
 
       console.log(`jsonData type downstream is: ${ typeof(jsonData) }`);
-      console.log(`newFileName downstream is: ${ newFileName }`);
-      const jsonFile: string = await fs.writeFile(path.join(destinationDirPath, newFileName), jsonData);
+      console.log(`signatureFileName downstream is: ${ signatureFileName }`);
+      const jsonFile: string = await fs.writeFile(path.join(signatureFileDirectory, signatureFileName), jsonData);
       return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
     } catch (error) {
       return NextResponse.json({ msg: "Server Error" }, { status: 500 });
@@ -38,6 +36,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       };
 
   return NextResponse.json({
-    url: `/public/uploads/${newFileName}`,
+    url: `/public/uploads/${signatureFileName}`,
   });
 }

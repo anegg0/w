@@ -23,9 +23,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     process.cwd(),
     process.env.STORE_IMAGE_PATH!
   );
-  console.log(`destinationDirPath is: ${destinationDirPath}`);
   // Check if "wowm.png" already exists and delete it if so
   const existingFilePath = path.join(destinationDirPath, newFileName);
+
   if (existsSync(existingFilePath)) {
     try {
       unlinkSync(existingFilePath);
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await fs.mkdir(destinationDirPath);
   }
 
+  // to clean up > possibly useless
   let filename = newFileName;
   while (existsSync(path.join(destinationDirPath, filename))) {
     filename = filename;
