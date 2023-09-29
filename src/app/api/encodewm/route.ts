@@ -1,62 +1,45 @@
-import { NextRequest, NextResponse } from "next/server";
-import { existsSync, unlinkSync } from "fs";
+// pages/api/saveJson.js import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
+import { existsSync, unlinkSync } from "fs";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, req: NextResponse) {
-  const formData = await req.formData();
-  console.log(formData);
 
-  const f = formData.get("file");
-
-  if (!f) {
-    return NextResponse.json({}, { status: 400 });
-  }
-
-  const file = f as File;
-
-  // Change the incoming file's name to "wowm.png"
-  const newFileName = "wowm.png";
-
-  // Get the destination directory path
-  const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
-  console.log(`destinationDirPath is: ${destinationDirPath}`);
-  // Check if "wowm.png" already exists and delete it if so
-  const existingFilePath = path.join(destinationDirPath, newFileName);
-  if (existsSync(existingFilePath)) {
+export async function POST(req: NextRequest, res: NextResponse) {
+  if (req.method === "POST") {
     try {
-      unlinkSync(existingFilePath);
-      console.log(`Deleted existing file: ${existingFilePath}`);
-    } catch (error) {
-      console.error(`Error deleting existing file: ${existingFilePath}`, error);
-    }
-  }
+      const jsonData = await req.json();
 
-  const fileArrayBuffer = await file.arrayBuffer();
+  console.log(`jsonData upstream is: ${ jsonData }`);
 
-  if (!existsSync(destinationDirPath)) {
-    await fs.mkdir(destinationDirPath);
-  }
-
-  let filename = newFileName;
-  while (existsSync(path.join(destinationDirPath, filename))) {
-    filename = filename;
-  }
-
-  await fs.writeFile(
-    path.join(destinationDirPath, filename),
-    Buffer.from(fileArrayBuffer)
+  const destinationDirPath = path.join(
+    process.cwd(),
+    process.env.STORE_SIGNATURE_PATH!
   );
 
-  const [extension, ...name] = filename.split(".").reverse();
+      const newFileName = `signature.json`; // Generate a unique filename
+      const existingFilePath = path.join(destinationDirPath, newFileName);
+
+      if (existsSync(existingFilePath)) {
+          unlinkSync(existingFilePath);
+        }
+
+      if (!existsSync(destinationDirPath)) {
+        await fs.mkdir(destinationDirPath);
+      }
+
+      console.log(`jsonData type downstream is: ${ typeof(jsonData) }`);
+      console.log(`newFileName downstream is: ${ newFileName }`);
+      const jsonFile: string = await fs.writeFile(path.join(destinationDirPath, newFileName), jsonData);
+      console.log(`jsonFile is: ${jsonFile}`);
+      return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
+      return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
+    } catch (error) {
+      return NextResponse.json({ msg: "Server Error" }, { status: 500 });
+      }
+      };
 
   return NextResponse.json({
-    fileName: newFileName,
-    size: file.size,
-    lastModified: new Date(file.lastModified),
-    url: `http://localhost:3000/api/file/${newFileName}`,
-    preview: ["mp4"].includes(extension.toLowerCase())
-      ? `http://192.168.33.112:3000/play?filename=${filename}`
-      : undefined,
+    url: `/public/uploads/${newFileName}`,
   });
 }

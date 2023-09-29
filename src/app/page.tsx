@@ -25,6 +25,7 @@ import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
 import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
+import { SignMessage2api } from "@c/SignMessage2api";
 import logo from "@a/logo.png";
 
 export function Page({ level }) {
@@ -64,7 +65,7 @@ export function Page({ level }) {
     return (
       <>
         <Header />
-        <SignMessage />;
+        <SignMessage2api />;
       </>
     );
   }
