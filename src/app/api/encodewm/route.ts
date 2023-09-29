@@ -31,8 +31,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       console.log(`jsonData type downstream is: ${ typeof(jsonData) }`);
       console.log(`newFileName downstream is: ${ newFileName }`);
       const jsonFile: string = await fs.writeFile(path.join(destinationDirPath, newFileName), jsonData);
-      console.log(`jsonFile is: ${jsonFile}`);
-      return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
       return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
     } catch (error) {
       return NextResponse.json({ msg: "Server Error" }, { status: 500 });
