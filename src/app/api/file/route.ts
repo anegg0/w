@@ -3,7 +3,7 @@ import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const formData = await req.formData();
   console.log(formData);
 
@@ -19,7 +19,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const newFileName = "wowm.png";
 
   // Get the destination directory path
-  const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
+  const destinationDirPath = path.join(
+    process.cwd(),
+    process.env.STORE_IMAGE_PATH!
+  );
   console.log(`destinationDirPath is: ${destinationDirPath}`);
   // Check if "wowm.png" already exists and delete it if so
   const existingFilePath = path.join(destinationDirPath, newFileName);
@@ -51,12 +54,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const [extension, ...name] = filename.split(".").reverse();
 
   return NextResponse.json({
-    fileName: newFileName,
-    size: file.size,
-    lastModified: new Date(file.lastModified),
-    url: `http://localhost:3000/api/file/${newFileName}`,
-    preview: ["mp4"].includes(extension.toLowerCase())
-      ? `http://192.168.33.112:3000/play?filename=${filename}`
-      : undefined,
+    url: `/public/uploads/${newFileName}`,
   });
 }
