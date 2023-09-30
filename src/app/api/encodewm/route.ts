@@ -6,8 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  if (req.method === "POST") {
     try {
+
+  if (req.method === "POST") {
       const jsonData = await req.json();
 
   const signatureFileDirectory = path.join(
@@ -26,14 +27,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
         await fs.mkdir(signatureFileDirectory);
       }
 
-      console.log(`jsonData type downstream is: ${ typeof(jsonData) }`);
-      console.log(`signatureFileName downstream is: ${ signatureFileName }`);
       const jsonFile: string = await fs.writeFile(path.join(signatureFileDirectory, signatureFileName), jsonData);
       return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
+  }
     } catch (error) {
       return NextResponse.json({ msg: "Server Error" }, { status: 500 });
       }
-      };
 
   return NextResponse.json({
     url: `/public/uploads/${signatureFileName}`,
