@@ -43,13 +43,14 @@ const watermarkedImageFilePath = path.join(imageFilesDirectory, watermarkedImage
     }
   try {
  const encoded_imagePath = await asyncExec(
-`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=${ originalImageFilePath } --stegofile=${ watermarkedImageFilePath }`
+`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=${ signatureFilePath } --coverfile=${ originalImageFilePath } --stegofile=${ watermarkedImageFilePath }`
     );
     console.log("Embedding successful.");
     return new NextResponse(encoded_imagePath);
-  } catch (error) {
+  } catch (error)
+    {
     console.error("Error during embedding:", error);
-    throw error; // Optionally rethrow the error if needed
-  }
+    throw error;
+    }
     return new NextResponse(encoded_imagePath);
 }
