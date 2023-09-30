@@ -24,11 +24,6 @@ export function SignMessage2api() {
 
   const sendSignMessageData = async (requestBody: string) => {
     try {
-      // Construct the request body with the signMessageData
-		/* const requestBody = {
-		 *   signature2json,
-		 * };
-		 */
       const response = await fetch("/api/encodewm", {
         method: "POST",
         headers: {

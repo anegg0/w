@@ -1,40 +1,55 @@
-// pages/api/saveJson.js import { existsSync, unlinkSync } from "fs";
+// pages/api/saveJson.js
 import fs from "fs/promises";
 import path from "path";
-import { existsSync, unlinkSync } from "fs";
+import { existsSync, unlinkSync, readFile} from "fs";
 import { NextRequest, NextResponse } from "next/server";
-
+import { exec } from "child_process";
+import { promisify } from "util";
+const asyncExec = promisify(exec);
 
 export async function POST(req: NextRequest, res: NextResponse) {
-    try {
 
-  if (req.method === "POST") {
-      const jsonData = await req.json();
+ // if (req.method === "POST") {
+const jsonData = await req.json();
 
-  const signatureFileDirectory = path.join(
-    process.cwd(),
-    process.env.STORE_SIGNATURE_PATH!
-  );
+const signatureFileDirectory = path.join(
+  process.cwd(),
+  process.env.STORE_SIGNATURE_PATH!
+ );
 
-      const signatureFileName = `signature.json`; // Generate a unique filename
-      const signatureFilePath = path.join(signatureFileDirectory, signatureFileName);
+const signatureFileName = `signature.json`; // Generate a unique filename
+const signatureFilePath = path.join(signatureFileDirectory, signatureFileName);
 
-      if (existsSync(signatureFilePath)) {
-          unlinkSync(signatureFilePath);
-        }
+   if (existsSync(signatureFileName)) {
+await fs.rm(signatureFileName);
+    }
 
-      if (!existsSync(signatureFileDirectory)) {
-        await fs.mkdir(signatureFileDirectory);
-      }
+const jsonFile: string = await fs.writeFile(path.join(signatureFileDirectory, signatureFileName), jsonData);
 
-      const jsonFile: string = await fs.writeFile(path.join(signatureFileDirectory, signatureFileName), jsonData);
-      return NextResponse.json({ msg: "JSON data saved successfully" }, { status: 200 });
+const asyncExec = promisify(exec);
+
+const imageFilesDirectory = path.join(
+  process.cwd(),
+  process.env.STORE_IMAGE_PATH!
+ );
+
+const originalImageFileName = `original_image.png`; // Generate a unique filename
+const originalImageFilePath = path.join(imageFilesDirectory, originalImageFileName);; // Generate a unique filename
+const watermarkedImageFileName = `encoded_image.png`; // Generate a unique filename
+const watermarkedImageFilePath = path.join(imageFilesDirectory, watermarkedImageFileName);
+
+   if (existsSync(watermarkedImageFilePath)) {
+     unlinkSync(watermarkedImageFilePath);
+    }
+  try {
+ const encoded_imagePath = await asyncExec(
+`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=${ originalImageFilePath } --stegofile=${ watermarkedImageFilePath }`
+    );
+    console.log("Embedding successful.");
+    return new NextResponse(encoded_imagePath);
+  } catch (error) {
+    console.error("Error during embedding:", error);
+    throw error; // Optionally rethrow the error if needed
   }
-    } catch (error) {
-      return NextResponse.json({ msg: "Server Error" }, { status: 500 });
-      }
-
-  return NextResponse.json({
-    url: `/public/uploads/${signatureFileName}`,
-  });
+    return new NextResponse(encoded_imagePath);
 }

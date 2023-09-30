@@ -16,7 +16,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const file = f as File;
 
   // Change the incoming file's name to "wowm.png"
-  const newFileName = "wowm.png";
+  const newFileName = "original_image.png";
 
   // Get the destination directory path
   const destinationDirPath = path.join(
