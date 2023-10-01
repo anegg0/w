@@ -35,15 +35,12 @@ try {
 const signatureDirectory = path.join(process.cwd(), process.env.STORE_SIGNATURE_PATH!);
 let  signatureFilePath = await createFilePath(signatureDirectory, 'signature.json');
 let signatureFile = await fs.writeFile(signatureFilePath, signature);
-
-const imageFilesDirectory = path.join(process.cwd(), process.env.STORE_IMAGE_PATH!);
-const originalImage = path.join(imageFilesDirectory, 'original_image.png');
-
+// const originalImage = path.join(imageFilesDirectory, 'original_image.png');
 const EncodedImageFilesDirectory = path.join(process.cwd(), process.env.STORE_ENCODED_IMAGE_PATH!);
 const EncodedImageFilePath = await createFilePath( EncodedImageFilesDirectory, `encoded_image.png` );
-try {
-  const encoded_image = await asyncExec(`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=/home/o/dev/webapp/src/public/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/public/encoded/encoded_image.png`);
-  return new NextResponse(encoded_image);
+  try {
+    const encoded_image = await asyncExec(`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=/home/o/dev/webapp/src/public/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/public/encoded/encoded_image.png`);
+    return new NextResponse(encoded_image);
 } catch (err) {
     console.error(err);
 }

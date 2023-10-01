@@ -66,7 +66,7 @@ export function Page({ level }) {
     return (
       <>
         <Header />
-        <SignMessage2api />;
+        <SignMessage2api onSuccessfulEncoding={updateStep} />;
       </>
     );
   } else if ({ Connected } && step === 3) {
