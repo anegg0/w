@@ -26,6 +26,7 @@ import { useAccount } from "wagmi";
 import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
+import { MetadataBuilder } from "@c/MetadataBuilder";
 import logo from "@a/logo.png";
 
 export function Page({ level }) {
@@ -66,6 +67,13 @@ export function Page({ level }) {
       <>
         <Header />
         <SignMessage2api />;
+      </>
+    );
+  } else if ({ Connected } && step === 3) {
+    return (
+      <>
+        <Header />
+        <MetadataBuilder />;
       </>
     );
   }

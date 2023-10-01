@@ -42,22 +42,17 @@ const originalImage = path.join(imageFilesDirectory, 'original_image.png');
 const EncodedImageFilesDirectory = path.join(process.cwd(), process.env.STORE_ENCODED_IMAGE_PATH!);
 const EncodedImageFilePath = await createFilePath( EncodedImageFilesDirectory, `encoded_image.png` );
 try {
-
-    // const encoded_image = await asyncExec(
-      // `java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=${signatureFile} --coverfile=${originalImage} --stegofile=${EncodedImageFilePath}`);
-
   const encoded_image = await asyncExec(`java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=/home/o/dev/webapp/src/public/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/public/encoded/encoded_image.png`);
-    console.log("Encoded image:", encoded_image);
+  return new NextResponse(encoded_image);
 } catch (err) {
     console.error(err);
-  // Do something
 }
-//     // Calculate the SHA-256 hash of the watermarked image
-//     const hashedData = await calculateFileHash(watermarkedImageFilePath);
-//     console.log("Hash of watermarked image:", hashedData);
-//     return new NextResponse(hashedData);
-//   } catch (error) {
-//     console.error("Error during embedding:", error);
-//     throw error;
-//   }
+  try {
+    const hashedData = await calculateFileHash(encoded_image);
+    console.log("Hash of watermarked image:", hashedData);
+    return new NextResponse(hashedData);
+  } catch (error) {
+    console.error("Error during embedding:", error);
+    throw error;
+  }
 }

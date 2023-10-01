@@ -3,7 +3,7 @@ import * as React from "react";
 import { useSignMessage } from "wagmi";
 import "@a/globals.css";
 
-export function SignMessage2api() {
+export function SignMessage2api({ onSuccessfulEncoding }) {
   const [message, setMessage] = React.useState<string | null>(null);
 
   const {
@@ -18,7 +18,7 @@ export function SignMessage2api() {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const messageValue = formData.get("message");
-    setMessage(messageValue as string); // Ensure that messageValue is of type string
+    setMessage(messageValue as string);
     signMessage({ message: messageValue });
   };
 
@@ -33,11 +33,8 @@ export function SignMessage2api() {
       });
 
       if (response.ok) {
-        // Request was successful, handle the response as needed
-        const result = await response.json();
-        console.log("Success:", result);
+		onSuccessfulEncoding(3)
       } else {
-        // Request failed, handle the error
         const errorData = await response.json();
         console.error("Error:", errorData);
       }
