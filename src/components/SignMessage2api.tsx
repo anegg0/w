@@ -33,7 +33,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
       });
 
       if (response.ok) {
-		onSuccessfulEncoding(3)
+        onSuccessfulEncoding(3);
       } else {
         const errorData = await response.json();
         console.error("Error:", errorData);
@@ -44,10 +44,12 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
   };
 
   if (signMessageData) {
-  const requestBody = sendSignMessageData(JSON.stringify({
-      message: message,
-      signature: signMessageData,
-    }))
+    const requestBody = sendSignMessageData(
+      JSON.stringify({
+        message: message,
+        signature: signMessageData,
+      })
+    );
   }
 
   return (
@@ -60,10 +62,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
           <div className="mb-5 text-1xl rounded-lg">
             <p>You can enter any message. For example: WreckageStudio©</p>
           </div>
-          <form
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
+          <form encType="multipart/form-data" onSubmit={handleSubmit}>
             <input
               name="message"
               type="text"
