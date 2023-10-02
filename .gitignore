@@ -51,3 +51,5 @@ next-env.d.ts
 /hashes
 /signatures
 ```
+/src/public/encoded/
+/src/public/hashes/
