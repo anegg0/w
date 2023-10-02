@@ -44,3 +44,10 @@ yarn-error.log*
 
 \*.tsbuildinfo
 next-env.d.ts
+
+# user-specific files
+/encoded
+/decoded
+/hashes
+/signatures
+```
