@@ -17,7 +17,8 @@
     "baseUrl": "./src",
     "paths": {
       "@c/*": ["components/*"],
-      "@a/*": ["app/*"]
+      "@a/*": ["app/*"],
+      "@p/*": ["public/*"]
     },
     "plugins": [
       {
