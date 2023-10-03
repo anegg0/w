@@ -106,9 +106,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
       external_url: `ipfs://${cid}`,
       name: "Dave Starbelly",
     };
-    await fs.writeFile(metadataFilePath, JSON.stringify(metadata, null, 2));
+    const metadataFileContent = await JSON.stringify(metadata, null, 2);
+    console.log(`metadata.json is: ${metadataFileContent}`);
 
-    return new NextResponse(hashedData);
+    await fs.writeFile(metadataFilePath, metadataFileContent);
+    return new NextResponse(metadataFileContent);
   } catch (error) {
     console.error("Error returned at end of executions:", error);
     throw error;
