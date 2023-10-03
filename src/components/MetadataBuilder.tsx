@@ -35,16 +35,6 @@ export function MetadataBuilder() {
         description: "",
       },
     ],
-    attributes: [
-      {
-        trait_type: "",
-        value: "",
-      },
-      {
-        trait_type: "",
-        value: "",
-      },
-    ],
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,119 +78,64 @@ export function MetadataBuilder() {
 
   return (
     <div className="min-h-screen p-10">
-      <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>
+      <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>{" "}
       <form
         onSubmit={handleSubmit}
         className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
       >
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="name">
+          <label className="block text-sm font-medium mb-2">
             Name:
+            <input
+              placeholder="Short description of your image"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+            />
           </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium mb-2"
-            htmlFor="description"
-          >
+          <label className="block text-sm font-medium mb-2">
             Description:
+            <input
+              type="text"
+              placeholder="Longer description of your image"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+            />
           </label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="image">
+          <label className="block text-sm font-medium mb-2">
             Image:
+            <input
+              type="text"
+              name="image"
+              id="name"
+              value={formData.image}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+            />
           </label>
-          <input
-            type="text"
-            name="image"
-            id="image"
-            value={formData.image}
-            onChange={handleInputChange}
-            className="w-full p-2 border rounded"
-          />
         </div>
-
-        <h3 className="text-xl font-semibold mb-4">Resources</h3>
-        {formData.resources.map((resource, index) => (
-          <div key={index} className="mb-4">
-            <div className="mb-2">
-              <label
-                className="block text-sm font-medium mb-2"
-                htmlFor={`resource_name_${index}`}
-              >
-                Name:
-              </label>
-              <input
-                type="text"
-                name="name"
-                id={`resource_name_${index}`}
-                value={resource.name}
-                onChange={(e) => handleResourceChange(e, index)}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            {/* ... Repeat similar div structure for URI, MIME Type, and Description ... */}
-          </div>
-        ))}
+        <br />
+        <label className="block text-md font-medium mb-2">
+          You can now mint your watermarked image as an NFT.
+          <br />
+          After clicking the "Mint image as NFT" button, your wallet will ask
+          you to confirm the transaction.
+          <br />
+          <br />
+          Once confirmed, your will have verifiable proof that you registered
+          your image on the blockchain:
+          <br />
+        </label>
         <button
           type="button"
-          onClick={() =>
-            setFormData({
-              ...formData,
-              resources: [...formData.resources, {}],
-            })
-          }
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
-          Add Resource
+          Mint image as NFT
         </button>
-
-        <h3 className="text-xl font-semibold mt-6 mb-4">Attributes</h3>
-        {formData.attributes.map((attribute, index) => (
-          <div key={index} className="mb-4">
-            {/* ... Structured similarly to the "Resources" inputs ... */}
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() =>
-            setFormData({
-              ...formData,
-              attributes: [...formData.attributes, {}],
-            })
-          }
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-4"
-        >
-          Add Attribute
-        </button>
-
-        <div className="mt-6">
-          <button
-            type="submit"
-            className="px-6 py-2 bg-[rgba(var(--foreground-rgb),0.1)] text-[rgba(var(--foreground-rgb),1)] rounded hover:bg-[rgba(var(--foreground-rgb),0.2)]"
-          >
-            Submit
-          </button>
-        </div>
       </form>
     </div>
   );
