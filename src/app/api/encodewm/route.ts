@@ -61,10 +61,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       `java -jar openstego.jar --embed --algorithm=randomlsb --messagefile=/home/o/dev/webapp/src/public/signatures/signature.json --coverfile=/home/o/dev/webapp/src/public/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/public/encoded/encoded_image.png`
     );
 
-    console.log(
-      "After running the java binary, encoded_image is",
-      encoded_image
-    );
     const HashesDirectory = path.join(
       process.cwd(),
       process.env.STORE_HASH_PATH!
@@ -73,7 +69,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const hashedData = await calculateFileHash(EncodedImageFilePath);
     let hashFile = await fs.writeFile(HashFilePath, hashedData);
-    console.log("Hash of watermarked image:", hashFile);
     return new NextResponse(hashedData);
   } catch (error) {
     console.error("Error returned at end of executions:", error);
