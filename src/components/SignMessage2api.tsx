@@ -1,10 +1,12 @@
 "use client";
-import * as React from "react";
+/* import * as React from "react"; */
+import React, { useState } from "react";
 import { useSignMessage } from "wagmi";
 import "@a/globals.css";
 
 export function SignMessage2api({ onSuccessfulEncoding }) {
-  const [message, setMessage] = React.useState<string | null>(null);
+  let [message, setMessage] = React.useState<string | null>(null);
+  let [loadingInProgress, setLoading] = useState(true);
 
   const {
     data: signMessageData,
@@ -31,8 +33,9 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
         },
         body: JSON.stringify(requestBody),
       });
-
+      setLoading(true);
       if (response.ok) {
+        setLoading(false);
         onSuccessfulEncoding(3);
       } else {
         const errorData = await response.json();

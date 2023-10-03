@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import "./globals.css";
 import Image from "next/image";
 import { Account } from "@c/Account";
@@ -29,15 +30,17 @@ import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
 import logo from "@a/logo.png";
 
-export function Page({ level }) {
-  const [step, setStep] = useState(1);
-  const { address, isConnecting, isDisconnected } = useAccount();
+export function Page({ newStep }) {
+  let [step, setStep] = useState(1);
+  let { address, isConnecting, isDisconnected } = useAccount();
+  let [loadingInProgress, setLoading] = useState(false);
 
   // Update step value
   const updateStep = (newStep) => {
     setStep(newStep);
   };
 
+  // Update loadStatus value
   if (isConnecting) return <div>Connecting…</div>;
   if (isDisconnected) {
     return (
@@ -69,6 +72,14 @@ export function Page({ level }) {
         <SignMessage2api onSuccessfulEncoding={updateStep} />;
       </>
     );
+    /* } else if ({ loadingInProgress }) {
+     *   return (
+     *     <>
+     *       <div className="loader-container">
+     *         <ClipLoader color={"#fff"} size={150} />
+     *       </div>
+     *     </>
+     *   ); */
   } else if ({ Connected } && step === 3) {
     return (
       <>
