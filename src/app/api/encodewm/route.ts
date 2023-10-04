@@ -79,7 +79,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         "encoded_image.png"
       );
       const encoded_image = await asyncExec(
-        `java -jar openstego.jar --embed --a randomlsb --mf ${signatureFilePath} --cf=/home/o/dev/webapp/src/public/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/public/encoded/encoded_image.png`
+        `java -jar openstego.jar --embed --a randomlsb --mf ${signatureFilePath} --cf=/home/o/dev/webapp/src/app/uploads/original_image.png --stegofile=/home/o/dev/webapp/src/app/encoded/encoded_image.png`
       );
 
       const HashesDirectory = await path.join(
@@ -93,6 +93,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const apiKey = await process.env.NFT_STORAGE_API_KEY;
       const cid = await uploadToNftStorage(EncodedImageFilePath, apiKey);
 
+      console.log(`cid is: ${cid}`);
       const metadataFileDirectory = await path.join(
         process.cwd(),
         process.env.STORE_METADATA_FILE!
