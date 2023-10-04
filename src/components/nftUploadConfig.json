@@ -1,0 +1,5 @@
+{
+  "imagesDirectory": "@p/encoded/",
+  "metadataDirectory": "@p/metadata",
+  "nftStorageKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI2OENkNTQzMDlkMzk2QTcxNjc4OEZjMzNDNGYwZGQ4MEIxMTBBMzYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY5NDQ2MDE5NDM4NCwibmFtZSI6InNpZ3ZhbnQifQ.JitE6jlBv03xWXIAB7H3jvDJUTb9xM3LebE4BcJoJvA"
+}
