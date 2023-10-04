@@ -1,48 +1,49 @@
-// pages/api/mint.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { NFTStorage, File } from "nft.storage";
+import mime from "mime";
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  // if (req.method !== "POST") {
-  //   return res.status(405).end(); // Method Not Allowed
-  // }
-
-  const { name, description } = await req.json();
-  // Get path to the metadata.json file
-  const metadataFileDirectory = path.join(
-    process.cwd(),
-    process.env.STORE_METADATA_FILE!
-  );
-  const metadataFilePath = path.join(metadataFileDirectory, `metadata.json`);
-
   try {
-    // Read current metadata
-    const currentMetadataRaw = await fs.readFile(metadataFilePath, "utf-8");
-    const currentMetadata = JSON.parse(currentMetadataRaw);
+    const { name, description } = await req.json();
 
-    console.log(name, description);
-    // Update the metadata with the new name and description
-    currentMetadata.name = name;
-    currentMetadata.description = description;
+    async function fileFromPath(filePath: string) {
+      const content = await fs.readFile(filePath);
+      const type = mime.getType(filePath);
+      return new File([content], path.basename(filePath), { type });
+    }
 
-    // Write the updated metadata back to the file
-    await fs.writeFile(
-      metadataFilePath,
-      JSON.stringify(currentMetadata, null, 2)
+    const imagePath = path.join(
+      process.cwd(),
+      "src/app/encoded/encoded_image.png"
     );
-    console.log(`Metadata updated successfully!${currentMetadata.description}`);
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Metadata updated successfully!",
-      },
-      { status: 200 }
-    );
+    const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_API_KEY;
+
+    async function storeNFT(
+      imagePath: string,
+      name: string,
+      description: string
+    ) {
+      const image = await fileFromPath(imagePath);
+      const nftstorage = new NFTStorage({ token: NFT_STORAGE_TOKEN });
+      return nftstorage.store({
+        image,
+        name,
+        description,
+      });
+    }
+
+    const nftResult = await storeNFT(imagePath, name, description);
+    console.log(`Metadata updated successfully! ${nftResult.url}`);
+
+    return NextResponse.json({
+      success: true,
+      message: "Metadata updated successfully!",
+    });
   } catch (error) {
     console.error(error);
-    return NextResponse(
+    return NextResponse.json(
       {
         success: false,
         message: "Internal Server Error",
@@ -51,7 +52,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     );
   }
 
-  return NextResponse({
-    message: currentMetadata.name,
-  });
+  // You probably don't need this line since you're handling all the cases above
+  // return NextResponse.json({ message: `un grand merci a tous` });
 }

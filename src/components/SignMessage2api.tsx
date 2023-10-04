@@ -32,9 +32,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
         },
         body: JSON.stringify(requestBody),
       });
-      setLoading(true);
       if (response.ok) {
-        setLoading(false);
         onSuccessfulEncoding(3);
       } else {
         const errorData = await response.json();
