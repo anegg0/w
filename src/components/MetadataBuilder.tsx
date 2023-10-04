@@ -2,39 +2,15 @@
 
 import { useState } from "react";
 
-interface Resource {
-  name: string;
-  uri: string;
-  mime_type: string;
-  description: string;
-}
-
-interface Attribute {
-  trait_type: string;
-  value: string;
-}
-
 interface FormData {
   name: string;
   description: string;
-  image: string;
-  resources: Resource[];
-  attributes: Attribute[];
 }
 
 export function MetadataBuilder() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
-    image: "",
-    resources: [
-      {
-        name: "",
-        uri: "",
-        mime_type: "",
-        description: "",
-      },
-    ],
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,40 +21,32 @@ export function MetadataBuilder() {
     });
   };
 
-  const handleResourceChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { name, value } = e.target;
-    const updatedResources = [...formData.resources];
-    updatedResources[index][name] = value;
-    setFormData({
-      ...formData,
-      resources: updatedResources,
-    });
-  };
-
-  const handleAttributeChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { name, value } = e.target;
-    const updatedAttributes = [...formData.attributes];
-    updatedAttributes[index][name] = value;
-    setFormData({
-      ...formData,
-      attributes: updatedAttributes,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(JSON.stringify(formData, null, 2));
+
+    try {
+      const response = await fetch("/api/mint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Response data:", data);
+    } catch (error) {
+      console.error("Error minting NFT:", error);
+    }
   };
 
   return (
     <div className="min-h-screen p-10">
-      <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>{" "}
+      <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>
       <form
         onSubmit={handleSubmit}
         className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
@@ -92,7 +60,7 @@ export function MetadataBuilder() {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-500"
             />
           </label>
           <label className="block text-sm font-medium mb-2">
@@ -103,18 +71,7 @@ export function MetadataBuilder() {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded"
-            />
-          </label>
-          <label className="block text-sm font-medium mb-2">
-            Image:
-            <input
-              type="text"
-              name="image"
-              id="name"
-              value={formData.image}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-gray-500"
             />
           </label>
         </div>
@@ -131,7 +88,7 @@ export function MetadataBuilder() {
           <br />
         </label>
         <button
-          type="button"
+          type="submit" // Changed to submit
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Mint image as NFT

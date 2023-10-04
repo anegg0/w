@@ -103,9 +103,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
         `metadata.json`
       );
       const metadata = {
-        description: "Signed NFT",
+        description: "",
         external_url: `ipfs://${cid}`,
-        name: "Dave Starbelly",
+        name: "",
       };
       const metadataFileContent = await JSON.stringify(metadata, null, 2);
       console.log(`metadata.json is: ${metadataFileContent}`);
