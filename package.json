@@ -26,6 +26,7 @@
     "pino-pretty": "^10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "util": "^0.12.5",
     "viem": "~0.3.36",
     "wagmi": "^1.0.6"

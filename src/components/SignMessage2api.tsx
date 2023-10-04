@@ -1,5 +1,4 @@
 "use client";
-/* import * as React from "react"; */
 import React, { useState } from "react";
 import { useSignMessage } from "wagmi";
 import "@a/globals.css";
