@@ -49,4 +49,6 @@ next-env.d.ts
 /src/app/encoded/
 /src/app/decoded/
 /src/app/hashes/
+/src/app/metadata/
+/src/app/uploads/
 /src/app/signatures/
