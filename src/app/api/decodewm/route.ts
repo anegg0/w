@@ -16,12 +16,11 @@ export async function POST(req: NextRequest, req: NextResponse) {
   const file = f as File;
 
   // Change the incoming file's name to "wowm.png"
-  const newFileName = "wowm.png";
+  const newFileName = "original_image.png";
 
   // Get the destination directory path
   const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
   console.log(`destinationDirPath is: ${destinationDirPath}`);
-  // Check if "wowm.png" already exists and delete it if so
   const existingFilePath = path.join(destinationDirPath, newFileName);
   if (existsSync(existingFilePath)) {
     try {
@@ -51,12 +50,6 @@ export async function POST(req: NextRequest, req: NextResponse) {
   const [extension, ...name] = filename.split(".").reverse();
 
   return NextResponse.json({
-    fileName: newFileName,
-    size: file.size,
-    lastModified: new Date(file.lastModified),
-    url: `http://localhost:3000/api/file/${newFileName}`,
-    preview: ["mp4"].includes(extension.toLowerCase())
-      ? `http://192.168.33.112:3000/play?filename=${filename}`
-      : undefined,
+    fileName: fileName,
   });
 }
