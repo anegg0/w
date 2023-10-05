@@ -3,23 +3,19 @@ import fs from "fs/promises";
 import path from "path";
 import { NFTStorage, File } from "nft.storage";
 import mime from "mime";
-
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const { name, description } = await req.json();
-
     async function fileFromPath(filePath: string) {
       const content = await fs.readFile(filePath);
       const type = mime.getType(filePath);
       return new File([content], path.basename(filePath), { type });
     }
-
     const imagePath = path.join(
       process.cwd(),
       "src/app/encoded/encoded_image.png"
     );
     const NFT_STORAGE_TOKEN = process.env.NFT_STORAGE_API_KEY;
-
     async function storeNFT(
       imagePath: string,
       name: string,
@@ -33,10 +29,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
         description,
       });
     }
-
     const nftResult = await storeNFT(imagePath, name, description);
     console.log(`Metadata updated successfully! ${nftResult.url}`);
-
     return NextResponse.json({
       success: true,
       message: "Metadata updated successfully!",
@@ -51,7 +45,4 @@ export async function POST(req: NextRequest, res: NextResponse) {
       { status: 500 }
     );
   }
-
-  // You probably don't need this line since you're handling all the cases above
-  // return NextResponse.json({ message: `un grand merci a tous` });
 }

@@ -52,3 +52,5 @@ next-env.d.ts
 /src/app/metadata/
 /src/app/uploads/
 /src/app/signatures/
+/src/app/tmp/not-working-pics/2.PNG
+/src/app/tmp/not-working-pics/resized/
