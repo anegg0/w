@@ -7,7 +7,7 @@ interface FormData {
   description: string;
 }
 
-export function MetadataBuilder() {
+export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
@@ -32,13 +32,12 @@ export function MetadataBuilder() {
         },
         body: JSON.stringify(formData),
       });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (response.ok) {
+        onSuccessfulMetadataCreation(4);
+      } else {
+        const data = await response.json();
+        console.log("Response data:", data);
       }
-
-      const data = await response.json();
-      console.log("Response data:", data);
     } catch (error) {
       console.error("Error minting NFT:", error);
     }
@@ -97,3 +96,5 @@ export function MetadataBuilder() {
     </div>
   );
 }
+
+export default MetadataBuilder;

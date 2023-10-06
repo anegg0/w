@@ -20,6 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 			imagePath: string,
 			name: string,
 			description: string,
+			onSuccessfulMetadataCreation: Function, // Add this parameter
 		) {
 			const image = await fileFromPath(imagePath);
 			const nftstorage = new NFTStorage({ token: NFT_STORAGE_TOKEN });
@@ -29,8 +30,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
 				description,
 			});
 		}
-		const nftResult = await storeNFT(imagePath, name, description);
-		console.log(`Metadata updated successfully! ${nftResult.url}`);
+		const nftResult = await storeNFT(
+			imagePath,
+			name,
+			description,
+			(result: any) => {
+				console.log(`Metadata updated successfully! ${result.url}`);
+			},
+		);
 		return NextResponse.json({
 			success: true,
 			message: "Metadata updated successfully!",

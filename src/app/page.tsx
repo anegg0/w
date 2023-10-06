@@ -28,6 +28,7 @@ import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
+import { MintNFT } from "@c/MintNFT";
 import logo from "@a/logo.png";
 
 export function Page({ newStep }) {
@@ -72,19 +73,21 @@ export function Page({ newStep }) {
         <SignMessage2api onSuccessfulEncoding={updateStep} />;
       </>
     );
-    /* } else if ({ loadingInProgress }) {
-     *   return (
-     *     <>
-     *       <div className="loader-container">
-     *         <ClipLoader color={"#fff"} size={150} />
-     *       </div>
-     *     </>
-     *   ); */
   } else if ({ Connected } && step === 3) {
     return (
       <>
         <Header />
         <MetadataBuilder />;
+      </>
+    );
+  } else if ({ Connected } && step === 4) {
+    return (
+      <>
+        <Header />
+        <MetadataBuilder
+          onSuccessfulMetadataCreation={handleSuccessfulMetadataCreation}
+        />
+        ;
       </>
     );
   }
