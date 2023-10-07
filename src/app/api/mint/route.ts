@@ -30,6 +30,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		});
 	}
 	const nftResult = await storeNFT(imagePath, name, description);
+
 	console.log(`Metadata updated successfully! ${nftResult.url}`);
 	return NextResponse.json({
 		success: true,
