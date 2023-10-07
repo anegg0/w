@@ -21,8 +21,8 @@ export default defineConfig({
 				{
 					name: "WagmiMintExample",
 					address: {
-						[chains.mainnet.id]: "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
-						[chains.goerli.id]: "0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2",
+						[chains.mainnet.id]: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
+						[chains.goerli.id]: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
 					},
 				},
 			],

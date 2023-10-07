@@ -10,11 +10,11 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     localhost,
     ...(process.env.NODE_ENV === "development" ? [localhost] : [goerli]),
   ],
-  [publicProvider()]
+  [publicProvider()],
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "My wagmi + RainbowKit App",
+  appName: "W",
   chains,
   projectId: walletConnectProjectId,
 });
