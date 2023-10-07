@@ -13,8 +13,8 @@ interface FormData {
 }
 
 function MintNFTForm({ tokenURI }) {
-  const [tokenId, setTokenId] = React.useState("");
-  const debouncedTokenId = useDebounce(tokenId);
+  /* const [tokenId, setTokenId] = React.useState(""); */
+  /* const debouncedTokenId = useDebounce(tokenId); */
 
   const {
     config,
@@ -41,16 +41,19 @@ function MintNFTForm({ tokenURI }) {
   });
 
   return (
-    <div>
-      {isSuccess && (
+    console.log("tokenURI:", tokenURI),
+    {
+      /* <div>
+        {isSuccess && (
         <div>
-          Successfully minted your NFT!
-          <div>
-            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
-          </div>
+        Successfully minted your NFT!
+        <div>
+        <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
         </div>
-      )}
-    </div>
+        </div>
+        )}
+        </div> */
+    }
   );
 }
 
@@ -79,13 +82,13 @@ export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
         },
         body: JSON.stringify(formData),
       });
-      console.log("Response:", response);
       if (response.ok) {
-        /* MintNFTForm({ tokenURI }); */
-        onSuccessfulMetadataCreation(4);
-      } else {
-        const data = await response.json();
-        console.log("Response data:", data);
+        /* onSuccessfulMetadataCreation(4); */
+        const tokenURI = response
+          .json()
+          .then((data) => console.log(`tokenURI is: ${data.url}`));
+        await console.log("tokenuri:", tokenuri);
+        await MintNFTForm(tokenURI);
       }
     } catch (error) {
       console.error("Error minting NFT:", error);
