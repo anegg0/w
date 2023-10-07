@@ -10,12 +10,12 @@ import {
   UsePrepareContractWriteConfig,
   useContractEvent,
   UseContractEventConfig,
-} from 'wagmi'
+} from "wagmi";
 import {
   ReadContractResult,
   WriteContractMode,
   PrepareWriteContractResult,
-} from 'wagmi/actions'
+} from "wagmi/actions";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // WagmiMintExample
@@ -26,211 +26,211 @@ import {
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export const wagmiMintExampleABI = [
-  { stateMutability: 'nonpayable', type: 'constructor', inputs: [] },
+  { stateMutability: "nonpayable", type: "constructor", inputs: [] },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'approved',
-        internalType: 'address',
-        type: 'address',
+        name: "approved",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'tokenId',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "tokenId",
+        internalType: "uint256",
+        type: "uint256",
         indexed: true,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'operator',
-        internalType: 'address',
-        type: 'address',
+        name: "operator",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
-      { name: 'approved', internalType: 'bool', type: 'bool', indexed: false },
+      { name: "approved", internalType: "bool", type: "bool", indexed: false },
     ],
-    name: 'ApprovalForAll',
+    name: "ApprovalForAll",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'tokenId',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "tokenId",
+        internalType: "uint256",
+        type: "uint256",
         indexed: true,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "tokenId", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
+    name: "approve",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "owner", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
-    name: 'getApproved',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "tokenId", internalType: "uint256", type: "uint256" }],
+    name: "getApproved",
+    outputs: [{ name: "", internalType: "address", type: "address" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'operator', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "operator", internalType: "address", type: "address" },
     ],
-    name: 'isApprovedForAll',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "isApprovedForAll",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
-    name: 'mint',
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "tokenId", internalType: "uint256", type: "uint256" }],
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
-    name: 'ownerOf',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "tokenId", internalType: "uint256", type: "uint256" }],
+    name: "ownerOf",
+    outputs: [{ name: "", internalType: "address", type: "address" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "tokenId", internalType: "uint256", type: "uint256" },
     ],
-    name: 'safeTransferFrom',
+    name: "safeTransferFrom",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
-      { name: '_data', internalType: 'bytes', type: 'bytes' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "tokenId", internalType: "uint256", type: "uint256" },
+      { name: "_data", internalType: "bytes", type: "bytes" },
     ],
-    name: 'safeTransferFrom',
+    name: "safeTransferFrom",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'operator', internalType: 'address', type: 'address' },
-      { name: 'approved', internalType: 'bool', type: 'bool' },
+      { name: "operator", internalType: "address", type: "address" },
+      { name: "approved", internalType: "bool", type: "bool" },
     ],
-    name: 'setApprovalForAll',
+    name: "setApprovalForAll",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
-    name: 'supportsInterface',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "interfaceId", internalType: "bytes4", type: "bytes4" }],
+    name: "supportsInterface",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'pure',
-    type: 'function',
-    inputs: [{ name: 'tokenId', internalType: 'uint256', type: 'uint256' }],
-    name: 'tokenURI',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: "pure",
+    type: "function",
+    inputs: [{ name: "tokenId", internalType: "uint256", type: "uint256" }],
+    name: "tokenURI",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "tokenId", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
+    name: "transferFrom",
     outputs: [],
   },
-] as const
+] as const;
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export const wagmiMintExampleAddress = {
-  1: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
-  5: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
-} as const
+  1: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
+  5: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
+} as const;
 
 /**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
@@ -239,7 +239,7 @@ export const wagmiMintExampleAddress = {
 export const wagmiMintExampleConfig = {
   address: wagmiMintExampleAddress,
   abi: wagmiMintExampleABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // React
@@ -261,12 +261,12 @@ export function useWagmiMintExampleRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
+    "abi" | "address"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
@@ -276,7 +276,7 @@ export function useWagmiMintExampleRead<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -286,7 +286,7 @@ export function useWagmiMintExampleRead<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleBalanceOf<
-  TFunctionName extends 'balanceOf',
+  TFunctionName extends "balanceOf",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -295,23 +295,23 @@ export function useWagmiMintExampleBalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -321,7 +321,7 @@ export function useWagmiMintExampleBalanceOf<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleGetApproved<
-  TFunctionName extends 'getApproved',
+  TFunctionName extends "getApproved",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -330,23 +330,23 @@ export function useWagmiMintExampleGetApproved<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'getApproved',
+    functionName: "getApproved",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -356,7 +356,7 @@ export function useWagmiMintExampleGetApproved<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleIsApprovedForAll<
-  TFunctionName extends 'isApprovedForAll',
+  TFunctionName extends "isApprovedForAll",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -365,23 +365,23 @@ export function useWagmiMintExampleIsApprovedForAll<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'isApprovedForAll',
+    functionName: "isApprovedForAll",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -391,7 +391,7 @@ export function useWagmiMintExampleIsApprovedForAll<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleName<
-  TFunctionName extends 'name',
+  TFunctionName extends "name",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -400,23 +400,23 @@ export function useWagmiMintExampleName<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'name',
+    functionName: "name",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -426,7 +426,7 @@ export function useWagmiMintExampleName<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleOwnerOf<
-  TFunctionName extends 'ownerOf',
+  TFunctionName extends "ownerOf",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -435,23 +435,23 @@ export function useWagmiMintExampleOwnerOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'ownerOf',
+    functionName: "ownerOf",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -461,7 +461,7 @@ export function useWagmiMintExampleOwnerOf<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleSupportsInterface<
-  TFunctionName extends 'supportsInterface',
+  TFunctionName extends "supportsInterface",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -470,23 +470,23 @@ export function useWagmiMintExampleSupportsInterface<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'supportsInterface',
+    functionName: "supportsInterface",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -496,7 +496,7 @@ export function useWagmiMintExampleSupportsInterface<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleSymbol<
-  TFunctionName extends 'symbol',
+  TFunctionName extends "symbol",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -505,23 +505,23 @@ export function useWagmiMintExampleSymbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -531,7 +531,7 @@ export function useWagmiMintExampleSymbol<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleTokenUri<
-  TFunctionName extends 'tokenURI',
+  TFunctionName extends "tokenURI",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -540,23 +540,23 @@ export function useWagmiMintExampleTokenUri<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'tokenURI',
+    functionName: "tokenURI",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -566,7 +566,7 @@ export function useWagmiMintExampleTokenUri<
  * - [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2)
  */
 export function useWagmiMintExampleTotalSupply<
-  TFunctionName extends 'totalSupply',
+  TFunctionName extends "totalSupply",
   TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
 >(
   config: Omit<
@@ -575,23 +575,23 @@ export function useWagmiMintExampleTotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractRead({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
     TFunctionName,
     TSelectData
-  >)
+  >);
 }
 
 /**
@@ -605,12 +605,12 @@ export function useWagmiMintExampleWrite<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       > & { address?: Address; chainId?: TChainId }
@@ -619,20 +619,20 @@ export function useWagmiMintExampleWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractWrite<typeof wagmiMintExampleABI, TFunctionName, TMode>({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -645,32 +645,32 @@ export function useWagmiMintExampleApprove<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { address?: Address; chainId?: TChainId; functionName?: 'approve' }
-    : UseContractWriteConfig<typeof wagmiMintExampleABI, 'approve', TMode> & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
-        functionName?: 'approve'
+      > & { address?: Address; chainId?: TChainId; functionName?: "approve" }
+    : UseContractWriteConfig<typeof wagmiMintExampleABI, "approve", TMode> & {
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
+        functionName?: "approve";
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
-  return useContractWrite<typeof wagmiMintExampleABI, 'approve', TMode>({
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
+  return useContractWrite<typeof wagmiMintExampleABI, "approve", TMode>({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -683,32 +683,32 @@ export function useWagmiMintExampleMint<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { address?: Address; chainId?: TChainId; functionName?: 'mint' }
-    : UseContractWriteConfig<typeof wagmiMintExampleABI, 'mint', TMode> & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
-        functionName?: 'mint'
+      > & { address?: Address; chainId?: TChainId; functionName?: "mint" }
+    : UseContractWriteConfig<typeof wagmiMintExampleABI, "mint", TMode> & {
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
+        functionName?: "mint";
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
-  return useContractWrite<typeof wagmiMintExampleABI, 'mint', TMode>({
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
+  return useContractWrite<typeof wagmiMintExampleABI, "mint", TMode>({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -721,44 +721,44 @@ export function useWagmiMintExampleSafeTransferFrom<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
-          'safeTransferFrom'
-        >['request']['abi'],
-        'safeTransferFrom',
+          "safeTransferFrom"
+        >["request"]["abi"],
+        "safeTransferFrom",
         TMode
       > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'safeTransferFrom'
+        address?: Address;
+        chainId?: TChainId;
+        functionName?: "safeTransferFrom";
       }
     : UseContractWriteConfig<
         typeof wagmiMintExampleABI,
-        'safeTransferFrom',
+        "safeTransferFrom",
         TMode
       > & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
-        functionName?: 'safeTransferFrom'
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
+        functionName?: "safeTransferFrom";
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractWrite<
     typeof wagmiMintExampleABI,
-    'safeTransferFrom',
+    "safeTransferFrom",
     TMode
   >({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'safeTransferFrom',
+    functionName: "safeTransferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -771,44 +771,44 @@ export function useWagmiMintExampleSetApprovalForAll<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
-          'setApprovalForAll'
-        >['request']['abi'],
-        'setApprovalForAll',
+          "setApprovalForAll"
+        >["request"]["abi"],
+        "setApprovalForAll",
         TMode
       > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'setApprovalForAll'
+        address?: Address;
+        chainId?: TChainId;
+        functionName?: "setApprovalForAll";
       }
     : UseContractWriteConfig<
         typeof wagmiMintExampleABI,
-        'setApprovalForAll',
+        "setApprovalForAll",
         TMode
       > & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
-        functionName?: 'setApprovalForAll'
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
+        functionName?: "setApprovalForAll";
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractWrite<
     typeof wagmiMintExampleABI,
-    'setApprovalForAll',
+    "setApprovalForAll",
     TMode
   >({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'setApprovalForAll',
+    functionName: "setApprovalForAll",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -821,40 +821,40 @@ export function useWagmiMintExampleTransferFrom<
   TMode extends WriteContractMode = undefined,
   TChainId extends number = keyof typeof wagmiMintExampleAddress,
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof wagmiMintExampleABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
       > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'transferFrom'
+        address?: Address;
+        chainId?: TChainId;
+        functionName?: "transferFrom";
       }
     : UseContractWriteConfig<
         typeof wagmiMintExampleABI,
-        'transferFrom',
+        "transferFrom",
         TMode
       > & {
-        abi?: never
-        address?: never
-        chainId?: TChainId
-        functionName?: 'transferFrom'
+        abi?: never;
+        address?: never;
+        chainId?: TChainId;
+        functionName?: "transferFrom";
       } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
-  return useContractWrite<typeof wagmiMintExampleABI, 'transferFrom', TMode>({
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
+  return useContractWrite<typeof wagmiMintExampleABI, "transferFrom", TMode>({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -866,18 +866,21 @@ export function useWagmiMintExampleTransferFrom<
 export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, TFunctionName>,
-    'abi' | 'address'
+    "abi" | "address"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<
+    typeof wagmiMintExampleABI,
+    TFunctionName
+  >);
 }
 
 /**
@@ -888,20 +891,20 @@ export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
  */
 export function usePrepareWagmiMintExampleApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
+    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, "approve">,
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, "approve">);
 }
 
 /**
@@ -912,20 +915,20 @@ export function usePrepareWagmiMintExampleApprove(
  */
 export function usePrepareWagmiMintExampleMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
+    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, "mint">,
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, "mint">);
 }
 
 /**
@@ -938,24 +941,24 @@ export function usePrepareWagmiMintExampleSafeTransferFrom(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof wagmiMintExampleABI,
-      'safeTransferFrom'
+      "safeTransferFrom"
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'safeTransferFrom',
+    functionName: "safeTransferFrom",
     ...config,
   } as UsePrepareContractWriteConfig<
     typeof wagmiMintExampleABI,
-    'safeTransferFrom'
-  >)
+    "safeTransferFrom"
+  >);
 }
 
 /**
@@ -968,24 +971,24 @@ export function usePrepareWagmiMintExampleSetApprovalForAll(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof wagmiMintExampleABI,
-      'setApprovalForAll'
+      "setApprovalForAll"
     >,
-    'abi' | 'address' | 'functionName'
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'setApprovalForAll',
+    functionName: "setApprovalForAll",
     ...config,
   } as UsePrepareContractWriteConfig<
     typeof wagmiMintExampleABI,
-    'setApprovalForAll'
-  >)
+    "setApprovalForAll"
+  >);
 }
 
 /**
@@ -996,23 +999,23 @@ export function usePrepareWagmiMintExampleSetApprovalForAll(
  */
 export function usePrepareWagmiMintExampleTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
+    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, "transferFrom">,
+    "abi" | "address" | "functionName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
   } as UsePrepareContractWriteConfig<
     typeof wagmiMintExampleABI,
-    'transferFrom'
-  >)
+    "transferFrom"
+  >);
 }
 
 /**
@@ -1024,18 +1027,18 @@ export function usePrepareWagmiMintExampleTransferFrom(
 export function useWagmiMintExampleEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>,
-    'abi' | 'address'
+    "abi" | "address"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractEvent({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>)
+  } as UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>);
 }
 
 /**
@@ -1046,20 +1049,20 @@ export function useWagmiMintExampleEvent<TEventName extends string>(
  */
 export function useWagmiMintExampleApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
+    UseContractEventConfig<typeof wagmiMintExampleABI, "Approval">,
+    "abi" | "address" | "eventName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractEvent({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Approval'>)
+  } as UseContractEventConfig<typeof wagmiMintExampleABI, "Approval">);
 }
 
 /**
@@ -1070,20 +1073,20 @@ export function useWagmiMintExampleApprovalEvent(
  */
 export function useWagmiMintExampleApprovalForAllEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'ApprovalForAll'>,
-    'abi' | 'address' | 'eventName'
+    UseContractEventConfig<typeof wagmiMintExampleABI, "ApprovalForAll">,
+    "abi" | "address" | "eventName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractEvent({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    eventName: 'ApprovalForAll',
+    eventName: "ApprovalForAll",
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'ApprovalForAll'>)
+  } as UseContractEventConfig<typeof wagmiMintExampleABI, "ApprovalForAll">);
 }
 
 /**
@@ -1094,18 +1097,18 @@ export function useWagmiMintExampleApprovalForAllEvent(
  */
 export function useWagmiMintExampleTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
+    UseContractEventConfig<typeof wagmiMintExampleABI, "Transfer">,
+    "abi" | "address" | "eventName"
   > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
 ) {
-  const { chain } = useNetwork()
-  const defaultChainId = useChainId()
-  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  const { chain } = useNetwork();
+  const defaultChainId = useChainId();
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId;
   return useContractEvent({
     abi: wagmiMintExampleABI,
     address:
       wagmiMintExampleAddress[chainId as keyof typeof wagmiMintExampleAddress],
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof wagmiMintExampleABI, "Transfer">);
 }
