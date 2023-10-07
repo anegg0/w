@@ -77,17 +77,14 @@ export function Page({ newStep }) {
     return (
       <>
         <Header />
-        <MetadataBuilder />;
+        <MetadataBuilder onSuccessfulMetadataCreation={updateStep} />;
       </>
     );
   } else if ({ Connected } && step === 4) {
     return (
       <>
         <Header />
-        <MetadataBuilder
-          onSuccessfulMetadataCreation={handleSuccessfulMetadataCreation}
-        />
-        ;
+        <MintNFT />;
       </>
     );
   }

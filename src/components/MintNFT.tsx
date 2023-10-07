@@ -32,32 +32,41 @@ export function MintNFT() {
   });
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <input
+        className="border border-gray-300 rounded-md px-2 py-1 mb-4 text-gray-500"
         onChange={(e) => setTokenId(e.target.value)}
         placeholder="Token ID (optional)"
         value={tokenId}
       />
-      <button disabled={!write || isLoading} onClick={() => write?.()}>
+      <button
+        disabled={!write || isLoading}
+        onClick={() => write?.()}
+        className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
+          isLoading ? "opacity-50 cursor-wait" : ""
+        }`}
+      >
         {isLoading ? "Minting..." : "Mint"}
       </button>
       {isSuccess && (
-        <div>
+        <div className="mt-4 p-2 bg-green-200 rounded-md">
           Successfully minted your NFT!
           <div>
-            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+            <a
+              href={`https://etherscan.io/tx/${data?.hash}`}
+              className="text-blue-500 underline"
+            >
+              Etherscan
+            </a>
           </div>
-          <ComponentWithNftUrl nftUrl={nftUrl} />
         </div>
       )}
       {(isPrepareError || isError) && (
-        <div>Error: {(prepareError || error)?.message}</div>
+        <div className="mt-4 p-2 bg-red-200 rounded-md">
+          Error: {(prepareError || error)?.message}
+        </div>
       )}
     </div>
   );
 }
-
-function ComponentWithNftUrl({ nftUrl }) {
-  // Component with #66 can access nftUrl here and use it as needed
-  return <div>NFT URL: {nftUrl}</div>;
-}
+export default MintNFT;

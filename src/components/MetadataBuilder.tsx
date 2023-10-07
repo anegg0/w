@@ -32,6 +32,7 @@ export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
         },
         body: JSON.stringify(formData),
       });
+      console.log("Response:", response);
       if (response.ok) {
         onSuccessfulMetadataCreation(4);
       } else {
