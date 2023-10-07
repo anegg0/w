@@ -16,7 +16,7 @@ export function MintNFT() {
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareWagmiMintExampleMint({
-    args: tokenId ? [BigInt(tokenId)] : undefined,
+    args: tokenId ? [BigInt(tokenId.toString())] : undefined,
   });
   const { data, error, isError, write } = useWagmiMintExampleMint(config);
 
@@ -31,6 +31,8 @@ export function MintNFT() {
     hash: data?.hash,
   });
 
+  const isTokenIdValid = /^\d+$/.test(tokenId); // Check if tokenId is a valid number
+
   return (
     <div className="flex flex-col items-center">
       <input
@@ -40,7 +42,7 @@ export function MintNFT() {
         value={tokenId}
       />
       <button
-        disabled={!write || isLoading}
+        disabled={!write || isLoading || !isTokenIdValid} // Disable mint button if tokenId is not a valid number
         onClick={() => write?.()}
         className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
           isLoading ? "opacity-50 cursor-wait" : ""
