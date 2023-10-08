@@ -32,7 +32,14 @@ function MintNFTForm({ tokenURI }) {
       },
     ],
     functionName: "mintNFT",
-    args: tokenURI,
+    args: [
+      tokenURI,
+      walletAddress,
+      {
+        gasLimit: 1300000,
+        value: 2,
+      },
+    ],
   });
   const { data, error, isError, write } = useContractWrite(config);
 
@@ -87,11 +94,18 @@ export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
         const tokenURI = response
           .json()
           .then((data) => console.log(`tokenURI is: ${data.url}`));
-        await console.log("tokenuri:", tokenuri);
-        await MintNFTForm(tokenURI);
+        /* await console.log("tokenuri:", tokenuri); */
+        return tokenURI;
       }
     } catch (error) {
-      console.error("Error minting NFT:", error);
+      console.error("Error creating metadata:", error);
+    }
+    if (tokenURI) {
+      try {
+        MintNFTForm(tokenURI);
+      } catch (err) {
+        console.error("Error minting NFT:", error);
+      }
     }
   };
 
