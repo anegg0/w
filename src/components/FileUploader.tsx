@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import "@a/globals.css";
 import { page } from "@a/page";
+
 export function FileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);

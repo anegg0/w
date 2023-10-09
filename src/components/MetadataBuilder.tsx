@@ -12,59 +12,7 @@ interface FormData {
   description: string;
 }
 
-function MintNFTForm({ tokenURI }) {
-  /* const [tokenId, setTokenId] = React.useState(""); */
-  /* const debouncedTokenId = useDebounce(tokenId); */
-
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
-    abi: [
-      {
-        name: "mintNFT",
-        type: "function",
-        stateMutability: "nonpayable",
-        inputs: [{ internalType: "string", name: "tokenURI", type: "string" }],
-        outputs: [],
-      },
-    ],
-    functionName: "mintNFT",
-    args: [
-      tokenURI,
-      walletAddress,
-      {
-        gasLimit: 1300000,
-        value: 2,
-      },
-    ],
-  });
-  const { data, error, isError, write } = useContractWrite(config);
-
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  });
-
-  return (
-    console.log("tokenURI:", tokenURI),
-    {
-      /* <div>
-        {isSuccess && (
-        <div>
-        Successfully minted your NFT!
-        <div>
-        <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
-        </div>
-        </div>
-        )}
-        </div> */
-    }
-  );
-}
-
-export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
+export function MetadataBuilder({ onSuccessfulMetadataCreation, onSuccess }) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
@@ -90,11 +38,11 @@ export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        /* onSuccessfulMetadataCreation(4); */
+        onSuccessfulMetadataCreation(4);
         const tokenURI = response
           .json()
           .then((data) => console.log(`tokenURI is: ${data.url}`));
-        /* await console.log("tokenuri:", tokenuri); */
+        onSuccess(tokenURI);
         return tokenURI;
       }
     } catch (error) {

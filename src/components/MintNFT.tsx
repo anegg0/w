@@ -1,74 +1,53 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useWaitForTransaction } from "wagmi";
-
+import * as React from "react";
 import {
-  usePrepareWagmiMintExampleMint,
-  useWagmiMintExampleMint,
-} from "../generated";
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 
-export function MintNFT() {
-  const [tokenId, setTokenId] = useState("");
-  const [nftUrl, setNftUrl] = useState("");
+import { useDebounce } from "./useDebounce";
 
+export function MintNFT({ uri }) {
   const {
     config,
     error: prepareError,
     isError: isPrepareError,
-  } = usePrepareWagmiMintExampleMint({
-    args: tokenId ? [BigInt(tokenId.toString())] : undefined,
+  } = usePrepareContractWrite({
+    address: "0xFe04316F6608dD7021ca384d23b24A5399b6bfA8",
+    abi: [
+      {
+        name: "mintItem",
+        type: "function",
+        stateMutability: "nonpayable",
+        inputs: [],
+        outputs: [],
+      },
+    ],
+    functionName: "mintItem",
   });
-  const { data, error, isError, write } = useWagmiMintExampleMint(config);
-
-  useEffect(() => {
-    if (data && data.result) {
-      const nftResult = data.result;
-      setNftUrl(nftResult.url);
-    }
-  }, [data]);
+  const { data, error, isError, write } = useContractWrite(config);
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
 
-  const isTokenIdValid = /^\d+$/.test(tokenId); // Check if tokenId is a valid number
-
   return (
-    <div className="flex flex-col items-center">
-      <input
-        className="border border-gray-300 rounded-md px-2 py-1 mb-4 text-gray-500"
-        onChange={(e) => setTokenId(e.target.value)}
-        placeholder="Token ID (optional)"
-        value={tokenId}
-      />
-      <button
-        disabled={!write || isLoading || !isTokenIdValid} // Disable mint button if tokenId is not a valid number
-        onClick={() => write?.()}
-        className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
-          isLoading ? "opacity-50 cursor-wait" : ""
-        }`}
-      >
+    <div>
+      <button disabled={!write || isLoading} onClick={() => write()}>
         {isLoading ? "Minting..." : "Mint"}
       </button>
       {isSuccess && (
-        <div className="mt-4 p-2 bg-green-200 rounded-md">
+        <div>
           Successfully minted your NFT!
           <div>
-            <a
-              href={`https://etherscan.io/tx/${data?.hash}`}
-              className="text-blue-500 underline"
-            >
-              Etherscan
-            </a>
+            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
           </div>
         </div>
       )}
       {(isPrepareError || isError) && (
-        <div className="mt-4 p-2 bg-red-200 rounded-md">
-          Error: {(prepareError || error)?.message}
-        </div>
+        <div>Error: {(prepareError || error)?.message}</div>
       )}
     </div>
   );
 }
-export default MintNFT;

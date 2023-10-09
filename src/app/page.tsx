@@ -31,14 +31,20 @@ import { MetadataBuilder } from "@c/MetadataBuilder";
 import { MintNFT } from "@c/MintNFT";
 import logo from "@a/logo.png";
 
-export function Page({ newStep }) {
+export function Page({ newStep, uri }) {
   let [step, setStep] = useState(1);
+  let [nftUri, setNftUri] = useState("");
   let { address, isConnecting, isDisconnected } = useAccount();
   let [loadingInProgress, setLoading] = useState(false);
 
   // Update step value
   const updateStep = (newStep) => {
     setStep(newStep);
+  };
+
+  // Get NFT URI
+  const getStep = (uri) => {
+    setNftUri(uri);
   };
 
   // Update loadStatus value
@@ -84,7 +90,7 @@ export function Page({ newStep }) {
     return (
       <>
         <Header />
-        <MintNFT />;
+        <MintNFT onSuccess={uri} />;
       </>
     );
   }
