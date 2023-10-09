@@ -16,13 +16,12 @@ export default defineConfig({
 	plugins: [
 		etherscan({
 			apiKey: process.env.ETHERSCAN_API_KEY!,
-			chainId: mainnet.id,
+			chainId: sepolia.id,
 			contracts: [
 				{
 					name: "WagmiMintExample",
 					address: {
-						[chains.mainnet.id]: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
-						[chains.goerli.id]: "0xEf40F59aeA57997D5A4CEb7af089baCba10d01CA",
+						[chains.sepolia.id]: "0xFe04316F6608dD7021ca384d23b24A5399b6bfA8",
 					},
 				},
 			],
