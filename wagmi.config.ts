@@ -21,7 +21,7 @@ export default defineConfig({
 				{
 					name: "WagmiMintExample",
 					address: {
-						[chains.sepolia.id]: "0xFe04316F6608dD7021ca384d23b24A5399b6bfA8",
+						[chains.sepolia.id]: "0xd53Aaa098e02620b1EbfacCCba301f122fC595d1",
 					},
 				},
 			],
