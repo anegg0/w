@@ -28,6 +28,7 @@ import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
+import { Footer } from "@c/Footer";
 import { MintNFT } from "@c/MintNFT";
 import logo from "@a/logo.png";
 
@@ -70,6 +71,7 @@ export function Page({ newStep, uri }) {
       <>
         <Header />
         <FileUploader onSuccessfulUpload={updateStep} />;
+        <Footer />
       </>
     );
   } else if ({ Connected } && step === 2) {
@@ -77,6 +79,7 @@ export function Page({ newStep, uri }) {
       <>
         <Header />
         <SignMessage2api onSuccessfulEncoding={updateStep} />;
+        <Footer />
       </>
     );
   } else if ({ Connected } && step === 3) {
@@ -84,6 +87,7 @@ export function Page({ newStep, uri }) {
       <>
         <Header />
         <MetadataBuilder onSuccessfulMetadataCreation={updateStep} />;
+        <Footer />
       </>
     );
   } else if ({ Connected } && step === 4) {
@@ -91,6 +95,7 @@ export function Page({ newStep, uri }) {
       <>
         <Header />
         <MintNFT onSuccess={uri} />;
+        <Footer />
       </>
     );
   }
