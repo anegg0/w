@@ -18,7 +18,8 @@
     "paths": {
       "@c/*": ["components/*"],
       "@a/*": ["app/*"],
-      "@p/*": ["public/*"]
+      "@p/*": ["public/*"],
+      "@s/*": ["./*"]
     },
     "plugins": [
       {
