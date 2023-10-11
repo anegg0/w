@@ -11,7 +11,6 @@
     "dependencies": {
         "@next/bundle-analyzer": "^13.5.4",
         "@nextui-org/react": "^2.1.13",
-        "@rainbow-me/rainbowkit": "^1.0.0",
         "@types/mime": "^3.0.2",
         "@wagmi/cli": "^1.5.1",
         "@wagmi/core": "^1.4.3",
@@ -25,7 +24,6 @@
         "lokijs": "^1.5.12",
         "mime": "^3.0.0",
         "next": "^13.4.0",
-        "next-http-proxy-middleware": "^1.2.6",
         "path": "^0.12.7",
         "pino-pretty": "^10.2.0",
         "prettier": "^3.0.3",
