@@ -1,7 +1,6 @@
-
-'use client'
+"use client";
 import React, { useState, useEffect } from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "@c/ConnectButton";
 
 export default function Home() {
   return (

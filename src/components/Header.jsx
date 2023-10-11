@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "@c/ConnectButton";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
@@ -26,9 +26,7 @@ export function Header() {
             <Link href="/">
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
-                <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-                  <Image src={logo} alt="W Logo" />
-                </div>
+                <Image src={logo} alt="W Logo" />
               </div>
             </Link>
           </div>

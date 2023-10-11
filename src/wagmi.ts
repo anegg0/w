@@ -1,30 +1,19 @@
-import { sepolia, mainnet } from "wagmi/chains";
+import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
 import { publicProvider } from "wagmi/providers/public";
-import { getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig } from "wagmi";
-import { localhost } from "./localhostChain";
-const walletConnectProjectId = "130c92c32b5cfbac34b8cff6780340e7";
+import { WagmiConfig } from "wagmi";
+import { sepolia } from "wagmi/chains";
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [
-    localhost,
-    ...(process.env.NODE_ENV === "development" ? [sepolia] : [sepolia]),
-    // [sepolia],
-  ],
-  [publicProvider()],
-);
+// 1. Get projectId
+const projectId = "130c92c32b5cfbac34b8cff6780340e7";
 
-const { connectors } = getDefaultWallets({
-  appName: "W",
-  chains,
-  projectId: walletConnectProjectId,
-});
+// 2. Create wagmiConfig
+const metadata = {
+  name: "W",
+  description: "Watermarking NFTs with verifiable ownership",
+  icons: ["@p/assets/logo.png"],
+};
+const chains = [sepolia];
+export const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
 
-export const config = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-  webSocketPublicClient,
-});
-
-export { chains };
+// 3. Create modal
+export const WalletModal = createWeb3Modal({ wagmiConfig, projectId, chains });

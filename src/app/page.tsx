@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Account } from "@c/Account";
 import { Balance } from "@c/Balance";
 import { BlockNumber } from "@c/BlockNumber";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton } from "@c/ConnectButton";
 import { Connected } from "@c/Connected";
 import { NetworkSwitcher } from "@c/NetworkSwitcher";
 import { ReadContract } from "@c/ReadContract";
@@ -29,7 +29,7 @@ import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
 import { MintNFT } from "@c/MintNFT";
-import logo from "@a/logo.png";
+import logo from "@p/assets/logo.png";
 
 export function Page({ newStep, uri }) {
   let [step, setStep] = useState(1);
