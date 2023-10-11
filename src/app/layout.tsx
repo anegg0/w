@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="w-250 h-screen mx-200 my-800">
         <Providers>{children}</Providers>
       </body>
     </html>
