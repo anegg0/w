@@ -29,7 +29,7 @@ import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
 import { MintNFT } from "@c/MintNFT";
-import logo from "@p/assets/logo.png";
+import logo from "@a/logo.png";
 
 export function Page({ newStep, uri }) {
   let [step, setStep] = useState(1);

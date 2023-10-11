@@ -10,7 +10,7 @@ const projectId = "130c92c32b5cfbac34b8cff6780340e7";
 const metadata = {
   name: "W",
   description: "Watermarking NFTs with verifiable ownership",
-  icons: ["@p/assets/logo.png"],
+  icons: ["@a/logo.png"],
 };
 const chains = [sepolia];
 export const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });

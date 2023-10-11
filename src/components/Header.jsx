@@ -4,7 +4,7 @@ import { ConnectButton } from "@c/ConnectButton";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
-import logo from "../app/logo-sm.png";
+import logo from "@a/logo-sm.png";
 import Image from "next/image";
 
 function ConnectWallet({ show = "always" }) {
@@ -20,13 +20,13 @@ function ConnectWallet({ show = "always" }) {
 export function Header() {
   return (
     <header aria-label="Site Header">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto my-10 max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="md:flex max-w-sm md:items-center md:gap-12">
+          <div className="md:flex md:items-center md:gap-12">
             <Link href="/">
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
-                <Image src={logo} alt="W Logo" />
+                <Image src={logo} width={50} height={50} alt="W Logo" />
               </div>
             </Link>
           </div>
@@ -36,17 +36,25 @@ export function Header() {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/#about"
+                    href="/#collection"
                   >
-                    About
+                    Your Collection
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/#collection"
+                    href="/mint"
                   >
-                    Collection
+                    Mint
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-500 transition hover:text-gray-500/75"
+                    href="/wallet"
+                  >
+                    Wallet
                   </Link>
                 </li>
               </ul>
@@ -58,7 +66,7 @@ export function Header() {
             </div>
           </div>
           <div className="block md:hidden">
-            <button>
+            <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
