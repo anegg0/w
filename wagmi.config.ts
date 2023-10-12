@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "@wagmi/cli";
 import { etherscan, react } from "@wagmi/cli/plugins";
-import { mainnet, sepolia } from "wagmi/chains";
+// import { erc20ABI } from "wagmi";
+import { mainnet, goerli } from "wagmi/chains";
 import * as chains from "wagmi/chains";
 
 export default defineConfig({
@@ -15,12 +16,11 @@ export default defineConfig({
 	plugins: [
 		etherscan({
 			apiKey: process.env.ETHERSCAN_API_KEY!,
-			chainId: sepolia.id,
+			chainId: goerli.id,
 			contracts: [
 				{
 					name: "WagmiMintExample",
 					address: {
-						[chains.sepolia.id]: "0xd53Aaa098e02620b1EbfacCCba301f122fC595d1",
 						[chains.goerli.id]: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
 					},
 				},

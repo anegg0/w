@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Account } from "@c/Account";
 import { Balance } from "@c/Balance";
 import { BlockNumber } from "@c/BlockNumber";
-import { ConnectButton } from "@c/ConnectButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Connected } from "@c/Connected";
 import { NetworkSwitcher } from "@c/NetworkSwitcher";
 import { ReadContract } from "@c/ReadContract";
@@ -28,18 +28,23 @@ import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
-import { Footer } from "@c/Footer";
 import { MintNFT } from "@c/MintNFT";
-import logo from "@a/logo-sm.png";
+import logo from "@a/logo.png";
 
-export function Page({ newStep }) {
+export function Page({ newStep, uri }) {
   let [step, setStep] = useState(1);
+  let [nftUri, setNftUri] = useState("");
   let { address, isConnecting, isDisconnected } = useAccount();
   let [loadingInProgress, setLoading] = useState(false);
 
   // Update step value
   const updateStep = (newStep) => {
     setStep(newStep);
+  };
+
+  // Get NFT URI
+  const getStep = (uri) => {
+    setNftUri(uri);
   };
 
   // Update loadStatus value
@@ -49,7 +54,7 @@ export function Page({ newStep }) {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex"></div>
         <div className="relative flex place-items-center">
-          <Image src={logo} width="auto" height="auto" alt="W Logo" />
+          <Image src={logo} alt="W Logo" />
         </div>
         <div className="relative flex place-items-center">
           <p className="text-lg font-normal text-white lg:text-xl dark:text-gray-400 text-center">
@@ -65,7 +70,6 @@ export function Page({ newStep }) {
       <>
         <Header />
         <FileUploader onSuccessfulUpload={updateStep} />;
-        <Footer />
       </>
     );
   } else if ({ Connected } && step === 2) {
@@ -73,7 +77,6 @@ export function Page({ newStep }) {
       <>
         <Header />
         <SignMessage2api onSuccessfulEncoding={updateStep} />;
-        <Footer />
       </>
     );
   } else if ({ Connected } && step === 3) {
@@ -81,17 +84,13 @@ export function Page({ newStep }) {
       <>
         <Header />
         <MetadataBuilder onSuccessfulMetadataCreation={updateStep} />;
-        {/* <MetadataBuilder />; */}
-        <Footer />
       </>
     );
   } else if ({ Connected } && step === 4) {
-    /* } else if ({ Connected }) { */
     return (
       <>
         <Header />
-        <MintNFT />;
-        <Footer />
+        <MintNFT onSuccess={uri} />;
       </>
     );
   }

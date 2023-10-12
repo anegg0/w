@@ -14,6 +14,7 @@
         "dependencies": {
                 "@next/bundle-analyzer": "^13.5.4",
                 "@nextui-org/react": "^2.1.13",
+                "@rainbow-me/rainbowkit": "^1.1.1",
                 "@types/mime": "^3.0.2",
                 "@wagmi/cli": "^1.5.1",
                 "@wagmi/core": "^1.4.3",

@@ -20,7 +20,7 @@ import {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export const wagmiMintExampleABI = [
   { stateMutability: 'nonpayable', type: 'constructor', inputs: [] },
@@ -68,38 +68,6 @@ export const wagmiMintExampleABI = [
       { name: 'approved', internalType: 'bool', type: 'bool', indexed: false },
     ],
     name: 'ApprovalForAll',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: '_fromTokenId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-      {
-        name: '_toTokenId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'BatchMetadataUpdate',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: '_tokenId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'MetadataUpdate',
   },
   {
     type: 'event',
@@ -180,7 +148,7 @@ export const wagmiMintExampleABI = [
     stateMutability: 'nonpayable',
     type: 'function',
     inputs: [
-      { name: 'player', internalType: 'address', type: 'address' },
+      { name: 'creator', internalType: 'address', type: 'address' },
       { name: 'tokenURI', internalType: 'string', type: 'string' },
     ],
     name: 'mintItem',
@@ -296,14 +264,14 @@ export const wagmiMintExampleABI = [
 ] as const
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export const wagmiMintExampleAddress = {
-  11155111: '0xFe04316F6608dD7021ca384d23b24A5399b6bfA8',
+  5: '0xAce963F9139ADD78730468bCc57fAA1812B2b5E2',
 } as const
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export const wagmiMintExampleConfig = {
   address: wagmiMintExampleAddress,
@@ -317,7 +285,7 @@ export const wagmiMintExampleConfig = {
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleRead<
   TFunctionName extends string,
@@ -334,7 +302,7 @@ export function useWagmiMintExampleRead<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     ...config,
   } as UseContractReadConfig<
     typeof wagmiMintExampleABI,
@@ -346,7 +314,7 @@ export function useWagmiMintExampleRead<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"balanceOf"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleBalanceOf<
   TFunctionName extends 'balanceOf',
@@ -363,7 +331,7 @@ export function useWagmiMintExampleBalanceOf<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'balanceOf',
     ...config,
   } as UseContractReadConfig<
@@ -376,7 +344,7 @@ export function useWagmiMintExampleBalanceOf<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"contractURI"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleContractUri<
   TFunctionName extends 'contractURI',
@@ -393,7 +361,7 @@ export function useWagmiMintExampleContractUri<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'contractURI',
     ...config,
   } as UseContractReadConfig<
@@ -406,7 +374,7 @@ export function useWagmiMintExampleContractUri<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"getApproved"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleGetApproved<
   TFunctionName extends 'getApproved',
@@ -423,7 +391,7 @@ export function useWagmiMintExampleGetApproved<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'getApproved',
     ...config,
   } as UseContractReadConfig<
@@ -436,7 +404,7 @@ export function useWagmiMintExampleGetApproved<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"isApprovedForAll"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleIsApprovedForAll<
   TFunctionName extends 'isApprovedForAll',
@@ -453,7 +421,7 @@ export function useWagmiMintExampleIsApprovedForAll<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'isApprovedForAll',
     ...config,
   } as UseContractReadConfig<
@@ -466,7 +434,7 @@ export function useWagmiMintExampleIsApprovedForAll<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"name"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleName<
   TFunctionName extends 'name',
@@ -483,7 +451,7 @@ export function useWagmiMintExampleName<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'name',
     ...config,
   } as UseContractReadConfig<
@@ -496,7 +464,7 @@ export function useWagmiMintExampleName<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"owner"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleOwner<
   TFunctionName extends 'owner',
@@ -513,7 +481,7 @@ export function useWagmiMintExampleOwner<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'owner',
     ...config,
   } as UseContractReadConfig<
@@ -526,7 +494,7 @@ export function useWagmiMintExampleOwner<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"ownerOf"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleOwnerOf<
   TFunctionName extends 'ownerOf',
@@ -543,7 +511,7 @@ export function useWagmiMintExampleOwnerOf<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'ownerOf',
     ...config,
   } as UseContractReadConfig<
@@ -556,7 +524,7 @@ export function useWagmiMintExampleOwnerOf<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"supportsInterface"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleSupportsInterface<
   TFunctionName extends 'supportsInterface',
@@ -573,7 +541,7 @@ export function useWagmiMintExampleSupportsInterface<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'supportsInterface',
     ...config,
   } as UseContractReadConfig<
@@ -586,7 +554,7 @@ export function useWagmiMintExampleSupportsInterface<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"symbol"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleSymbol<
   TFunctionName extends 'symbol',
@@ -603,7 +571,7 @@ export function useWagmiMintExampleSymbol<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'symbol',
     ...config,
   } as UseContractReadConfig<
@@ -616,7 +584,7 @@ export function useWagmiMintExampleSymbol<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"tokenURI"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleTokenUri<
   TFunctionName extends 'tokenURI',
@@ -633,7 +601,7 @@ export function useWagmiMintExampleTokenUri<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'tokenURI',
     ...config,
   } as UseContractReadConfig<
@@ -646,7 +614,7 @@ export function useWagmiMintExampleTokenUri<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"totalSupply"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleTotalSupply<
   TFunctionName extends 'totalSupply',
@@ -663,7 +631,7 @@ export function useWagmiMintExampleTotalSupply<
 ) {
   return useContractRead({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'totalSupply',
     ...config,
   } as UseContractReadConfig<
@@ -676,7 +644,7 @@ export function useWagmiMintExampleTotalSupply<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleWrite<
   TFunctionName extends string,
@@ -704,7 +672,7 @@ export function useWagmiMintExampleWrite<
 ) {
   return useContractWrite<typeof wagmiMintExampleABI, TFunctionName, TMode>({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     ...config,
   } as any)
 }
@@ -712,7 +680,7 @@ export function useWagmiMintExampleWrite<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"approve"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleApprove<
   TMode extends WriteContractMode = undefined,
@@ -736,7 +704,7 @@ export function useWagmiMintExampleApprove<
 ) {
   return useContractWrite<typeof wagmiMintExampleABI, 'approve', TMode>({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'approve',
     ...config,
   } as any)
@@ -745,7 +713,7 @@ export function useWagmiMintExampleApprove<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"mintItem"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleMintItem<
   TMode extends WriteContractMode = undefined,
@@ -769,7 +737,7 @@ export function useWagmiMintExampleMintItem<
 ) {
   return useContractWrite<typeof wagmiMintExampleABI, 'mintItem', TMode>({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'mintItem',
     ...config,
   } as any)
@@ -778,7 +746,7 @@ export function useWagmiMintExampleMintItem<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"renounceOwnership"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleRenounceOwnership<
   TMode extends WriteContractMode = undefined,
@@ -814,7 +782,7 @@ export function useWagmiMintExampleRenounceOwnership<
     TMode
   >({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'renounceOwnership',
     ...config,
   } as any)
@@ -823,7 +791,7 @@ export function useWagmiMintExampleRenounceOwnership<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"safeTransferFrom"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleSafeTransferFrom<
   TMode extends WriteContractMode = undefined,
@@ -859,7 +827,7 @@ export function useWagmiMintExampleSafeTransferFrom<
     TMode
   >({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'safeTransferFrom',
     ...config,
   } as any)
@@ -868,7 +836,7 @@ export function useWagmiMintExampleSafeTransferFrom<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"setApprovalForAll"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleSetApprovalForAll<
   TMode extends WriteContractMode = undefined,
@@ -904,7 +872,7 @@ export function useWagmiMintExampleSetApprovalForAll<
     TMode
   >({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'setApprovalForAll',
     ...config,
   } as any)
@@ -913,7 +881,7 @@ export function useWagmiMintExampleSetApprovalForAll<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferFrom"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleTransferFrom<
   TMode extends WriteContractMode = undefined,
@@ -945,7 +913,7 @@ export function useWagmiMintExampleTransferFrom<
 ) {
   return useContractWrite<typeof wagmiMintExampleABI, 'transferFrom', TMode>({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'transferFrom',
     ...config,
   } as any)
@@ -954,7 +922,7 @@ export function useWagmiMintExampleTransferFrom<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferOwnership"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleTransferOwnership<
   TMode extends WriteContractMode = undefined,
@@ -990,7 +958,7 @@ export function useWagmiMintExampleTransferOwnership<
     TMode
   >({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'transferOwnership',
     ...config,
   } as any)
@@ -999,7 +967,7 @@ export function useWagmiMintExampleTransferOwnership<
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
   config: Omit<
@@ -1009,7 +977,7 @@ export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     ...config,
   } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, TFunctionName>)
 }
@@ -1017,7 +985,7 @@ export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"approve"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleApprove(
   config: Omit<
@@ -1027,7 +995,7 @@ export function usePrepareWagmiMintExampleApprove(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'approve',
     ...config,
   } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'approve'>)
@@ -1036,7 +1004,7 @@ export function usePrepareWagmiMintExampleApprove(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"mintItem"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleMintItem(
   config: Omit<
@@ -1046,7 +1014,7 @@ export function usePrepareWagmiMintExampleMintItem(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'mintItem',
     ...config,
   } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'mintItem'>)
@@ -1055,7 +1023,7 @@ export function usePrepareWagmiMintExampleMintItem(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"renounceOwnership"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleRenounceOwnership(
   config: Omit<
@@ -1068,7 +1036,7 @@ export function usePrepareWagmiMintExampleRenounceOwnership(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'renounceOwnership',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -1080,7 +1048,7 @@ export function usePrepareWagmiMintExampleRenounceOwnership(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"safeTransferFrom"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleSafeTransferFrom(
   config: Omit<
@@ -1093,7 +1061,7 @@ export function usePrepareWagmiMintExampleSafeTransferFrom(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'safeTransferFrom',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -1105,7 +1073,7 @@ export function usePrepareWagmiMintExampleSafeTransferFrom(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"setApprovalForAll"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleSetApprovalForAll(
   config: Omit<
@@ -1118,7 +1086,7 @@ export function usePrepareWagmiMintExampleSetApprovalForAll(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'setApprovalForAll',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -1130,7 +1098,7 @@ export function usePrepareWagmiMintExampleSetApprovalForAll(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferFrom"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleTransferFrom(
   config: Omit<
@@ -1140,7 +1108,7 @@ export function usePrepareWagmiMintExampleTransferFrom(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'transferFrom',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -1152,7 +1120,7 @@ export function usePrepareWagmiMintExampleTransferFrom(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferOwnership"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function usePrepareWagmiMintExampleTransferOwnership(
   config: Omit<
@@ -1165,7 +1133,7 @@ export function usePrepareWagmiMintExampleTransferOwnership(
 ) {
   return usePrepareContractWrite({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     functionName: 'transferOwnership',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -1177,7 +1145,7 @@ export function usePrepareWagmiMintExampleTransferOwnership(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleEvent<TEventName extends string>(
   config: Omit<
@@ -1187,7 +1155,7 @@ export function useWagmiMintExampleEvent<TEventName extends string>(
 ) {
   return useContractEvent({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     ...config,
   } as UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>)
 }
@@ -1195,7 +1163,7 @@ export function useWagmiMintExampleEvent<TEventName extends string>(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"Approval"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleApprovalEvent(
   config: Omit<
@@ -1205,7 +1173,7 @@ export function useWagmiMintExampleApprovalEvent(
 ) {
   return useContractEvent({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     eventName: 'Approval',
     ...config,
   } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Approval'>)
@@ -1214,7 +1182,7 @@ export function useWagmiMintExampleApprovalEvent(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"ApprovalForAll"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleApprovalForAllEvent(
   config: Omit<
@@ -1224,57 +1192,16 @@ export function useWagmiMintExampleApprovalForAllEvent(
 ) {
   return useContractEvent({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     eventName: 'ApprovalForAll',
     ...config,
   } as UseContractEventConfig<typeof wagmiMintExampleABI, 'ApprovalForAll'>)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"BatchMetadataUpdate"`.
- *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
- */
-export function useWagmiMintExampleBatchMetadataUpdateEvent(
-  config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'BatchMetadataUpdate'>,
-    'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
-) {
-  return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
-    eventName: 'BatchMetadataUpdate',
-    ...config,
-  } as UseContractEventConfig<
-    typeof wagmiMintExampleABI,
-    'BatchMetadataUpdate'
-  >)
-}
-
-/**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"MetadataUpdate"`.
- *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
- */
-export function useWagmiMintExampleMetadataUpdateEvent(
-  config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'MetadataUpdate'>,
-    'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
-) {
-  return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
-    eventName: 'MetadataUpdate',
-    ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'MetadataUpdate'>)
-}
-
-/**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"OwnershipTransferred"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleOwnershipTransferredEvent(
   config: Omit<
@@ -1284,7 +1211,7 @@ export function useWagmiMintExampleOwnershipTransferredEvent(
 ) {
   return useContractEvent({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     eventName: 'OwnershipTransferred',
     ...config,
   } as UseContractEventConfig<
@@ -1296,7 +1223,7 @@ export function useWagmiMintExampleOwnershipTransferredEvent(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"Transfer"`.
  *
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xFe04316F6608dD7021ca384d23b24A5399b6bfA8)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
  */
 export function useWagmiMintExampleTransferEvent(
   config: Omit<
@@ -1306,7 +1233,7 @@ export function useWagmiMintExampleTransferEvent(
 ) {
   return useContractEvent({
     abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[11155111],
+    address: wagmiMintExampleAddress[5],
     eventName: 'Transfer',
     ...config,
   } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Transfer'>)
