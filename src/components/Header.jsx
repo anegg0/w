@@ -20,13 +20,15 @@ function ConnectWallet({ show = "always" }) {
 export function Header() {
   return (
     <header aria-label="Site Header">
-      <div className="mx-auto my-8 max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="md:flex md:items-center md:gap-12">
+          <div className="md:flex max-w-sm md:items-center md:gap-12">
             <Link href="/">
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
-                <Image src={logo} width="auto" height="auto" alt="W Logo" />
+                <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+                  <Image src={logo} width="auto" height="auto" alt="W Logo" />
+                </div>
               </div>
             </Link>
           </div>
@@ -36,25 +38,17 @@ export function Header() {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
+                    href="/#about"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-500 transition hover:text-gray-500/75"
                     href="/#collection"
                   >
-                    Your Collection
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/mint"
-                  >
-                    Mint
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/wallet"
-                  >
-                    Wallet
+                    Collection
                   </Link>
                 </li>
               </ul>
@@ -66,7 +60,7 @@ export function Header() {
             </div>
           </div>
           <div className="block md:hidden">
-            <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+            <button>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
