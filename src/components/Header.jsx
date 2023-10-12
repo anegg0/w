@@ -4,7 +4,7 @@ import { ConnectButton } from "@c/ConnectButton";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
-import logo from "@a/logo.png";
+import logo from "@a/logo-sm.png";
 import Image from "next/image";
 
 function ConnectWallet({ show = "always" }) {
@@ -26,7 +26,7 @@ export function Header() {
             <Link href="/">
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
-                <Image src={logo} width={50} height={50} alt="W Logo" />
+                <Image src={logo} width="auto" height="auto" alt="W Logo" />
               </div>
             </Link>
           </div>

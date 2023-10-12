@@ -8,7 +8,7 @@ export function Footer() {
       <div className="max-w-screen-xl px-2 py-20 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-start lg:gap-8">
           <div className="text-teal-600">
-            <Image src={logo} width={50} height={50} alt="W Logo" />
+            <Image src={logo} width="auto" height="auto" alt="W Logo" />
           </div>
           <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             <div className="col-span-2">

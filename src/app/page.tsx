@@ -30,7 +30,7 @@ import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
 import { Footer } from "@c/Footer";
 import { MintNFT } from "@c/MintNFT";
-import logo from "@a/logo.png";
+import logo from "@a/logo-sm.png";
 
 export function Page({ newStep, uri }) {
   let [step, setStep] = useState(1);
@@ -55,7 +55,7 @@ export function Page({ newStep, uri }) {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex"></div>
         <div className="relative flex place-items-center">
-          <Image src={logo} alt="W Logo" />
+          <Image src={logo} width="auto" height="auto" alt="W Logo" />
         </div>
         <div className="relative flex place-items-center">
           <p className="text-lg font-normal text-white lg:text-xl dark:text-gray-400 text-center">
@@ -90,14 +90,14 @@ export function Page({ newStep, uri }) {
         <Footer />
       </>
     );
-  } else if ({ Connected } && step === 4) {
-    return (
-      <>
-        <Header />
-        <MintNFT onSuccess={uri} />;
-        <Footer />
-      </>
-    );
+    /* } else if ({ Connected } && step === 4) {
+     *   return (
+     *     <>
+     *       <Header />
+     *       <MintNFT onSuccess={uri} />;
+     *       <Footer />
+     *     </>
+     *   ); */
   }
 }
 
