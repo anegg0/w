@@ -2,6 +2,7 @@ import { createWeb3Modal, defaultWagmiConfig } from "@web3modal/wagmi/react";
 import { publicProvider } from "wagmi/providers/public";
 import { WagmiConfig } from "wagmi";
 import { sepolia } from "wagmi/chains";
+import { goerli } from "wagmi/chains";
 
 // 1. Get projectId
 const projectId = "130c92c32b5cfbac34b8cff6780340e7";
@@ -12,7 +13,7 @@ const metadata = {
   description: "Watermarking NFTs with verifiable ownership",
   icons: ["@a/logo.png"],
 };
-const chains = [sepolia];
+const chains = [goerli];
 export const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
 
 // 3. Create modal
