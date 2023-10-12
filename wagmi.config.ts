@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from "@wagmi/cli";
 import { etherscan, react } from "@wagmi/cli/plugins";
-// import { erc20ABI } from "wagmi";
-import { mainnet, goerli } from "wagmi/chains";
+import { sepolia, goerli } from "wagmi/chains";
 import * as chains from "wagmi/chains";
 
 export default defineConfig({
@@ -19,9 +18,10 @@ export default defineConfig({
 			chainId: goerli.id,
 			contracts: [
 				{
-					name: "WagmiMintExample",
+					name: "Watermarked",
 					address: {
 						[chains.goerli.id]: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
+						[chains.sepolia.id]: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
 					},
 				},
 			],

@@ -1,179 +1,5 @@
 
 ### Modification 1
-**File:** src/components/MetadataBuilder.tsx
-
-**Original Content:**
-```
-"use client";
-import React, { useState } from "react";
-import { MintNFT } from "@c/MintNFT";
-
-interface FormData {
-  name: string;
-  description: string;
-}
-
-export function MetadataBuilder({ onSuccessfulMetadataCreation }) {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    description: "",
-  });
-
-  const [tokenURI, setTokenURI] = useState<string>("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("/api/mint", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        if (responseData && responseData.url) {
-          setTokenURI(responseData.url);
-          console.log(`tokenURI on Metadata is: ${responseData.url}`);
-          onSuccessfulMetadataCreation(4);
-        } else {
-          console.error("Unexpected response structure from /api/mint");
-        }
-      } else {
-        console.error("Error response from /api/mint:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error creating metadata:", error);
-    }
-  };
-
-  return (
-    <div className="min-h-screen p-10">
-      <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
-      >
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-2">
-            Name:
-            <input
-              placeholder="Short description of your image"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded text-gray-500"
-            />
-          </label>
-          <label className="block text-sm font-medium mb-2">
-            Description:
-            <input
-              type="text"
-              placeholder="Longer description of your image"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded text-gray-500"
-            />
-          </label>
-        </div>
-        <br />
-        <label className="block text-md font-medium mb-2">
-          You can now mint your watermarked image as an NFT.
-          <br />
-          After clicking the "Mint image as NFT" button, your wallet will ask
-          you to confirm the transaction.
-          <br />
-          <br />
-          Once confirmed, your will have verifiable proof that you registered
-          your image on the blockchain:
-          <br />
-        </label>
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Mint image as NFT
-        </button>
-      </form>
-      {tokenURI && <MintNFT tokenURI={tokenURI} />}
-    </div>
-  );
-}
-
-export default MetadataBuilder;
-
-```
-
-**Modified Content:**
-```
-To pass the `tokenURI` from component #68 to component #69, you can update the `onSuccessfulMetadataCreation` callback to include the `tokenURI` as an argument:
-
-```javascript
-interface MetadataBuilderProps {
-  onSuccessfulMetadataCreation: (tokenURI: string) => void;
-}
-
-export function MetadataBuilder({ onSuccessfulMetadataCreation }: MetadataBuilderProps) {
-  // ...
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    // ...
-
-    if (response.ok) {
-      const responseData = await response.json();
-      if (responseData && responseData.url) {
-        setTokenURI(responseData.url);
-        console.log(`tokenURI on Metadata is: ${responseData.url}`);
-        onSuccessfulMetadataCreation(responseData.url); // Pass tokenURI as argument
-      } else {
-        console.error("Unexpected response structure from /api/mint");
-      }
-    } else {
-      console.error("Error response from /api/mint:", response.statusText);
-    }
-  };
-
-  // ...
-}
-```
-
-And then in component #69, you can receive the `tokenURI` value by updating the `MintNFT` component invocation:
-
-```javascript
-import React from "react";
-import { MintNFT } from "@c/MintNFT";
-
-interface MintNFTProps {
-  tokenURI: string;
-}
-
-export function Component69({ tokenURI }: MintNFTProps) {
-  return (
-    <div>
-      {/* Other content */}
-      {tokenURI && <MintNFT tokenURI={tokenURI} />}
-    </div>
-  );
-}
-```
-
-Note: Make sure to import and use the `Component69` component in the appropriate place in your application.
-```
-
-
-### Modification 2
 **File:** src/components/MintNFT.tsx
 
 **Original Content:**
@@ -185,18 +11,19 @@ import {
   useContractWrite,
   useWaitForTransaction,
 } from "wagmi";
+import { useDebounce } from "@c/useDebounce";
 
-export function MintNFT({ tokenURI }) {
-  const [localTokenURI, setLocalTokenURI] = useState("");
+interface MintNFTProps {
+  tokenURI: string;
+}
 
-  // Update localTokenURI if tokenURI changes
-  useEffect(() => {
-    if (tokenURI) {
-      setLocalTokenURI(tokenURI);
-    }
-  }, [localTokenURI]);
+export function MintNFT({ tokenURI }: MintNFTProps) {
+  const [localTokenURI, setLocalTokenURI] = useState<string | null>(null);
 
-  console.log(`localTokenURI ${localTokenURI}}`);
+  // Always call hooks in the same order.
+  console.log(`typeof localTokenURI: ${typeof localTokenURI}`);
+  const debouncedTokenUri = useDebounce(localTokenURI);
+
   const {
     config,
     error: prepareError,
@@ -208,24 +35,28 @@ export function MintNFT({ tokenURI }) {
         name: "mintItem",
         type: "function",
         stateMutability: "nonpayable",
-        inputs: [
-          {
-            internalType: "string",
-            name: "tokenURI",
-            type: "string",
-          },
-        ],
+        inputs: [{ internalType: "string", name: "tokenURI", type: "string" }],
         outputs: [],
       },
     ],
     functionName: "mintItem",
-    args: [localTokenURI], // Use localTokenURI here
+    args: [debouncedTokenUri],
+    enabled: Boolean(debouncedTokenUri),
+    gas: 1_000_000n,
   });
-  const { data, error, isError, write } = useContractWrite(config);
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  });
+  const { data, error, isError, write } = useContractWrite(config);
+  const { isLoading, isSuccess } = useWaitForTransaction({ hash: data?.hash });
+
+  // Separate effect for setting localTokenURI
+  useEffect(() => {
+    if (tokenURI) {
+      setLocalTokenURI(tokenURI);
+    }
+  }, [tokenURI]);
+
+  // Early return for loading state
+  if (!localTokenURI) return <div>Loading...</div>;
 
   return (
     <div>
@@ -251,67 +82,149 @@ export default MintNFT;
 
 **Modified Content:**
 ```
-To pass the `tokenURI` from `#68` to `#69`, you can update the `args` property in the `usePrepareContractWrite` hook to receive the `tokenURI` from the parent component.
+From the code you provided, it seems that the issue might be related to the configuration of the `usePrepareContractWrite` hook. When configuring the hook, you are providing the `abi` property which describes the function `mintItem` in the smart contract.
 
-Here's the updated code:
+However, in the current implementation, you are passing the `debouncedTokenUri` as an argument to the `usePrepareContractWrite` hook, which means it will be executed immediately when the component renders. This might cause an issue if `debouncedTokenUri` is null or undefined at that point.
 
-```javascript
-// #68
-import MintNFT from "./MintNFT";
+To solve this issue, you can wrap the configuration of `usePrepareContractWrite` inside a useEffect hook to ensure it only executes when `debouncedTokenUri` is not null or undefined. Here's the modified code:
 
-function ParentComponent() {
-  const tokenURI = "your_token_uri_here";
+```jsx
+import React, { useState, useEffect } from "react";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
+import { useDebounce } from "@c/useDebounce";
 
-  return <MintNFT tokenURI={tokenURI} />;
+interface MintNFTProps {
+  tokenURI: string;
 }
 
-export default ParentComponent;
-```
+export function MintNFT({ tokenURI }: MintNFTProps) {
+  const [localTokenURI, setLocalTokenURI] = useState<string | null>(null);
 
-```javascript
-// #69
-// ...
+  const debouncedTokenUri = useDebounce(localTokenURI);
 
-export function MintNFT({ tokenURI }) {
-  const [localTokenURI, setLocalTokenURI] = useState("");
-
-  // Update localTokenURI if tokenURI changes
   useEffect(() => {
     if (tokenURI) {
       setLocalTokenURI(tokenURI);
     }
   }, [tokenURI]);
 
-  // ...
+  const { config, error: prepareError, isError: isPrepareError } =
+    usePrepareContractWrite({
+      address: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
+      abi: [
+        {
+          name: "mintItem",
+          type: "function",
+          stateMutability: "nonpayable",
+          inputs: [{ internalType: "string", name: "tokenURI", type: "string" }],
+          outputs: [],
+        },
+      ],
+      functionName: "mintItem",
+      args: [debouncedTokenUri],
+      enabled: Boolean(debouncedTokenUri),
+      gas: 1_000_000n,
+    });
 
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
-    abi: [
-      {
-        name: "mintItem",
-        type: "function",
-        stateMutability: "nonpayable",
-        inputs: [
-          {
-            internalType: "string",
-            name: "tokenURI",
-            type: "string",
-          },
-        ],
-        outputs: [],
-      },
-    ],
-    functionName: "mintItem",
-    args: [tokenURI], // Use tokenURI here
-  });
+  const { data, error, isError } = useContractWrite(config);
+  const { isLoading, isSuccess } = useWaitForTransaction({ hash: data?.hash });
 
-  // ...
+  if (!localTokenURI) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {isLoading ? "Minting..." : "Mint"}
+      {isSuccess && (
+        <div>
+          Successfully minted your NFT!
+          <div>
+            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+          </div>
+        </div>
+      )}
+      {(isPrepareError || isError) && (
+        <div>Error: {(prepareError || error)?.message}</div>
+      )}
+    </div>
+  );
 }
+
+export default MintNFT;
 ```
 
-Now, the `tokenURI` passed from the parent component will be used in the `usePrepareContractWrite` hook arguments, and subsequently in the `useContractWrite` hook.
+By moving the `usePrepareContractWrite` configuration inside the useEffect, it won't be executed until `debouncedTokenUri` is set in the effect's dependency array. This should prevent any early execution issues and potentially resolve the "reverted for unknown reason" error.
+```
+
+
+### Modification 2
+**File:** src/public/Watermarked.sol
+
+**Original Content:**
+```
+//Contract based on [https://docs.openzeppelin.com/contracts/4.x/erc721](https://docs.openzeppelin.com/contracts/4.x/erc721)
+// SPDX-License-Identifier: MIT
+// Author: Gael Blanchemain Github:@anegg0
+
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Watermarked is ERC721URIStorage, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    // set contract name and ticker.
+    constructor() ERC721("Watermarked", "WTM") {}
+
+    //get the current supply of tokens
+    function totalSupply() public view returns (uint256) {
+        return _tokenIds.current();
+    }
+
+        // for opensea collection
+    function contractURI() public pure returns (string memory) {
+        string memory json = '{"name":"...","description":"..."}';
+        return string.concat("data:application/json;utf8,", json);
+    }
+
+    function mintItem(address creator, string memory tokenURI)
+        public
+        onlyOwner
+        returns (uint256)
+    {
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+        _mint(creator, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        return newItemId;
+    }
+}
+
+```
+
+**Modified Content:**
+```
+The error message "reverted for unknown reason" typically means that an exception occurred within the smart contract. In this case, it is likely that the exception is thrown when trying to mint a new token.
+
+To investigate further, you can take the following steps:
+
+1. Ensure that you are passing valid arguments when calling the `mintItem` function. Check if the `creator` address and `tokenURI` string are correct and properly formatted.
+
+2. Verify that you have sufficient permissions to call the `mintItem` function. The `onlyOwner` modifier indicates that only the contract owner can call this function. Make sure you are calling it from the correct owner address.
+
+3. Check if the contract has enough gas to complete the minting process. Insufficient gas can cause transactions to fail. You can try increasing the gas limit when calling the `mintItem` function.
+
+4. Review the code carefully for any potential issues. There may be logic errors, incorrect usage of OpenZeppelin functions, or missing dependencies that could cause the error.
+
+5. Consider adding more error handling and logging within the smart contract to provide better insights into the issue. This can help you pinpoint the exact error that occurred.
+
+6. If the issue persists, try reproducing it in a local development environment, such as Hardhat or Truffle, where you can debug the contract more easily.
+
+By following these steps, you should be able to identify the cause of the error and address it accordingly.
 ```

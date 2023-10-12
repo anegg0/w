@@ -14,9 +14,13 @@ interface MintNFTProps {
 export function MintNFT({ tokenURI }: MintNFTProps) {
   const [localTokenURI, setLocalTokenURI] = useState<string | null>(null);
 
-  // Always call hooks in the same order.
-  console.log(`typeof localTokenURI: ${typeof localTokenURI}`);
   const debouncedTokenUri = useDebounce(localTokenURI);
+
+  useEffect(() => {
+    if (tokenURI) {
+      setLocalTokenURI(tokenURI);
+    }
+  }, [tokenURI]);
 
   const {
     config,
@@ -39,17 +43,9 @@ export function MintNFT({ tokenURI }: MintNFTProps) {
     gas: 1_000_000n,
   });
 
-  const { data, error, isError, write } = useContractWrite(config);
+  const { data, error, isError } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({ hash: data?.hash });
 
-  // Separate effect for setting localTokenURI
-  useEffect(() => {
-    if (tokenURI) {
-      setLocalTokenURI(tokenURI);
-    }
-  }, [tokenURI]);
-
-  // Early return for loading state
   if (!localTokenURI) return <div>Loading...</div>;
 
   return (
