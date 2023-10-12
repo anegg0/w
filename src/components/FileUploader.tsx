@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "@a/globals.css";
 import { page } from "@a/page";
+import { Square } from "@c/Square";
 
 export function FileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
