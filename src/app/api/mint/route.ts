@@ -19,7 +19,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 		imagePath: string,
 		name: string,
 		description: string,
-		onSuccessfulMetadataCreation: Function, // Add this parameter
 	) {
 		const image = await fileFromPath(imagePath);
 		const nftstorage = new NFTStorage({ token: NFT_STORAGE_TOKEN });

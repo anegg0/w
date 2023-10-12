@@ -1,42 +1,60 @@
 "use client";
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
 } from "wagmi";
+import { useDebounce } from "@c/useDebounce";
 
-import { useDebounce } from "./useDebounce";
+interface MintNFTProps {
+  tokenURI: string;
+}
 
-export function MintNFT({ uri }) {
+export function MintNFT({ tokenURI }: MintNFTProps) {
+  const [localTokenURI, setLocalTokenURI] = useState<string | null>(null);
+
+  // Always call hooks in the same order.
+  console.log(`typeof localTokenURI: ${typeof localTokenURI}`);
+  const debouncedTokenUri = useDebounce(localTokenURI);
+
   const {
     config,
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    address: "0xFe04316F6608dD7021ca384d23b24A5399b6bfA8",
+    address: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
     abi: [
       {
         name: "mintItem",
         type: "function",
         stateMutability: "nonpayable",
-        inputs: [],
+        inputs: [{ internalType: "string", name: "tokenURI", type: "string" }],
         outputs: [],
       },
     ],
     functionName: "mintItem",
+    args: [debouncedTokenUri],
+    enabled: Boolean(debouncedTokenUri),
+    gas: 1_000_000n,
   });
-  const { data, error, isError, write } = useContractWrite(config);
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  });
+  const { data, error, isError, write } = useContractWrite(config);
+  const { isLoading, isSuccess } = useWaitForTransaction({ hash: data?.hash });
+
+  // Separate effect for setting localTokenURI
+  useEffect(() => {
+    if (tokenURI) {
+      setLocalTokenURI(tokenURI);
+    }
+  }, [tokenURI]);
+
+  // Early return for loading state
+  if (!localTokenURI) return <div>Loading...</div>;
 
   return (
     <div>
-      <button disabled={!write || isLoading} onClick={() => write()}>
-        {isLoading ? "Minting..." : "Mint"}
-      </button>
+      {isLoading ? "Minting..." : "Mint"}
       {isSuccess && (
         <div>
           Successfully minted your NFT!
@@ -51,3 +69,5 @@ export function MintNFT({ uri }) {
     </div>
   );
 }
+
+export default MintNFT;
