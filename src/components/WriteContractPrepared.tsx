@@ -1,45 +1,45 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { BaseError } from 'viem'
+import { useState } from "react";
+import { BaseError } from "viem";
 import {
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
-} from 'wagmi'
+} from "wagmi";
 
-import { wagmiContractConfig } from './contracts'
-import { useDebounce } from '../hooks/useDebounce'
-import { stringify } from '../utils/stringify'
+import { useDebounce } from "@s/hooks/useDebounce";
+import { watermarkedConfig } from "@s/generated";
+import { stringify } from "../utils/stringify";
 
 export function WriteContractPrepared() {
-  const [tokenId, setTokenId] = useState('')
-  const debouncedTokenId = useDebounce(tokenId)
-
+  const [tokenUri, setTokenUri] = useState("");
+  const debouncedTokenUri = useDebounce(tokenUri);
+  debugger;
   const { config } = usePrepareContractWrite({
-    ...wagmiContractConfig,
-    functionName: 'mint',
-    enabled: Boolean(debouncedTokenId),
-    args: [BigInt(debouncedTokenId)],
-  })
-  const { write, data, error, isLoading, isError } = useContractWrite(config)
+    ...watermarkedConfig,
+    functionName: "mintItem",
+    args: [debouncedTokenUri],
+  });
+
+  const { write, data, error, isLoading, isError } = useContractWrite(config);
   const {
     data: receipt,
     isLoading: isPending,
     isSuccess,
-  } = useWaitForTransaction({ hash: data?.hash })
+  } = useWaitForTransaction({ hash: data?.hash });
 
   return (
     <>
-      <h3>Mint a wagmi</h3>
+      <h3>Mint a Watermarked NFT</h3>
       <form
         onSubmit={(e) => {
-          e.preventDefault()
-          write?.()
+          e.preventDefault();
+          write?.();
         }}
       >
         <input
-          placeholder="token id"
+          placeholder="token URI"
           onChange={(e) => setTokenId(e.target.value)}
         />
         <button disabled={!write} type="submit">
@@ -59,5 +59,5 @@ export function WriteContractPrepared() {
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}
     </>
-  )
+  );
 }

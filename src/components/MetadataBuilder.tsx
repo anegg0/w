@@ -42,7 +42,7 @@ export function MetadataBuilder({
           let tokenURI = responseData.url;
 
           /* onSuccessfulMetadataCreation(tokenURI); // Pass tokenURI as argument */
-          /* onSuccessfulMetadataCreation(4); // Pass tokenURI as argument */
+          onSuccessfulMetadataCreation(4); // Pass tokenURI as argument
         }
       }
     } catch (error) {
@@ -99,7 +99,8 @@ export function MetadataBuilder({
           Mint image as NFT
         </button>
       </form>
-      {tokenURI && <MintNFT tokenURI={tokenURI} />}
+      {/* {tokenURI && <MintNFT tokenURI={tokenURI} />} */}
+      <MintNFT />
     </div>
   );
 }

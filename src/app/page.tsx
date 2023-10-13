@@ -20,7 +20,7 @@ import { SignTypedData } from "@c/SignTypedData";
 import { Token } from "@c/Token";
 import { WatchContractEvents } from "@c/WatchContractEvents";
 import { WatchPendingTransactions } from "@c/WatchPendingTransactions";
-import { WriteContract } from "@c/WriteContract";
+/* import { WriteContract } from "@c/WriteContract"; */
 import { WriteContractPrepared } from "@c/WriteContractPrepared";
 import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
@@ -90,7 +90,8 @@ export function Page({ newStep, uri }) {
     return (
       <>
         <Header />
-        <MintNFT onSuccess={uri} />;
+        {/* <MintNFT onSuccess={uri} />; */}
+        <WriteContractPrepared />
       </>
     );
   }

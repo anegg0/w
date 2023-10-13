@@ -1,52 +1,63 @@
-'use client'
+"use client";
 
-import { BaseError } from 'viem'
-import { useContractWrite, useWaitForTransaction } from 'wagmi'
+import React, { useState } from "react";
+import { BaseError } from "viem";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
+import { useDebounce } from "@s/hooks/useDebounce";
+import { watermarkedConfig } from "@s/generated";
+import { stringify } from "../utils/stringify";
 
-import { wagmiContractConfig } from './contracts'
-import { stringify } from '../utils/stringify'
+export function WriteContractPrepared() {
+  const [tokenUri, setTokenUri] = React.useState("");
+  const debouncedTokenUri = useDebounce(tokenUri);
 
-export function WriteContract() {
-  const { write, data, error, isLoading, isError } = useContractWrite({
-    ...wagmiContractConfig,
-    functionName: 'mint',
-  })
+  const { config } = usePrepareContractWrite({
+    ...watermarkedConfig,
+    functionName: "mintItem",
+    args: [debouncedTokenUri],
+  });
+
+  const { write, data, error, isLoading, isError } = useContractWrite(config);
   const {
     data: receipt,
     isLoading: isPending,
     isSuccess,
-  } = useWaitForTransaction({ hash: data?.hash })
-
+  } = useWaitForTransaction({ hash: data?.hash });
   return (
-    <>
-      <h3>Mint a wagmi</h3>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          const formData = new FormData(e.target as HTMLFormElement)
-          const tokenId = formData.get('tokenId') as string
-          write({
-            args: [BigInt(tokenId)],
-          })
-        }}
-      >
-        <input name="tokenId" placeholder="token id" />
-        <button disabled={isLoading} type="submit">
-          Mint
-        </button>
-      </form>
-
-      {isLoading && <div>Check wallet...</div>}
-      {isPending && <div>Transaction pending...</div>}
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        write?.();
+      }}
+    >
+      <label for="tokenUri">Token URI</label>
+      <input
+        id="tokenUri"
+        onChange={(e) => setTokenUri(e.target.value)}
+        placeholder="420"
+        value={tokenUri}
+        style={{ color: "black" }}
+      />
+      <button disabled={!write || isLoading}>
+        {isLoading ? "Minting..." : "Mint"}
+      </button>
       {isSuccess && (
-        <>
-          <div>Transaction Hash: {data?.hash}</div>
+        <div>
+          Successfully minted your NFT!
           <div>
-            Transaction Receipt: <pre>{stringify(receipt, null, 2)}</pre>
+            <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
           </div>
-        </>
+        </div>
       )}
-      {isError && <div>{(error as BaseError)?.shortMessage}</div>}
-    </>
-  )
+      {(isPrepareError || isError) && (
+        <div>Error: {(prepareError || error)?.message}</div>
+      )}
+    </form>
+  );
 }
+
+export default WriteContractPrepared;

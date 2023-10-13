@@ -16,13 +16,13 @@ import {
 } from 'wagmi/actions'
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// WagmiMintExample
+// Watermarked
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export const wagmiMintExampleABI = [
+export const watermarkedABI = [
   { stateMutability: 'nonpayable', type: 'constructor', inputs: [] },
   {
     type: 'event',
@@ -264,18 +264,18 @@ export const wagmiMintExampleABI = [
 ] as const
 
 /**
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export const wagmiMintExampleAddress = {
-  5: '0xAce963F9139ADD78730468bCc57fAA1812B2b5E2',
+export const watermarkedAddress = {
+  5: '0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D',
 } as const
 
 /**
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export const wagmiMintExampleConfig = {
-  address: wagmiMintExampleAddress,
-  abi: wagmiMintExampleABI,
+export const watermarkedConfig = {
+  address: watermarkedAddress,
+  abi: watermarkedABI,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -283,479 +283,379 @@ export const wagmiMintExampleConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleRead<
+export function useWatermarkedRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"balanceOf"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"balanceOf"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleBalanceOf<
+export function useWatermarkedBalanceOf<
   TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'balanceOf',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"contractURI"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"contractURI"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleContractUri<
+export function useWatermarkedContractUri<
   TFunctionName extends 'contractURI',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'contractURI',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"getApproved"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"getApproved"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleGetApproved<
+export function useWatermarkedGetApproved<
   TFunctionName extends 'getApproved',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'getApproved',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"isApprovedForAll"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"isApprovedForAll"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleIsApprovedForAll<
+export function useWatermarkedIsApprovedForAll<
   TFunctionName extends 'isApprovedForAll',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'isApprovedForAll',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"name"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"name"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleName<
+export function useWatermarkedName<
   TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'name',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"owner"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"owner"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleOwner<
+export function useWatermarkedOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'owner',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"ownerOf"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"ownerOf"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleOwnerOf<
+export function useWatermarkedOwnerOf<
   TFunctionName extends 'ownerOf',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'ownerOf',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"supportsInterface"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"supportsInterface"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleSupportsInterface<
+export function useWatermarkedSupportsInterface<
   TFunctionName extends 'supportsInterface',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'supportsInterface',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"symbol"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"symbol"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleSymbol<
+export function useWatermarkedSymbol<
   TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'symbol',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"tokenURI"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"tokenURI"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleTokenUri<
+export function useWatermarkedTokenUri<
   TFunctionName extends 'tokenURI',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'tokenURI',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"totalSupply"`.
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"totalSupply"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleTotalSupply<
+export function useWatermarkedTotalSupply<
   TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof wagmiMintExampleABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof watermarkedABI, TFunctionName>,
 >(
   config: Omit<
-    UseContractReadConfig<
-      typeof wagmiMintExampleABI,
-      TFunctionName,
-      TSelectData
-    >,
+    UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractRead({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'totalSupply',
     ...config,
-  } as UseContractReadConfig<
-    typeof wagmiMintExampleABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof watermarkedABI, TFunctionName, TSelectData>)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleWrite<
+export function useWatermarkedWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           string
         >['request']['abi'],
         TFunctionName,
         TMode
       > & { address?: Address; chainId?: TChainId }
-    : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
-        TFunctionName,
-        TMode
-      > & {
+    : UseContractWriteConfig<typeof watermarkedABI, TFunctionName, TMode> & {
         abi?: never
         address?: never
         chainId?: TChainId
       } = {} as any,
 ) {
-  return useContractWrite<typeof wagmiMintExampleABI, TFunctionName, TMode>({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, TFunctionName, TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"approve"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"approve"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleApprove<
+export function useWatermarkedApprove<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'approve'
         >['request']['abi'],
         'approve',
         TMode
       > & { address?: Address; chainId?: TChainId; functionName?: 'approve' }
-    : UseContractWriteConfig<typeof wagmiMintExampleABI, 'approve', TMode> & {
+    : UseContractWriteConfig<typeof watermarkedABI, 'approve', TMode> & {
         abi?: never
         address?: never
         chainId?: TChainId
         functionName?: 'approve'
       } = {} as any,
 ) {
-  return useContractWrite<typeof wagmiMintExampleABI, 'approve', TMode>({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'approve', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'approve',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"mintItem"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"mintItem"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleMintItem<
+export function useWatermarkedMintItem<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'mintItem'
         >['request']['abi'],
         'mintItem',
         TMode
       > & { address?: Address; chainId?: TChainId; functionName?: 'mintItem' }
-    : UseContractWriteConfig<typeof wagmiMintExampleABI, 'mintItem', TMode> & {
+    : UseContractWriteConfig<typeof watermarkedABI, 'mintItem', TMode> & {
         abi?: never
         address?: never
         chainId?: TChainId
         functionName?: 'mintItem'
       } = {} as any,
 ) {
-  return useContractWrite<typeof wagmiMintExampleABI, 'mintItem', TMode>({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'mintItem', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'mintItem',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"renounceOwnership"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"renounceOwnership"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleRenounceOwnership<
+export function useWatermarkedRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'renounceOwnership'
         >['request']['abi'],
         'renounceOwnership',
@@ -766,7 +666,7 @@ export function useWagmiMintExampleRenounceOwnership<
         functionName?: 'renounceOwnership'
       }
     : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
+        typeof watermarkedABI,
         'renounceOwnership',
         TMode
       > & {
@@ -776,31 +676,27 @@ export function useWagmiMintExampleRenounceOwnership<
         functionName?: 'renounceOwnership'
       } = {} as any,
 ) {
-  return useContractWrite<
-    typeof wagmiMintExampleABI,
-    'renounceOwnership',
-    TMode
-  >({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'renounceOwnership', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'renounceOwnership',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"safeTransferFrom"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"safeTransferFrom"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleSafeTransferFrom<
+export function useWatermarkedSafeTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'safeTransferFrom'
         >['request']['abi'],
         'safeTransferFrom',
@@ -811,7 +707,7 @@ export function useWagmiMintExampleSafeTransferFrom<
         functionName?: 'safeTransferFrom'
       }
     : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
+        typeof watermarkedABI,
         'safeTransferFrom',
         TMode
       > & {
@@ -821,31 +717,27 @@ export function useWagmiMintExampleSafeTransferFrom<
         functionName?: 'safeTransferFrom'
       } = {} as any,
 ) {
-  return useContractWrite<
-    typeof wagmiMintExampleABI,
-    'safeTransferFrom',
-    TMode
-  >({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'safeTransferFrom', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'safeTransferFrom',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"setApprovalForAll"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"setApprovalForAll"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleSetApprovalForAll<
+export function useWatermarkedSetApprovalForAll<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'setApprovalForAll'
         >['request']['abi'],
         'setApprovalForAll',
@@ -856,7 +748,7 @@ export function useWagmiMintExampleSetApprovalForAll<
         functionName?: 'setApprovalForAll'
       }
     : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
+        typeof watermarkedABI,
         'setApprovalForAll',
         TMode
       > & {
@@ -866,31 +758,27 @@ export function useWagmiMintExampleSetApprovalForAll<
         functionName?: 'setApprovalForAll'
       } = {} as any,
 ) {
-  return useContractWrite<
-    typeof wagmiMintExampleABI,
-    'setApprovalForAll',
-    TMode
-  >({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'setApprovalForAll', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'setApprovalForAll',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferFrom"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"transferFrom"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleTransferFrom<
+export function useWatermarkedTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'transferFrom'
         >['request']['abi'],
         'transferFrom',
@@ -900,38 +788,34 @@ export function useWagmiMintExampleTransferFrom<
         chainId?: TChainId
         functionName?: 'transferFrom'
       }
-    : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
-        'transferFrom',
-        TMode
-      > & {
+    : UseContractWriteConfig<typeof watermarkedABI, 'transferFrom', TMode> & {
         abi?: never
         address?: never
         chainId?: TChainId
         functionName?: 'transferFrom'
       } = {} as any,
 ) {
-  return useContractWrite<typeof wagmiMintExampleABI, 'transferFrom', TMode>({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'transferFrom', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'transferFrom',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferOwnership"`.
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"transferOwnership"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleTransferOwnership<
+export function useWatermarkedTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof wagmiMintExampleAddress,
+  TChainId extends number = keyof typeof watermarkedAddress,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
-          typeof wagmiMintExampleABI,
+          typeof watermarkedABI,
           'transferOwnership'
         >['request']['abi'],
         'transferOwnership',
@@ -942,7 +826,7 @@ export function useWagmiMintExampleTransferOwnership<
         functionName?: 'transferOwnership'
       }
     : UseContractWriteConfig<
-        typeof wagmiMintExampleABI,
+        typeof watermarkedABI,
         'transferOwnership',
         TMode
       > & {
@@ -952,289 +836,264 @@ export function useWagmiMintExampleTransferOwnership<
         functionName?: 'transferOwnership'
       } = {} as any,
 ) {
-  return useContractWrite<
-    typeof wagmiMintExampleABI,
-    'transferOwnership',
-    TMode
-  >({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+  return useContractWrite<typeof watermarkedABI, 'transferOwnership', TMode>({
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'transferOwnership',
     ...config,
   } as any)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleWrite<TFunctionName extends string>(
+export function usePrepareWatermarkedWrite<TFunctionName extends string>(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, TFunctionName>,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, TFunctionName>,
     'abi' | 'address'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof watermarkedABI, TFunctionName>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"approve"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"approve"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleApprove(
+export function usePrepareWatermarkedApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'approve'>,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'approve'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'approve',
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof watermarkedABI, 'approve'>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"mintItem"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"mintItem"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleMintItem(
+export function usePrepareWatermarkedMintItem(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'mintItem'>,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'mintItem'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'mintItem',
     ...config,
-  } as UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'mintItem'>)
+  } as UsePrepareContractWriteConfig<typeof watermarkedABI, 'mintItem'>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"renounceOwnership"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"renounceOwnership"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleRenounceOwnership(
+export function usePrepareWatermarkedRenounceOwnership(
   config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof wagmiMintExampleABI,
-      'renounceOwnership'
-    >,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'renounceOwnership',
     ...config,
   } as UsePrepareContractWriteConfig<
-    typeof wagmiMintExampleABI,
+    typeof watermarkedABI,
     'renounceOwnership'
   >)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"safeTransferFrom"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"safeTransferFrom"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleSafeTransferFrom(
+export function usePrepareWatermarkedSafeTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof wagmiMintExampleABI,
-      'safeTransferFrom'
-    >,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'safeTransferFrom'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'safeTransferFrom',
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof wagmiMintExampleABI,
-    'safeTransferFrom'
-  >)
+  } as UsePrepareContractWriteConfig<typeof watermarkedABI, 'safeTransferFrom'>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"setApprovalForAll"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"setApprovalForAll"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleSetApprovalForAll(
+export function usePrepareWatermarkedSetApprovalForAll(
   config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof wagmiMintExampleABI,
-      'setApprovalForAll'
-    >,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'setApprovalForAll'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'setApprovalForAll',
     ...config,
   } as UsePrepareContractWriteConfig<
-    typeof wagmiMintExampleABI,
+    typeof watermarkedABI,
     'setApprovalForAll'
   >)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferFrom"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"transferFrom"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleTransferFrom(
+export function usePrepareWatermarkedTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof wagmiMintExampleABI, 'transferFrom'>,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'transferFrom'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'transferFrom',
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof wagmiMintExampleABI,
-    'transferFrom'
-  >)
+  } as UsePrepareContractWriteConfig<typeof watermarkedABI, 'transferFrom'>)
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `functionName` set to `"transferOwnership"`.
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link watermarkedABI}__ and `functionName` set to `"transferOwnership"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function usePrepareWagmiMintExampleTransferOwnership(
+export function usePrepareWatermarkedTransferOwnership(
   config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof wagmiMintExampleABI,
-      'transferOwnership'
-    >,
+    UsePrepareContractWriteConfig<typeof watermarkedABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return usePrepareContractWrite({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     functionName: 'transferOwnership',
     ...config,
   } as UsePrepareContractWriteConfig<
-    typeof wagmiMintExampleABI,
+    typeof watermarkedABI,
     'transferOwnership'
   >)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__.
+ * Wraps __{@link useContractEvent}__ with `abi` set to __{@link watermarkedABI}__.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleEvent<TEventName extends string>(
+export function useWatermarkedEvent<TEventName extends string>(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>,
+    UseContractEventConfig<typeof watermarkedABI, TEventName>,
     'abi' | 'address'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, TEventName>)
+  } as UseContractEventConfig<typeof watermarkedABI, TEventName>)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"Approval"`.
+ * Wraps __{@link useContractEvent}__ with `abi` set to __{@link watermarkedABI}__ and `eventName` set to `"Approval"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleApprovalEvent(
+export function useWatermarkedApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'Approval'>,
+    UseContractEventConfig<typeof watermarkedABI, 'Approval'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     eventName: 'Approval',
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Approval'>)
+  } as UseContractEventConfig<typeof watermarkedABI, 'Approval'>)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"ApprovalForAll"`.
+ * Wraps __{@link useContractEvent}__ with `abi` set to __{@link watermarkedABI}__ and `eventName` set to `"ApprovalForAll"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleApprovalForAllEvent(
+export function useWatermarkedApprovalForAllEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'ApprovalForAll'>,
+    UseContractEventConfig<typeof watermarkedABI, 'ApprovalForAll'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     eventName: 'ApprovalForAll',
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'ApprovalForAll'>)
+  } as UseContractEventConfig<typeof watermarkedABI, 'ApprovalForAll'>)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"OwnershipTransferred"`.
+ * Wraps __{@link useContractEvent}__ with `abi` set to __{@link watermarkedABI}__ and `eventName` set to `"OwnershipTransferred"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleOwnershipTransferredEvent(
+export function useWatermarkedOwnershipTransferredEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'OwnershipTransferred'>,
+    UseContractEventConfig<typeof watermarkedABI, 'OwnershipTransferred'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     eventName: 'OwnershipTransferred',
     ...config,
-  } as UseContractEventConfig<
-    typeof wagmiMintExampleABI,
-    'OwnershipTransferred'
-  >)
+  } as UseContractEventConfig<typeof watermarkedABI, 'OwnershipTransferred'>)
 }
 
 /**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link wagmiMintExampleABI}__ and `eventName` set to `"Transfer"`.
+ * Wraps __{@link useContractEvent}__ with `abi` set to __{@link watermarkedABI}__ and `eventName` set to `"Transfer"`.
  *
- * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0xAce963F9139ADD78730468bCc57fAA1812B2b5E2)
+ * [__View Contract on Goerli Etherscan__](https://goerli.etherscan.io/address/0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D)
  */
-export function useWagmiMintExampleTransferEvent(
+export function useWatermarkedTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof wagmiMintExampleABI, 'Transfer'>,
+    UseContractEventConfig<typeof watermarkedABI, 'Transfer'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof wagmiMintExampleAddress } = {} as any,
+  > & { chainId?: keyof typeof watermarkedAddress } = {} as any,
 ) {
   return useContractEvent({
-    abi: wagmiMintExampleABI,
-    address: wagmiMintExampleAddress[5],
+    abi: watermarkedABI,
+    address: watermarkedAddress[5],
     eventName: 'Transfer',
     ...config,
-  } as UseContractEventConfig<typeof wagmiMintExampleABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof watermarkedABI, 'Transfer'>)
 }
