@@ -17,10 +17,11 @@ export function WriteContractPrepared() {
 
   const { config } = usePrepareContractWrite({
     ...watermarkedConfig,
+    // address: "0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D",
     functionName: "mintItem",
     args: [debouncedTokenUri],
   });
-
+  console.log(`watermarkedConfig is: ${watermarkedConfig}`);
   const { write, data, error, isLoading, isError } = useContractWrite(config);
   const {
     data: receipt,

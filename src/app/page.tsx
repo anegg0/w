@@ -90,8 +90,7 @@ export function Page({ newStep, uri }) {
     return (
       <>
         <Header />
-        {/* <MintNFT onSuccess={uri} />; */}
-        <WriteContractPrepared />
+        <MintNFT />;
       </>
     );
   }

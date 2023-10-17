@@ -1,50 +1,47 @@
-"use client";
 import React, { useState, useEffect } from "react";
+import { BaseError } from "viem";
 import {
-  usePrepareContractWrite,
   useContractWrite,
+  usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import { useDebounce } from "@c/useDebounce";
+import { useAccount } from "wagmi";
+import { useDebounce } from "@s/hooks/useDebounce";
+import { watermarkedConfig } from "@s/generated";
+import { stringify } from "@s/utils/stringify";
 
-interface MintNFTProps {
-  tokenURI: string;
-}
+export function MintNFT({ tokenUri }) {
+  const [tokenURI, setTokenURI] = useState<string | null>(null);
 
-export function MintNFT({ tokenURI }: MintNFTProps) {
-  const [localTokenURI, setLocalTokenURI] = useState<string | null>(null);
+  const localTokenURI = (tokenUri) => {
+    setTokenURI(tokenUri);
+  };
 
-  const debouncedTokenUri = useDebounce(localTokenURI);
+  // React.useEffect(() => {
+  //   if (tokenUri) {
+  //     setLocalTokenURI(tokenUri);
+  //   }
+  // }, [tokenUri]);
 
-  useEffect(() => {
-    if (tokenURI) {
-      setLocalTokenURI(tokenURI);
-    }
-  }, [tokenURI]);
+  // const debouncedTokenUri = useDebounce(tokenUri);
+  const { address } = useAccount();
+  const debouncedCreatorAddress = useDebounce(address);
 
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: "0xAce963F9139ADD78730468bCc57fAA1812B2b5E2",
-    abi: [
-      {
-        name: "mintItem",
-        type: "function",
-        stateMutability: "nonpayable",
-        inputs: [{ internalType: "string", name: "tokenURI", type: "string" }],
-        outputs: [],
-      },
-    ],
+  const { config } = usePrepareContractWrite({
+    ...watermarkedConfig,
+    address: "0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D",
     functionName: "mintItem",
-    args: [debouncedTokenUri],
-    enabled: Boolean(debouncedTokenUri),
-    gas: 1_000_000n,
+    args: [debouncedCreatorAddress, tokenUri],
+    enabled: Boolean(tokenUri),
   });
 
-  const { data, error, isError } = useContractWrite(config);
-  const { isLoading, isSuccess } = useWaitForTransaction({ hash: data?.hash });
+  const { write, data, error, isLoading, isError } = useContractWrite(config);
+  const {
+    data: receipt,
+    isLoading: isPending,
+    isSuccess,
+  } = useWaitForTransaction({ hash: data?.hash });
+  console.log("receipt", receipt);
 
   if (!localTokenURI) return <div>Loading...</div>;
 
@@ -59,11 +56,7 @@ export function MintNFT({ tokenURI }: MintNFTProps) {
           </div>
         </div>
       )}
-      {(isPrepareError || isError) && (
-        <div>Error: {(prepareError || error)?.message}</div>
-      )}
     </div>
   );
 }
-
 export default MintNFT;

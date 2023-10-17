@@ -40,7 +40,7 @@ export function MetadataBuilder({
           setTokenURI(responseData.url);
           console.log(`tokenURI on Metadata is: ${responseData.url}`);
           let tokenURI = responseData.url;
-
+          MintNFT(tokenURI);
           /* onSuccessfulMetadataCreation(tokenURI); // Pass tokenURI as argument */
           onSuccessfulMetadataCreation(4); // Pass tokenURI as argument
         }
@@ -99,8 +99,7 @@ export function MetadataBuilder({
           Mint image as NFT
         </button>
       </form>
-      {/* {tokenURI && <MintNFT tokenURI={tokenURI} />} */}
-      <MintNFT />
+      {/* {tokenURI && <MintNFT tokenUri={tokenUri} />} */}
     </div>
   );
 }
