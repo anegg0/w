@@ -37,17 +37,14 @@ export function Page({ newStep, uri }) {
   let { address, isConnecting, isDisconnected } = useAccount();
   let [loadingInProgress, setLoading] = useState(false);
 
-  // Update step value
   const updateStep = (newStep) => {
     setStep(newStep);
   };
 
-  // Get NFT URI
   const getStep = (uri) => {
     setNftUri(uri);
   };
 
-  // Update loadStatus value
   if (isConnecting) return <div>Connecting…</div>;
   if (isDisconnected) {
     return (
@@ -83,7 +80,7 @@ export function Page({ newStep, uri }) {
     return (
       <>
         <Header />
-        <MetadataBuilder onSuccessfulMetadataCreation={updateStep} />;
+        <MetadataBuilder />;
       </>
     );
   } else if ({ Connected } && step === 4) {
