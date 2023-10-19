@@ -99,7 +99,6 @@ export function MetadataBuilder({
           Mint image as NFT
         </button>
       </form>
-      {/* {tokenURI && <MintNFT tokenUri={tokenUri} />} */}
     </div>
   );
 }
