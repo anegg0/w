@@ -20,7 +20,6 @@ import { SignTypedData } from "@c/SignTypedData";
 import { Token } from "@c/Token";
 import { WatchContractEvents } from "@c/WatchContractEvents";
 import { WatchPendingTransactions } from "@c/WatchPendingTransactions";
-/* import { WriteContract } from "@c/WriteContract"; */
 import { WriteContractPrepared } from "@c/WriteContractPrepared";
 import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
@@ -28,21 +27,16 @@ import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
-import { MintNFT } from "@c/MintNFT";
+/* import { MintNFT } from "@c/MintNFT"; */
 import logo from "@a/logo.png";
 
-export function Page({ newStep, uri }) {
+export function Page({ newStep }) {
   let [step, setStep] = useState(1);
-  let [nftUri, setNftUri] = useState("");
   let { address, isConnecting, isDisconnected } = useAccount();
   let [loadingInProgress, setLoading] = useState(false);
 
   const updateStep = (newStep) => {
     setStep(newStep);
-  };
-
-  const getStep = (uri) => {
-    setNftUri(uri);
   };
 
   if (isConnecting) return <div>Connecting…</div>;
@@ -83,14 +77,15 @@ export function Page({ newStep, uri }) {
         <MetadataBuilder />;
       </>
     );
-  } else if ({ Connected } && step === 4) {
-    return (
-      <>
-        <Header />
-        <MintNFT />;
-      </>
-    );
   }
+  /* else if ({ Connected } && step === 4) {
+   *   return (
+   *     <>
+   *       <Header />
+   *       <MintNFT />;
+   *     </>
+   *   );
+   * } */
 }
 
 export default Page;

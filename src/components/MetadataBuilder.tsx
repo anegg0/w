@@ -1,20 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MintNFT } from "@c/MintNFT";
-import { text } from "@c/text";
 
 interface FormData {
   name: string;
   description: string;
 }
-export function MetadataBuilder({}: MetadataBuilderProps) {
+
+export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
+  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
+  const [tokenURI, setTokenURI] = useState("");
   const [formData, setFormData] = useState<FormData>({
     name: "",
     description: "",
   });
-
-  const [tokenURI, setTokenURI] = useState<string>("");
-  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,7 +22,6 @@ export function MetadataBuilder({}: MetadataBuilderProps) {
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -35,26 +33,28 @@ export function MetadataBuilder({}: MetadataBuilderProps) {
         body: JSON.stringify(formData),
       });
 
-      /* console.log(
-       *   `responseData.url on Metadata evaluates to: ${responseData.url}`,
-       * ); */
       if (response.ok) {
         const responseData = await response.json();
-
-        /* if (responseData && responseData.url) { */
-        /* setTokenURI(responseData.url); */
-        let tokenURI = responseData.url;
-        console.log(`tokenURI on Metadata is: ${responseData.url}`);
-        setIsRequestSuccessful(true); // Set to true if request was successful
-      } else {
-        setIsRequestSuccessful(false); // Optionally handle failed request
+        if (responseData.url) {
+          // Ensuring responseData.url is valid
+          setTokenURI(responseData.url);
+          console.log(`tokenURI at metadata level is: ${responseData.url}`);
+          setIsRequestSuccessful(true); // Only set to true if responseData.url is valid
+        } else {
+          setIsRequestSuccessful(false); // Handle potential invalid responseData.url
+        }
       }
     } catch (error) {
       console.error("Error response from /api/mint:", error);
     }
   };
+
   if (isRequestSuccessful) {
-    return <MintNFT />;
+    return (
+      <>
+        <MintNFT onSuccessfulTokenUriCreation={tokenURI} />;
+      </>
+    );
   } else {
     return (
       <div className="min-h-screen p-10">
