@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BaseError } from "viem";
 import {
   useContractWrite,
@@ -41,6 +41,17 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
 
   return (
     <>
+      <h3>Mint a Watermarked NFT</h3>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          write?.();
+        }}
+      >
+        <button disabled={!write} type="submit">
+          Mint
+        </button>
+      </form>
       {isLoading && <div>Check wallet...</div>}
       {isPending && <div>Transaction pending...</div>}
       {isSuccess && (
