@@ -40,15 +40,19 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
   } = useWaitForTransaction({ hash: data?.hash });
 
   return (
-    <>
-      <h3>Mint a Watermarked NFT</h3>
+    <div className="p-4">
+      <h3 className="text-lg font-semibold">Mint a Watermarked NFT</h3>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           write?.();
         }}
       >
-        <button disabled={!write} type="submit">
+        <button
+          disabled={!write}
+          type="submit"
+          className="my-4 px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50"
+        >
           Mint
         </button>
       </form>
@@ -63,6 +67,6 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
         </>
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}
-    </>
+    </div>
   );
 }

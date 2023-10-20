@@ -8,23 +8,24 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import {useAccount} from 'wagmi';
+import { useAccount } from "wagmi";
 import { useDebounce } from "@s/hooks/useDebounce";
 import { watermarkedConfig } from "@s/generated";
 import { stringify } from "../utils/stringify";
-export function WriteContractPrepared() {
-const [tokenUri, setTokenUri] = useState("");
-const debouncedTokenUri = useDebounce(tokenUri);
-const { address } = useAccount();
-const debouncedCreatorAddress = useDebounce(address);
 
-const { config } = usePrepareContractWrite({
-  ...watermarkedConfig,
-  address: '0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D',
-  functionName: "mintItem",
-  args: [debouncedCreatorAddress,debouncedTokenUri],
-  enabled: Boolean(debouncedTokenUri),
-});
+export function WriteContractPrepared() {
+  const [tokenUri, setTokenUri] = useState("");
+  const debouncedTokenUri = useDebounce(tokenUri);
+  const { address } = useAccount();
+  const debouncedCreatorAddress = useDebounce(address);
+
+  const { config } = usePrepareContractWrite({
+    ...watermarkedConfig,
+    address: "0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D",
+    functionName: "mintItem",
+    args: [debouncedCreatorAddress, debouncedTokenUri],
+    enabled: Boolean(debouncedTokenUri),
+  });
 
   const { write, data, error, isLoading, isError } = useContractWrite(config);
   const {
