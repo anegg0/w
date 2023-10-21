@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BaseError } from "viem";
 import {
   useContractWrite,
@@ -15,12 +15,9 @@ import { stringify } from "../utils/stringify";
 export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const [tokenURI, setTokenURI] = useState<string>(
     onSuccessfulTokenUriCreation,
-  ); /* const tokenURI = (uri) => {
-   *   setURI(uri);
-   * };
-   */
+  );
   console.log(`tokenURI at minNFT level is: ${tokenURI}`);
-  const debouncedTokenUri = useDebounce(tokenURI); // Directly debounce the tokenURI
+  const debouncedTokenUri = useDebounce(tokenURI);
   const { address } = useAccount();
   const debouncedCreatorAddress = useDebounce(address);
 
@@ -56,8 +53,11 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
           Mint
         </button>
       </form>
-      {isLoading && <div>Check wallet...</div>}
-      {isPending && <div>Transaction pending...</div>}
+      {isPending && (
+        <div className="popol-loader-container text-2xl font-bold  text-gray-400">
+          Registering your creation on the Blockchain..
+        </div>
+      )}{" "}
       {isSuccess && (
         <>
           <div>Transaction Hash: {data?.hash}</div>
