@@ -1,5 +1,26 @@
 @tailwind base;
 @tailwind components;
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: #5e5c64 url("./lemon.gif") center no-repeat;
+  z-index: 1;
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @tailwind utilities;
 
 :root {

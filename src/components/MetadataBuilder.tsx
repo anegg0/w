@@ -8,6 +8,7 @@ interface FormData {
 }
 
 export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
+  const [isLoading, setIsLoading] = useState(false); // Added this state
   const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
   const [tokenURI, setTokenURI] = useState("");
   const [formData, setFormData] = useState<FormData>({
@@ -24,6 +25,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true when starting the API call
     try {
       const response = await fetch("/api/mint", {
         method: "POST",
@@ -36,25 +38,24 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.url) {
-          // Ensuring responseData.url is valid
           setTokenURI(responseData.url);
-          console.log(`tokenURI at metadata level is: ${responseData.url}`);
-          setIsRequestSuccessful(true); // Only set to true if responseData.url is valid
+          setIsRequestSuccessful(true);
         } else {
-          setIsRequestSuccessful(false); // Handle potential invalid responseData.url
+          setIsRequestSuccessful(false);
         }
       }
     } catch (error) {
       console.error("Error response from /api/mint:", error);
     }
+    setIsLoading(false); // Set loading to false when the API call finishes
   };
 
+  if (isLoading) {
+    return <div className="loader-container">Loading spinner...</div>; // Render your spinner here
+  }
+
   if (isRequestSuccessful) {
-    return (
-      <>
-        <MintNFT onSuccessfulTokenUriCreation={tokenURI} />;
-      </>
-    );
+    return <MintNFT onSuccessfulTokenUriCreation={tokenURI} />;
   } else {
     return (
       <div className="min-h-screen p-10">
