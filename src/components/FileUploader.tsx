@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { IconName } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import "@a/globals.css";
 import { page } from "@a/page";
 import { Square } from "@c/Square";
+import Image from "next/image";
 
 export function FileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
@@ -55,11 +56,10 @@ export function FileUploader({ onSuccessfulUpload }) {
       <div className="max-w-xl mx-auto my-4 border-b-2 pb-4">
         <div className="flex pb-3">
           <div className="flex-1"></div>
-
           <div className="flex-1">
-            <div className="w-10 h-10 bg-green mx-auto rounded-full text-lg text-white flex items-center">
-              <span className="text-white text-center w-full">
-                <i className="fa fa-check w-full fill-current white">1</i>
+            <div className="w-10 h-10 bg-green mx-auto rounded-full text-lg text-gray flex items-center">
+              <span className="text-gray text-center w-full">
+                <FaCheck style={{ color: "green" }} />
               </span>
             </div>
           </div>
@@ -74,9 +74,9 @@ export function FileUploader({ onSuccessfulUpload }) {
           </div>
 
           <div className="flex-1">
-            <div className="w-10 h-10 bg-green mx-auto rounded-full text-lg text-white flex items-center">
-              <span className="text-white text-center w-full">
-                <i className="fa fa-check w-full fill-current white">2</i>
+            <div className="w-10 h-10 bg-green mx-auto rounded-full text-lg text-gray flex items-center">
+              <span className="text-gray text-center w-full">
+                <FaCheck />
               </span>
             </div>
           </div>
@@ -91,7 +91,7 @@ export function FileUploader({ onSuccessfulUpload }) {
           </div>
 
           <div className="flex-1">
-            <div className="w-10 h-10 bg-white border-2 border-grey-light mx-auto rounded-full text-lg text-white flex items-center">
+            <div className="w-10 h-10 bg-green border-2 border-grey-light mx-auto rounded-full text-lg text-gray flex items-center">
               <span className="text-grey-darker text-center w-full">3</span>
             </div>
           </div>
@@ -106,7 +106,7 @@ export function FileUploader({ onSuccessfulUpload }) {
           </div>
 
           <div className="flex-1">
-            <div className="w-10 h-10 bg-white border-2 border-grey-light mx-auto rounded-full text-lg text-white flex items-center">
+            <div className="w-10 h-10 bg-green border-2 border-grey-light mx-auto rounded-full text-lg text-gray flex items-center">
               <span className="text-grey-darker text-center w-full">4</span>
             </div>
           </div>
@@ -115,10 +115,10 @@ export function FileUploader({ onSuccessfulUpload }) {
         </div>
 
         <div className="flex text-xs content-center text-center">
-          <div className="w-1/4">Invitation received</div>
-          <div className="w-1/4">Personal details</div>
-          <div className="w-1/4">Application details</div>
-          <div className="w-1/4">Confirmation</div>
+          <div className="w-1/4">Upload Picture</div>
+          <div className="w-1/4">Add Signature</div>
+          <div className="w-1/4">Add Picture Info</div>
+          <div className="w-1/4">Publish Picture Onchain</div>
         </div>
       </div>
 
@@ -128,16 +128,16 @@ export function FileUploader({ onSuccessfulUpload }) {
         </div>
         {file ? (
           <div>
-            <img src={previewUrl} alt="Preview" className="max-w-full h-auto" />
+            <Image src={previewUrl} alt="Preview" width="600" height="600" />
             <button
               onClick={handleCancel}
-              className="block mt-4 px-3 py-2 bg-red-500 text-white rounded-md"
+              className="block mt-4 px-3 py-2 bg-red-500 text-gray rounded-md"
             >
               Cancel
             </button>
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-blue-800 text-white rounded-md"
+              className="block mt-4 px-3 py-2 bg-blue-800 text-gray rounded-md"
             >
               Upload
             </button>
@@ -153,7 +153,7 @@ export function FileUploader({ onSuccessfulUpload }) {
             />
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-blue-800 text-white rounded-md"
+              className="block mt-4 px-3 py-2 bg-blue-800 text-gray rounded-md"
             >
               Upload
             </button>
