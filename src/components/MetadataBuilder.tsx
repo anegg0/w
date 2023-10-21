@@ -47,11 +47,15 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
     } catch (error) {
       console.error("Error response from /api/mint:", error);
     }
-    setIsLoading(false); // Set loading to false when the API call finishes
+    setIsLoading(false);
   };
 
   if (isLoading) {
-    return <div className="loader-container">Loading spinner...</div>; // Render your spinner here
+    return (
+      <div className="lemon-loader-container text-2xl font-bold  text-gray-400">
+        Storing your image on IPFS..
+      </div>
+    ); // Render your spinner here
   }
 
   if (isRequestSuccessful) {
