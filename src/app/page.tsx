@@ -14,6 +14,7 @@ import { ReadContract } from "@c/ReadContract";
 import { ReadContracts } from "@c/ReadContracts";
 import { ReadContractsInfinite } from "@c/ReadContractsInfinite";
 import { Header } from "@c/Header";
+import { Footer } from "@c/Footer";
 import { SendTransaction } from "@c/SendTransaction";
 import { SendTransactionPrepared } from "@c/SendTransactionPrepared";
 import { SignTypedData } from "@c/SignTypedData";
@@ -61,6 +62,7 @@ export function Page({ newStep }) {
       <>
         <Header />
         <FileUploader onSuccessfulUpload={updateStep} />;
+        <Footer />
       </>
     );
   } else if ({ Connected } && step === 2) {
@@ -68,6 +70,7 @@ export function Page({ newStep }) {
       <>
         <Header />
         <SignMessage2api onSuccessfulEncoding={updateStep} />;
+        <Footer />
       </>
     );
   } else if ({ Connected } && step === 3) {
@@ -75,17 +78,10 @@ export function Page({ newStep }) {
       <>
         <Header />
         <MetadataBuilder />;
+        <Footer />
       </>
     );
   }
-  /* else if ({ Connected } && step === 4) {
-   *   return (
-   *     <>
-   *       <Header />
-   *       <MintNFT />;
-   *     </>
-   *   );
-   * } */
 }
 
 export default Page;
