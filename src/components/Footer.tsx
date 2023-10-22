@@ -2,7 +2,7 @@ import React from "react";
 import logo from "@a/logo-sm.png";
 import Image from "next/image";
 
-export function Footer() {
+export const Footer: React.FC = () => {
   return (
     <footer id="subscribe" aria-label="Site Footer">
       <div className="max-w-screen-xl px-2 py-20 mx-auto sm:px-6 lg:px-8">
@@ -78,4 +78,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};

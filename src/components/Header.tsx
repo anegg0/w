@@ -2,12 +2,14 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
-import logo from "@a/logo-sm.png";
 import Image from "next/image";
 
-function ConnectWallet({ show = "always" }) {
+interface ConnectWalletProps {
+  show?: "always" | "connected" | "disconnected";
+}
+
+const ConnectWallet: React.FC<ConnectWalletProps> = ({ show = "always" }) => {
   const { isConnected } = useAccount();
   if (
     (show === "connected" && !isConnected) ||
@@ -17,8 +19,8 @@ function ConnectWallet({ show = "always" }) {
   return <ConnectButton />;
 }
 
-export function Header() {
-  return (
+export const Header: React.FC = () => {
+  return (  return (
     <header aria-label="Site Header">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center md:m-8 justify-between">
@@ -43,14 +45,6 @@ export function Header() {
                     How Does this Thing Work?
                   </Link>
                 </li>
-                {/* <li> */}
-                {/*   <Link */}
-                {/*     className="text-gray-300 transition hover:text-gray-300/75" */}
-                {/*     href="/#collection" */}
-                {/*   > */}
-                {/*     Collection */}
-                {/*   </Link> */}
-                {/* </li> */}
               </ul>
             </nav>
           </div>
