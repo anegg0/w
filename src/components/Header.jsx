@@ -40,17 +40,17 @@ export function Header() {
                     className="text-gray-300 transition hover:text-gray-300/75"
                     href="/#about"
                   >
-                    About
+                    How Does this Thing Work?
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    className="text-gray-300 transition hover:text-gray-300/75"
-                    href="/#collection"
-                  >
-                    Collection
-                  </Link>
-                </li>
+                {/* <li> */}
+                {/*   <Link */}
+                {/*     className="text-gray-300 transition hover:text-gray-300/75" */}
+                {/*     href="/#collection" */}
+                {/*   > */}
+                {/*     Collection */}
+                {/*   </Link> */}
+                {/* </li> */}
               </ul>
             </nav>
           </div>
