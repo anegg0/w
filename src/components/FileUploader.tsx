@@ -131,7 +131,7 @@ export function FileUploader({ onSuccessfulUpload }) {
             <Image src={previewUrl} alt="Preview" width="600" height="600" />
             <button
               onClick={handleCancel}
-              className="block mt-4 px-3 py-2 bg-grey-500 text-gray rounded-sm"
+              className="block mt-4 px-3 py-2 bg-gray-400 text-gray rounded-sm"
             >
               Cancel
             </button>

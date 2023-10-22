@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { BaseError } from "viem";
 import {
@@ -41,35 +40,41 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
 
   return (
     <div className="p-4">
-      <h3 className="text-lg font-semibold">Mint a Watermarked NFT</h3>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          write?.();
-        }}
-      >
-        <button
-          disabled={!write}
-          type="submit"
-          className="my-4 px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50"
-        >
-          Mint
-        </button>
-      </form>
-      {isPending && (
-        <div className="popol-loader-container text-2xl font-bold  text-gray-400">
-          Registering your creation on the Blockchain..
-        </div>
-      )}{" "}
-      {isSuccess && (
+      {!isSuccess && ( // This will render the content inside only if isSuccess is false
         <>
-        <div>
-          Successfully minted your NFT!
-          <div>
-            <a href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+          <h3 className="text-lg font-semibold">Mint a Watermarked NFT</h3>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              write?.();
+            }}
+          >
+            <button
+              disabled={!write}
+              type="submit"
+              className="my-4 px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50"
+            >
+              Mint
+            </button>
+          </form>
+        </>
+      )}
+      {isPending && (
+        <div className="loader-container">
+          <div className="popol-loader-container text-2xl font-bold text-white">
+            Carving your Image Into the Blockchain..
           </div>
         </div>
-          <image src={"/api/file/download/encoded_image.png"} />
+      )}
+      {isSuccess && (
+        <>
+          <div>
+            Successfully minted your NFT!
+            <div>
+              <a href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+            </div>
+          </div>
+          <image src={"./api/file/download/encoded_image.png"} width={400} height={400} />
         </>
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}

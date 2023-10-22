@@ -52,8 +52,10 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
 
   if (isLoading) {
     return (
-      <div className="lemon-loader-container text-2xl font-bold  text-gray-400">
-        Storing your image on IPFS...
+      <div className="loader-container">
+        <div className="lemon-loader-container text-2xl font-bold  text-gray-400">
+          Storing your image on IPFS...
+        </div>
       </div>
     );
   }
@@ -96,19 +98,15 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
           <label className="block text-md font-medium mb-2">
             You can now mint your watermarked image as an NFT.
             <br />
-            After clicking the "Mint image as NFT" button, your wallet will ask
-            you to confirm the transaction.
-            <br />
-            <br />
-            Once confirmed, your will have verifiable proof that you registered
-            your image on the blockchain:
+            After clicking the "Store image on IPFS" button, your picture will
+            be stored on IPFS a Decentralized and Persistent Storage System.
             <br />
           </label>
           <button
             type="submit"
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
-            Mint image as NFT
+            Store image on IPFS
           </button>
         </form>
       </div>

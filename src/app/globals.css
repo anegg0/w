@@ -14,10 +14,21 @@
   align-items: center;
   justify-content: center;
 }
-
-.lemon-loader-container {
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  z-index: 1000;
+}
+.lemon-loader-container {
+  width: 300%;
+  height: 300%;
   display: flex;
   justify-content: center;
   align-items: center;
