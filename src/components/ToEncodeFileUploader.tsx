@@ -6,7 +6,7 @@ import { page } from "@a/page";
 import { Square } from "@c/Square";
 import Image from "next/image";
 
-export function FileUploader({ onSuccessfulUpload }) {
+export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -164,4 +164,4 @@ export function FileUploader({ onSuccessfulUpload }) {
   );
 }
 
-export default FileUploader;
+export default ToEncodeFileUploader;

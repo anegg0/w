@@ -24,7 +24,7 @@ import { WatchPendingTransactions } from "@c/WatchPendingTransactions";
 import { WriteContractPrepared } from "@c/WriteContractPrepared";
 import { Welcome } from "@c/Welcome";
 import { useAccount } from "wagmi";
-import { FileUploader } from "@c/FileUploader";
+import { ToEncodeFileUploader } from "@c/ToEncodeFileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
@@ -60,7 +60,7 @@ export function Page({ newStep }) {
     return (
       <>
         <Header />
-        <FileUploader onSuccessfulUpload={updateStep} />;
+        <ToEncodeFileUploader onSuccessfulUpload={updateStep} />;
         <Footer />
       </>
     );

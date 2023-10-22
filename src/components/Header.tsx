@@ -43,6 +43,14 @@ export function Header() {
                     How Does this Thing Work?
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="text-gray-300 transition hover:text-gray-300/75"
+                    href="/#verify"
+                  >
+                    Verify a Picture
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
