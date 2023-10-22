@@ -16,10 +16,13 @@ export async function POST(req: NextRequest, req: NextResponse) {
   const file = f as File;
 
   // Change the incoming file's name to "wowm.png"
-  const newFileName = "original_image.png";
+  const newFileName = "image2verify.png";
 
   // Get the destination directory path
-  const destinationDirPath = path.join(process.cwd(), process.env.STORE_PATH!);
+  const destinationDirPath = path.join(
+    process.cwd(),
+    process.env.STORE_DECODED_IMAGE_PATH!,
+  );
   console.log(`destinationDirPath is: ${destinationDirPath}`);
   const existingFilePath = path.join(destinationDirPath, newFileName);
   if (existsSync(existingFilePath)) {
@@ -44,7 +47,7 @@ export async function POST(req: NextRequest, req: NextResponse) {
 
   await fs.writeFile(
     path.join(destinationDirPath, filename),
-    Buffer.from(fileArrayBuffer)
+    Buffer.from(fileArrayBuffer),
   );
 
   const [extension, ...name] = filename.split(".").reverse();
