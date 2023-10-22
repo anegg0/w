@@ -1,5 +1,5 @@
 "use client";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import * as React from "react";
 import { WagmiConfig } from "wagmi";
 
@@ -10,7 +10,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   React.useEffect(() => setMounted(true), []);
   return (
     <WagmiConfig config={config}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider
+        theme={darkTheme({ borderRadius: "small" })}
+        chains={chains}
+      >
         {mounted && children}
       </RainbowKitProvider>
     </WagmiConfig>
