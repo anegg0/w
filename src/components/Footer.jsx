@@ -7,9 +7,9 @@ export function Footer() {
     <footer id="subscribe" aria-label="Site Footer">
       <div className="max-w-screen-xl px-2 py-20 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:gap-8">
-          <div className="text-teal-600">
-            <Image src={logo} width={52} height={52} alt="W Logo" />
-          </div>
+          {/* <div className="text-teal-600"> */}
+          {/*   <Image src={logo} width={52} height={52} alt="W Logo" /> */}
+          {/* </div> */}
           <ul className="flex flex-grow justify-end col-span-2 gap-6 lg:col-span-5">
             <li>
               <a
