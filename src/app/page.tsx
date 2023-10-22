@@ -28,7 +28,6 @@ import { FileUploader } from "@c/FileUploader";
 import { SignMessage } from "@c/SignMessage";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
-/* import { MintNFT } from "@c/MintNFT"; */
 import logo from "@a/logo.png";
 
 export function Page({ newStep }) {

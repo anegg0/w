@@ -2,14 +2,12 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
+import logo from "@a/logo-sm.png";
 import Image from "next/image";
 
-interface ConnectWalletProps {
-  show?: "always" | "connected" | "disconnected";
-}
-
-const ConnectWallet: React.FC<ConnectWalletProps> = ({ show = "always" }) => {
+function ConnectWallet({ show = "always" }) {
   const { isConnected } = useAccount();
   if (
     (show === "connected" && !isConnected) ||
@@ -19,8 +17,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = ({ show = "always" }) => {
   return <ConnectButton />;
 }
 
-export const Header: React.FC = () => {
-  return (  return (
+export function Header() {
+  return (
     <header aria-label="Site Header">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center md:m-8 justify-between">

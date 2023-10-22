@@ -35,7 +35,7 @@ export function FileUploader({ onSuccessfulUpload }) {
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/file", {
+      const response = await fetch("/api/file/upload", {
         method: "POST",
         body: formData,
       });
@@ -131,13 +131,13 @@ export function FileUploader({ onSuccessfulUpload }) {
             <Image src={previewUrl} alt="Preview" width="600" height="600" />
             <button
               onClick={handleCancel}
-              className="block mt-4 px-3 py-2 bg-red-500 text-gray rounded-md"
+              className="block mt-4 px-3 py-2 bg-grey-500 text-gray rounded-sm"
             >
               Cancel
             </button>
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-blue-800 text-gray rounded-md"
+              className="block mt-4 px-3 py-2 bg-orange-400 text-gray rounded-sm"
             >
               Upload
             </button>
@@ -153,7 +153,7 @@ export function FileUploader({ onSuccessfulUpload }) {
             />
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-blue-800 text-gray rounded-md"
+              className="block mt-4 px-3 py-2 bg-orange-400 text-gray rounded-sm"
             >
               Upload
             </button>

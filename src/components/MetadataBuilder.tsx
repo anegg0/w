@@ -25,7 +25,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true); // Set loading to true when starting the API call
+    setIsLoading(true);
     try {
       const response = await fetch("/api/mint", {
         method: "POST",
@@ -53,9 +53,9 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   if (isLoading) {
     return (
       <div className="lemon-loader-container text-2xl font-bold  text-gray-400">
-        Storing your image on IPFS..
+        Storing your image on IPFS...
       </div>
-    ); // Render your spinner here
+    );
   }
 
   if (isRequestSuccessful) {

@@ -11,7 +11,9 @@ import { useAccount } from "wagmi";
 import { useDebounce } from "@s/hooks/useDebounce";
 import { watermarkedConfig } from "@s/generated";
 import { stringify } from "../utils/stringify";
-
+import { useNetwork } from 'wagmi';
+import axios from 'axios';
+import Image from "next/image";
 export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const [tokenURI, setTokenURI] = useState<string>(
     onSuccessfulTokenUriCreation,
@@ -20,7 +22,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const debouncedTokenUri = useDebounce(tokenURI);
   const { address } = useAccount();
   const debouncedCreatorAddress = useDebounce(address);
-
+  const { chain, chains } = useNetwork();
   const { config } = usePrepareContractWrite({
     ...watermarkedConfig,
     address: "0x6CC2c4e0ECfcB06e6ac4FE7D760444588F74470D",
@@ -35,6 +37,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
     isLoading: isPending,
     isSuccess,
   } = useWaitForTransaction({ hash: data?.hash });
+// const response = await axios.get("/api/file/download");
 
   return (
     <div className="p-4">
@@ -60,10 +63,13 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
       )}{" "}
       {isSuccess && (
         <>
-          <div>Transaction Hash: {data?.hash}</div>
+        <div>
+          Successfully minted your NFT!
           <div>
-            Transaction Receipt: <pre>{stringify(receipt, null, 2)}</pre>
+            <a href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}>Etherscan</a>
           </div>
+        </div>
+          <image src={"/api/file/download/encoded_image.png"} />
         </>
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}
