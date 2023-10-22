@@ -46,7 +46,7 @@ export function Page({ newStep }) {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex"></div>
         <div className="relative flex place-items-center">
-          <Image src={logo} alt="W Logo" />
+          <Image src={logo} alt="W Logo" width={72} height={72} />
         </div>
         <div className="relative flex place-items-center">
           <p className="text-lg font-normal text-white lg:text-xl dark:text-gray-400 text-center">
