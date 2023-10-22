@@ -13,16 +13,14 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 mt-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
             <div className="col-span-2">
               <div>
-                <h2 className="text-2xl font-bold text-gray-500">
-                  Get the latest news!
-                </h2>
-                <p className="mt-4 text-white">GET ON THE LIST</p>
+                <h2 className="text-2xl font-bold text-gray-500"></h2>
+                <p className="mt-4 text-white"></p>
               </div>
             </div>
             <ul className="flex justify-start col-span-2 gap-6 lg:col-span-5 lg:justify-end">
               <li>
                 <a
-                  href="/"
+                  href="https://github.com/anegg0/w"
                   rel="noreferrer"
                   target="_blank"
                   className="text-white transition hover:opacity-75"
@@ -48,7 +46,7 @@ export function Footer() {
         <div className="pt-8 mt-8 border-t border-gray-100">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <p className="text-xs text-left text-gray-300">
-              © 2022. Company Name. All rights reserved.
+              © 2023. gr0wing. All rights reserved.
             </p>
             <nav aria-label="Footer Navigation - Support">
               <ul className="flex flex-wrap justify-start gap-4 text-xs lg:justify-end">
