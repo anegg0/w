@@ -27,7 +27,7 @@ export function Header() {
               <div className="block text-teal-600">
                 <span className="sr-only">Home</span>
                 <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-                  <Image src={logo} width="auto" height="auto" alt="W Logo" />
+                  <Image src={logo} width={52} height={52} alt="W Logo" />
                 </div>
               </div>
             </Link>

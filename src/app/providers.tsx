@@ -11,7 +11,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiConfig config={config}>
       <RainbowKitProvider
-        theme={darkTheme({ borderRadius: "small" })}
+        theme={darkTheme({
+          ...darkTheme.accentColors.orange,
+          borderRadius: "small",
+        })}
         chains={chains}
       >
         {mounted && children}
