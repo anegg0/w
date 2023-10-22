@@ -13,6 +13,7 @@ import { stringify } from "../utils/stringify";
 import { useNetwork } from 'wagmi';
 import axios from 'axios';
 import Image from "next/image";
+import EncodedImage from "@a/encoded/encoded_image.png"
 export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const [tokenURI, setTokenURI] = useState<string>(
     onSuccessfulTokenUriCreation,
@@ -73,8 +74,10 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
             <div>
               <a href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}>Etherscan</a>
             </div>
+            <div>
+          <Image src={EncodedImage} width={400} height={400} />
+            </div>
           </div>
-          <image src={"./api/file/download/encoded_image.png"} width={400} height={400} />
         </>
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}

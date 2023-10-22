@@ -1,31 +1,24 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import path from "path";
 import fs from "fs";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
+  const encodedImageFilePath = path.join(
+    process.cwd(),
+    process.env.STORE_ENCODED_IMAGE_PATH || '',
+    "encoded_image.png"
+  );
 
-  const destinationDirPath = path.join(
-    process.cwd(),
-    process.env.STORE_ENCODED_IMAGE_PATH!
-  );
-  const encodedImageFilePath = await path.join(
-    process.cwd(),
-    "encoded_image.png",
-  );
-// console.log(`encodedImageFilePath is: ${encodedImageFilePath}`);
+  console.log(`encodedImageFilePath is: ${encodedImageFilePath}`);
+
   if (fs.existsSync(encodedImageFilePath)) {
     const imageBuffer = fs.readFileSync(encodedImageFilePath);
+    const headers = {
+      "Content-Disposition": "attachment; filename=encoded_image.png",
+      "Content-Type": "image/png"
+    };
+    return new Response(imageBuffer, { headers });
+  } else {
+    return new Response("File not found", { status: 404 });
+  }
 }
-  return new Response(
- res.setHeader("Content-Disposition", "attachment; filename=encoded_image.png"),
- res.setHeader("Content-Type", "application/png"),
- res.send(fileContent),
-  );
-}
-
-//  const fileContent = fs.readFileSync(filePath);
-
-//  res.setHeader("Content-Disposition", "attachment; filename=example.pdf");
-//  res.setHeader("Content-Type", "application/pdf");
-//  res.send(fileContent);
-// }
