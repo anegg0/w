@@ -56,16 +56,17 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
 
   return (
     <div className="container">
-      {/* StepProgressBar */}
       <StepProgressBar steps={steps} currentStep={currentStep} />
-
-      {/* Action Prompt and File Handling */}
       {file ? (
         <>
           <div className="action-prompt">File Preview</div>
-          <div className="image-preview">
-            <Image src={previewUrl} alt="Preview" />
-          </div>
+          <Image
+            src={previewUrl}
+            width={300}
+            height={300}
+            alt="Preview"
+            unoptimized={true}
+          />
           <div className="action-buttons">
             <button
               onClick={handleRemove}

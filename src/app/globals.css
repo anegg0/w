@@ -36,7 +36,7 @@
 }
 
 .image-preview {
-  width: 80%; /* Adjust as needed */
+  width: auto; /* Adjust as needed */
   height: auto; /* This maintains the aspect ratio of the image */
 }
 .input-wrapper {
