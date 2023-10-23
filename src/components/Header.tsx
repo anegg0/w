@@ -20,7 +20,7 @@ function ConnectWallet({ show = "always" }) {
 export function Header() {
   return (
     <header aria-label="Site Header">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className=" m-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center md:m-8 justify-between">
           <div className="md:flex max-w-sm md:items-center md:gap-12">
             <Link href="/">

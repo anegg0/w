@@ -19,7 +19,7 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
       setPreviewUrl(objectUrl);
     }
   };
-  const steps = ["Step 1", "Step 2", "Step 3", "Step 4"];
+  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
   const currentStep = 0;
   const id = "upload";
 
@@ -59,24 +59,28 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
       <StepProgressBar steps={steps} currentStep={currentStep} />
       {file ? (
         <>
-          <div className="action-prompt">File Preview</div>
-          <Image
-            src={previewUrl}
-            width={300}
-            height={300}
-            alt="Preview"
-            unoptimized={true}
-          />
+          <div className="action-prompt">
+            This is your image. Like What You See?
+          </div>
+          <div className="image-preview">
+            <Image
+              src={previewUrl}
+              width={550}
+              height={550}
+              alt="Preview"
+              unoptimized={true}
+            />
+          </div>
           <div className="action-buttons">
             <button
               onClick={handleRemove}
-              className="btn bg-gray-400 text-gray rounded-sm"
+              className="btn bg-gray-400 text-gray rounded-sm p-1"
             >
               Remove
             </button>
             <button
               onClick={handleUpload}
-              className="btn bg-orange-400 text-gray rounded-sm"
+              className="btn bg-orange-400 text-gray rounded-sm p-1"
             >
               Upload
             </button>

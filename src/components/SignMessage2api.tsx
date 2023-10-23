@@ -2,10 +2,14 @@
 import React, { useState } from "react";
 import { useSignMessage } from "wagmi";
 import "@a/globals.css";
+import StepProgressBar from "@c/StepProgressBar";
 
 export function SignMessage2api({ onSuccessfulEncoding }) {
   let [message, setMessage] = React.useState<string | null>(null);
   let [loadingInProgress, setLoading] = useState(true);
+  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
+  const currentStep = 2;
+  const id = "upload";
 
   const {
     data: signMessageData,
@@ -53,15 +57,13 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
   }
 
   return (
-    <>
+      <div className="container">
 
-      <div className="main-container">
-      <div className="flex justify-center items-center h-screen">
-        <div className="w-1/2 p-4">
+      <StepProgressBar steps={steps} currentStep={currentStep} />
             <div className="action-prompt">
 Sign a message with your wallet
     </div>
-          <div className="mb-5 text-1xl rounded-lg">
+          <div className="action-paragraph">
             <p>You can enter any message. For example: WreckageStudio©</p>
           </div>
           <form encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -81,9 +83,6 @@ Sign a message with your wallet
             </button>
           </form>
           {error && <div>Error: {error?.message}</div>}
-        </div>
       </div>
-      </div>
-    </>
   );
 }

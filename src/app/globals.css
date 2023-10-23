@@ -9,10 +9,28 @@
   box-sizing: border-box;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10rem;
+  margin-bottom: 1rem;
+}
 .flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: calc(50% - 2em);
+  margin: 1em;
+}
+
+flexInnerHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 2em);
+  margin: 1em;
 }
 
 .action-buttons {
@@ -24,7 +42,7 @@
 
 .action-prompt {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
 }
 
@@ -36,9 +54,12 @@
 }
 
 .image-preview {
-  width: auto; /* Adjust as needed */
-  height: auto; /* This maintains the aspect ratio of the image */
+  border: 1px solid lightgray;
+  padding: 8px;
+  display: inline-block;
+  margin: 1rem auto;
 }
+
 .input-wrapper {
   display: flex;
   justify-content: center; /* Horizontal centering */
@@ -46,6 +67,9 @@
   height: 100%; /* Take up full available height */
 }
 
+.hidden-file-input {
+  display: none;
+}
 .loader-container {
   position: fixed;
   top: 0;
