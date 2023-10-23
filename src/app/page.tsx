@@ -49,7 +49,7 @@ export function Page({ newStep }) {
         </div>
         <div className="relative flex place-items-center">
           <p className="text-lg font-normal text-white lg:text-xl dark:text-gray-400 text-center">
-            NFT watermarking solution
+            W is an AI-Resistant Watermarking System
           </p>
         </div>
         <ConnectButton> </ConnectButton>
