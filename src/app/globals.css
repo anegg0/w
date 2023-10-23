@@ -9,11 +9,11 @@
   box-sizing: border-box;
 }
 
-/* /\* This ensures each child in the container takes only as much space as it needs *\/ */
-/* .container > * { */
-/*   width: 100%; /\* Let each item take full width of the container *\/ */
-/*   margin-bottom: 1rem; /\* Spacing between items *\/ */
-/* } */
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .action-buttons {
   display: flex;
