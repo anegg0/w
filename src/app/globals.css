@@ -26,14 +26,14 @@
   align-items: center; /* Center content vertically */
   z-index: 1000;
 }
-.lemon-loader-container {
+.space-loader-container {
   width: 300%;
   height: 300%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  background: #333 url("./lemon.gif") center no-repeat;
+  background: #333 url("./space.gif") center no-repeat;
   z-index: 1;
 }
 

@@ -53,7 +53,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   if (isLoading) {
     return (
       <div className="loader-container">
-        <div className="lemon-loader-container text-2xl font-bold  text-gray-400">
+        <div className="space-loader-container text-2xl font-bold  text-gray-400">
           Storing your image on IPFS...
         </div>
       </div>

@@ -52,18 +52,18 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   return (
     <>
       <StepProgressBar
-        id="verify"
+        id="upload"
         steps={[
           "Upload Picture",
           "Add Signature",
           "Add Picture Info",
           "Publish Picture Onchain",
         ]}
-        currentStep={2}
+        currentStep={0}
       />
 
       <div className="main-container">
-        <div className="mb-4 text-2xl font-bold rounded-lg">
+        <div className="mb-4 text-lg font-bold rounded-lg">
           {file ? "File Preview" : "Get started by uploading your file (PNG)"}
         </div>
         {file ? (
