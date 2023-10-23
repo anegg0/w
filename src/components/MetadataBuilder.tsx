@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { MintNFT } from "@c/MintNFT";
+import StepProgressBar from "@c/StepProgressBar";
 
 interface FormData {
   name: string;
@@ -15,6 +16,9 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
     name: "",
     description: "",
   });
+  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
+  const currentStep = 2;
+  const id = "metadata-builder";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,6 +57,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   if (isLoading) {
     return (
       <div className="loader-container">
+        <StepProgressBar steps={steps} currentStep={currentStep} />
         <div className="space-loader-container text-2xl font-bold  text-gray-600">
           Storing your image on the <br />
           Interplanetary File System (IPFS)...
@@ -65,51 +70,57 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
     return <MintNFT onSuccessfulTokenUriCreation={tokenURI} />;
   } else {
     return (
-      <div className="min-h-screen p-10">
-        <h2 className="text-2xl font-bold mb-6">Create JSON Object</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
-        >
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Name:
-              <input
-                placeholder="Short description of your image"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded text-gray-500"
-              />
-            </label>
-            <label className="block text-sm font-medium mb-2">
-              Description:
-              <input
-                type="text"
-                placeholder="Longer description of your image"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded text-gray-500"
-              />
-            </label>
+      <div className="container">
+        <StepProgressBar steps={steps} currentStep={currentStep} />
+        <div className="action-prompt">
+          <h2 className="text-2xl font-bold mb-6">
+            Add a description to your image
+          </h2>
+
+          <div className="action-paragraph">
+            You can now add a name and description to your image.
+            <br />
+            After submitting this form, your picture will be stored on IPFS:
+            <br />a Decentralized and Persistent Storage System.
+            <br />
           </div>
-          <br />
-          <label className="block text-md font-medium mb-2">
-            You can now mint your watermarked image as an NFT.
-            <br />
-            After clicking the "Store image on IPFS" button, your picture will
-            be stored on IPFS a Decentralized and Persistent Storage System.
-            <br />
-          </label>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          <form
+            onSubmit={handleSubmit}
+            className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
           >
-            Store image on IPFS
-          </button>
-        </form>
+            <div className="mb-4">
+              <label className="action-paragraph">
+                Name:
+                <input
+                  placeholder="Short description of your image"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded text-gray-500"
+                />
+              </label>
+              <label className="action-paragraph">
+                Description:
+                <input
+                  type="text"
+                  placeholder="Longer description of your image"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded text-gray-500"
+                />
+              </label>
+            </div>
+            <br />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Store image on IPFS
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

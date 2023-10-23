@@ -14,6 +14,9 @@ import { useNetwork } from 'wagmi';
 import axios from 'axios';
 import Image from "next/image";
 import EncodedImage from "@a/encoded/encoded_image.png"
+import StepProgressBar from "@c/StepProgressBar";
+
+
 export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const [tokenURI, setTokenURI] = useState<string>(
     onSuccessfulTokenUriCreation,
@@ -37,13 +40,26 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
     isLoading: isPending,
     isSuccess,
   } = useWaitForTransaction({ hash: data?.hash });
-// const response = await axios.get("/api/file/download");
+  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
+  const currentStep = 3;
+  const id = "mint";
 
   return (
     <div className="p-4">
       {!isSuccess && ( // This will render the content inside only if isSuccess is false
         <>
-          <h3 className="text-lg font-semibold">Mint a Watermarked NFT</h3>
+
+    <div className="container">
+
+      <StepProgressBar steps={steps} currentStep={currentStep} />
+
+          <div className="action-prompt">
+            Mint a Watermarked NFT
+          </div>
+          <div className="action-paragraph">
+            You can now mint your watermarked image as an NFT.<br/>
+            After clicking "Mint", your wallet will require you to confirm<br/>
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -58,6 +74,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
               Mint
             </button>
           </form>
+          </div>
         </>
       )}
       {isPending && (
@@ -69,18 +86,26 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
       )}
       {isSuccess && (
         <>
-          <div>
-            Successfully minted your NFT!
-            <div>
-              <a href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}>Etherscan</a>
+  <StepProgressBar steps={steps} currentStep={4} />
+        <div className="flex flex-col items-center justify-center space-y-4">
+            <div className="action-prompt text-center">
+                Successfully minted your NFT
             </div>
-            <div>
-          <Image src={EncodedImage} width={400} height={400} />
+            <a
+                href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}
+                className="text-blue-500 font-normal text-center"
+            >
+                Follow this Etherscan link to spot your NFT on the {chain.name} chain
+            </a>
+        </div>
+        <div className="flex justify-center mt-4">
+            <div className="image-preview">
+                <Image src={EncodedImage} width={500} height={500} alt="watermarked image"/>
             </div>
-          </div>
+        </div>
         </>
       )}
       {isError && <div>{(error as BaseError)?.shortMessage}</div>}
-    </div>
-  );
+  </div>
+  )
 }

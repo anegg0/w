@@ -8,7 +8,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
   let [message, setMessage] = React.useState<string | null>(null);
   let [loadingInProgress, setLoading] = useState(true);
   const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
-  const currentStep = 2;
+  const currentStep = 1;
   const id = "upload";
 
   const {
@@ -64,7 +64,9 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
 Sign a message with your wallet
     </div>
           <div className="action-paragraph">
-            <p>You can enter any message. For example: WreckageStudio©</p>
+    <p>This step will prove that you own this picture.</p>
+    <p>You can enter any message</p>
+            <p></p>
           </div>
           <form encType="multipart/form-data" onSubmit={handleSubmit}>
             <input
