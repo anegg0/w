@@ -14,11 +14,7 @@ export async function POST(req: NextRequest, req: NextResponse) {
   }
 
   const file = f as File;
-
-  // Change the incoming file's name to "wowm.png"
   const newFileName = "image2verify.png";
-
-  // Get the destination directory path
   const destinationDirPath = path.join(
     process.cwd(),
     process.env.STORE_DECODED_IMAGE_PATH!,
