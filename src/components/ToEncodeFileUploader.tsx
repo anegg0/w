@@ -86,14 +86,16 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
           <div className="action-prompt">
             Get started by uploading your file (PNG)
           </div>
-          <input
-            type="file"
-            name="file"
-            required
-            onChange={handleFileChange}
-            accept=".png"
-            className="mt-4"
-          />
+          <div className="input-wrapper">
+            <input
+              type="file"
+              name="file"
+              required
+              onChange={handleFileChange}
+              accept=".png"
+              className="mt-4"
+            />
+          </div>
           <div className="action-buttons">
             <button
               onClick={handleUpload}

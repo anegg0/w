@@ -54,11 +54,13 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
 
   return (
     <>
+
+      <div className="main-container">
       <div className="flex justify-center items-center h-screen">
         <div className="w-1/2 p-4">
-          <div className="mb-4 text-2xl font-bold rounded-lg">
-            {"Sign a message with your wallet"}
-          </div>
+            <div className="action-prompt">
+Sign a message with your wallet
+    </div>
           <div className="mb-5 text-1xl rounded-lg">
             <p>You can enter any message. For example: WreckageStudio©</p>
           </div>
@@ -80,6 +82,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
           </form>
           {error && <div>Error: {error?.message}</div>}
         </div>
+      </div>
       </div>
     </>
   );

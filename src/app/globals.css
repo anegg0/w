@@ -9,11 +9,11 @@
   box-sizing: border-box;
 }
 
-/* This ensures each child in the container takes only as much space as it needs */
-.container > * {
-  width: 100%; /* Let each item take full width of the container */
-  margin-bottom: 1rem; /* Spacing between items */
-}
+/* /\* This ensures each child in the container takes only as much space as it needs *\/ */
+/* .container > * { */
+/*   width: 100%; /\* Let each item take full width of the container *\/ */
+/*   margin-bottom: 1rem; /\* Spacing between items *\/ */
+/* } */
 
 .action-buttons {
   display: flex;
@@ -38,6 +38,12 @@
 .image-preview {
   width: 80%; /* Adjust as needed */
   height: auto; /* This maintains the aspect ratio of the image */
+}
+.input-wrapper {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  height: 100%; /* Take up full available height */
 }
 
 .loader-container {
