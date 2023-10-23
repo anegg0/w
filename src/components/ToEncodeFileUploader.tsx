@@ -104,7 +104,7 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
           <div className="action-buttons">
             <button
               onClick={handleUpload}
-              className="btn bg-orange-400 text-gray rounded-sm"
+              className="btn bg-orange-400 text-gray rounded-sm p-1"
             >
               Upload
             </button>

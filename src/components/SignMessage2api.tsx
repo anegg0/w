@@ -66,9 +66,9 @@ Sign a message with your wallet
           <div className="action-paragraph">
     <p>This step will prove that you own this picture.</p>
     <p>You can enter any message</p>
-            <p></p>
           </div>
           <form encType="multipart/form-data" onSubmit={handleSubmit}>
+          <div className="action-buttons">
             <input
               name="message"
               type="text"
@@ -76,13 +76,16 @@ Sign a message with your wallet
               required
               placeholder="WreckageStudio©"
             />
+          </div>
+          <div className="action-buttons">
             <button
               disabled={isLoading}
               type="submit"
-              className="block mt-4 px-3 py-2 bg-blue-500 text-white rounded-md"
+              className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
             >
               {isLoading ? "Check Wallet" : "Sign Message"}
             </button>
+          </div>
           </form>
           {error && <div>Error: {error?.message}</div>}
       </div>
