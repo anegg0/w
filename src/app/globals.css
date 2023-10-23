@@ -38,6 +38,7 @@ flexInnerHeader {
   gap: 1rem; /* Space between the buttons */
   justify-content: center;
   margin-bottom: 0; /* No margin at the bottom since it's the last item */
+  margin: 2em;
 }
 
 .action-prompt {
@@ -50,6 +51,7 @@ flexInnerHeader {
 
 .action-paragraph {
   font-size: 1rem;
+  justify-content: center;
   text-align: center;
   max-width: 80%; /* Constraining width for readability */
   margin-top: 0.1rem; /* No margin at the bottom since it's the last item */
