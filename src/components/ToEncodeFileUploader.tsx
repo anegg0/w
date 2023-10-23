@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
+import ActionContainer from "@c/ActionContainer";
+import EncodedImage from "@a/encoded/encoded_image.png";
 import StepProgressBar from "@c/StepProgressBar";
 
 export function ToEncodeFileUploader({ onSuccessfulUpload }) {
@@ -17,6 +19,9 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
       setPreviewUrl(objectUrl);
     }
   };
+  const steps = ["Step 1", "Step 2", "Step 3", "Step 4"];
+  const currentStep = 0;
+  const id = "upload";
 
   const handleRemove = () => {
     setFile(null);
@@ -50,57 +55,56 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   };
 
   return (
-    <>
-      <StepProgressBar
-        id="upload"
-        steps={[
-          "Upload Picture",
-          "Add Signature",
-          "Add Picture Info",
-          "Publish Picture Onchain",
-        ]}
-        currentStep={0}
-      />
+    <div className="container">
+      {/* StepProgressBar */}
+      <StepProgressBar steps={steps} currentStep={currentStep} />
 
-      <div className="main-container">
-        <div className="mb-4 text-lg font-bold rounded-lg">
-          {file ? "File Preview" : "Get started by uploading your file (PNG)"}
-        </div>
-        {file ? (
-          <div>
-            <Image src={previewUrl} alt="Preview" width="600" height="600" />
+      {/* Action Prompt and File Handling */}
+      {file ? (
+        <>
+          <div className="action-prompt">File Preview</div>
+          <div className="image-preview">
+            <Image src={previewUrl} alt="Preview" />
+          </div>
+          <div className="action-buttons">
             <button
               onClick={handleRemove}
-              className="block mt-4 px-3 py-2 bg-gray-400 text-gray rounded-sm"
+              className="btn bg-gray-400 text-gray rounded-sm"
             >
               Remove
             </button>
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-orange-400 text-gray rounded-sm"
+              className="btn bg-orange-400 text-gray rounded-sm"
             >
               Upload
             </button>
           </div>
-        ) : (
-          <div>
-            <input
-              type="file"
-              name="file"
-              required
-              onChange={handleFileChange}
-              accept=".png"
-            />
+        </>
+      ) : (
+        <>
+          <div className="action-prompt">
+            Get started by uploading your file (PNG)
+          </div>
+          <input
+            type="file"
+            name="file"
+            required
+            onChange={handleFileChange}
+            accept=".png"
+            className="mt-4"
+          />
+          <div className="action-buttons">
             <button
               onClick={handleUpload}
-              className="block mt-4 px-3 py-2 bg-orange-400 text-gray rounded-sm"
+              className="btn bg-orange-400 text-gray rounded-sm"
             >
               Upload
             </button>
           </div>
-        )}
-      </div>
-    </>
+        </>
+      )}
+    </div>
   );
 }
 

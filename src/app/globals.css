@@ -1,19 +1,45 @@
 @tailwind base;
 @tailwind components;
 
-.main-container {
-  z-index: 0;
-  border-radius: 0.375rem;
-  margin-left: 16rem;
-  margin-right: 16rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding: 0.75rem;
-  height: 66.66%;
+.container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
+
+/* This ensures each child in the container takes only as much space as it needs */
+.container > * {
+  width: 100%; /* Let each item take full width of the container */
+  margin-bottom: 1rem; /* Spacing between items */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem; /* Space between the buttons */
+  justify-content: center;
+  margin-bottom: 0; /* No margin at the bottom since it's the last item */
+}
+
+.action-prompt {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.action-paragraph {
+  font-size: 1rem;
+  text-align: center;
+  max-width: 80%; /* Constraining width for readability */
+  margin: 1rem auto;
+}
+
+.image-preview {
+  width: 80%; /* Adjust as needed */
+  height: auto; /* This maintains the aspect ratio of the image */
+}
+
 .loader-container {
   position: fixed;
   top: 0;
@@ -26,6 +52,15 @@
   align-items: center; /* Center content vertically */
   z-index: 1000;
 }
+
+.action-prompt {
+  --tw-text-opacity: 1;
+  font-weight: 700;
+  text-size-adjust: 100%;
+  bold: 700;
+  color: rgba(229, 231, 235, var(--tw-text-opacity));
+}
+
 .space-loader-container {
   width: 300%;
   height: 300%;
