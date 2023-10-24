@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import "./globals.css";

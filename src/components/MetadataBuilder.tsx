@@ -9,7 +9,7 @@ interface FormData {
 }
 
 export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
-  const [isLoading, setIsLoading] = useState(false); // Added this state
+  const [isLoading, setIsLoading] = useState(false);
   const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
   const [tokenURI, setTokenURI] = useState("");
   const [formData, setFormData] = useState<FormData>({
