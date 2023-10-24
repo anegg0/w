@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { MintNFT } from "@c/MintNFT";
-import StepProgressBar from "@c/StepProgressBar";
+import EncodeStepProgressBar from "@c/EncodeStepProgressBar";
 
 interface FormData {
   name: string;
@@ -57,7 +57,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   if (isLoading) {
     return (
       <div className="loader-container">
-        <StepProgressBar steps={steps} currentStep={currentStep} />
+        <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
         <div className="space-loader-container text-2xl font-bold  text-gray-200">
           Storing your image on the <br />
           Interplanetary File System (IPFS)...
@@ -71,7 +71,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
   } else {
     return (
       <div className="container">
-        <StepProgressBar steps={steps} currentStep={currentStep} />
+        <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
         <div className="action-prompt">
           Add a description to your image
           <div className="action-paragraph">

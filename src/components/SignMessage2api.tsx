@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSignMessage } from "wagmi";
 import "@a/globals.css";
-import StepProgressBar from "@c/StepProgressBar";
+import EncodeStepProgressBar from "@c/EncodeStepProgressBar";
 
 export function SignMessage2api({ onSuccessfulEncoding }) {
   let [message, setMessage] = React.useState<string | null>(null);
@@ -59,7 +59,7 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
   return (
       <div className="container">
 
-      <StepProgressBar steps={steps} currentStep={currentStep} />
+      <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
             <div className="action-prompt">
 Sign a message with your wallet
     </div>

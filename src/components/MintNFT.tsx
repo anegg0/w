@@ -14,7 +14,7 @@ import { useNetwork } from 'wagmi';
 import axios from 'axios';
 import Image from "next/image";
 import EncodedImage from "@a/encoded/encoded_image.png"
-import StepProgressBar from "@c/StepProgressBar";
+import EncodeStepProgressBar from "@c/EncodeStepProgressBar";
 
 
 export function MintNFT({ onSuccessfulTokenUriCreation }) {
@@ -46,12 +46,12 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
 
   return (
     <div className="p-4">
-      {!isSuccess && ( // This will render the content inside only if isSuccess is false
+      {!isSuccess && (
         <>
 
     <div className="container">
 
-      <StepProgressBar steps={steps} currentStep={currentStep} />
+      <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
 
           <div className="action-prompt">
             Mint a Watermarked NFT
@@ -86,7 +86,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
       )}
       {isSuccess && (
         <>
-  <StepProgressBar steps={steps} currentStep={4} />
+  <EncodeStepProgressBar steps={steps} currentStep={4} />
         <div className="flex flex-col items-center justify-center space-y-4">
             <div className="action-prompt text-center">
                 Successfully minted your NFT
