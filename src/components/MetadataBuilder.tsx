@@ -108,15 +108,15 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
               />
             </label>
             <br />
+            <div className="action-buttons">
+              <button
+                type="submit"
+                className="btn bg-orange-400 text-gray rounded-sm p-1"
+              >
+                Store image on IPFS
+              </button>
+            </div>
           </form>
-          <div className="action-buttons">
-            <button
-              type="submit"
-              className="btn bg-orange-400 text-gray rounded-sm p-1"
-            >
-              Store image on IPFS
-            </button>
-          </div>
         </div>
       </div>
     );
