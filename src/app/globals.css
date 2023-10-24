@@ -46,16 +46,16 @@ flexInnerHeader {
   font-weight: normal;
   text-align: center;
   margin-top: 1rem; /* No margin at the bottom since it's the last item */
-  margin-bottom: 1rem; /* No margin at the bottom since it's the last item */
+  margin-bottom: 0.5rem; /* No margin at the bottom since it's the last item */
 }
 
 .action-paragraph {
   font-size: 1rem;
   justify-content: center;
-  text-align: center;
   max-width: 80%; /* Constraining width for readability */
-  margin-top: 1.5rem; /* No margin at the bottom since it's the last item */
+  margin-top: 1rem; /* No margin at the bottom since it's the last item */
   margin-bottom: 0.5rem; /* No margin at the bottom since it's the last item */
+  line-height: 250%;
 }
 
 .image-preview {
