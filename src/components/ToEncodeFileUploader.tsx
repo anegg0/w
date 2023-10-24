@@ -61,6 +61,9 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
           <div className="action-prompt">
             This is your image. Like What You See?
           </div>
+          <div className="action-paragraph">
+            You can reupload a different image by hitting "Remove".
+          </div>
           <div className="image-preview">
             <Image
               src={previewUrl}

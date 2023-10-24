@@ -64,8 +64,9 @@ export function SignMessage2api({ onSuccessfulEncoding }) {
 Sign a message with your wallet
     </div>
           <div className="action-paragraph">
-    <p>This step will prove that you own this picture.</p>
-    <p>You can enter any message</p>
+    <p>This step will embed your crypto-signature in this image,</p>
+    <p>your wallet will request you to sign this message,</p>
+    <p>You can enter any message to sign.</p>
           </div>
           <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <div className="action-buttons">

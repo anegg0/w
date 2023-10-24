@@ -58,7 +58,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
           </div>
           <div className="action-paragraph">
             You can now mint your watermarked image as an NFT.<br/>
-            After clicking "Mint", your wallet will require you to confirm<br/>
+            After clicking <strong>Mint</strong>, your wallet will require you to confirm<br/>
           </div>
           <form
             onSubmit={(e) => {
@@ -69,7 +69,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
             <button
               disabled={!write}
               type="submit"
-              className="my-4 px-4 py-2 rounded bg-blue-500 text-white disabled:opacity-50"
+              className="my-4 px-4 py-2 rounded bg-orange-400 text-white disabled:opacity-50"
             >
               Mint
             </button>
@@ -91,9 +91,12 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
             <div className="action-prompt text-center">
                 Successfully minted your NFT
             </div>
+            <div className="paragraph-prompt">
+              This step is complete. It ensures a timestamped record of your image on the blockchain.
+            </div>
             <a
                 href={`https://${chain.name}.etherscan.io/tx/${data?.hash}`}
-                className="text-blue-500 font-normal text-center"
+                className="text-blue-300 font-normal text-center"
             >
                 Follow this Etherscan link to spot your NFT on the {chain.name} chain
             </a>

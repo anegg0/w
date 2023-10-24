@@ -72,52 +72,48 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
     return (
       <div className="container">
         <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
-        <div className="action-prompt">
-          Add a description to your image
-          <div className="action-paragraph">
-            There are no rules. Enter anything you like.
-            <br />
-            <br />
-            After submitting this form, your picture will be stored on IPFS:
-            <br />a Decentralized and Persistent Storage System.
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
-          >
-            <label className="action-paragraph">
-              Name:
-              <input
-                placeholder="Short description of your image"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded text-gray-500"
-              />
-            </label>
-            <label className="action-paragraph">
-              Description:
-              <input
-                type="text"
-                placeholder="Longer description of your image"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded text-gray-500"
-              />
-            </label>
-            <br />
-            <div className="action-buttons">
-              <button
-                type="submit"
-                className="btn bg-orange-400 text-gray rounded-sm p-1"
-              >
-                Store image on IPFS
-              </button>
-            </div>
-          </form>
+        <div className="action-prompt">Add a description to your image</div>
+        <div className="action-paragraph">
+          Enter anything you like. After submitting this form,
+          <br /> your picture will be stored on IPFS: a Decentralized and
+          Persistent Storage System.
         </div>
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
+        >
+          <label className="action-paragraph">
+            Name:
+            <input
+              placeholder="Short description of your image"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded text-gray-500"
+            />
+          </label>
+          <label className="action-paragraph">
+            Description:
+            <input
+              type="text"
+              placeholder="Longer description of your image"
+              name="description"
+              value={formData.description}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded text-gray-500"
+            />
+          </label>
+          <br />
+          <div className="action-buttons">
+            <button
+              type="submit"
+              className="btn bg-orange-400 text-gray rounded-sm p-1"
+            >
+              Store image on IPFS
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
