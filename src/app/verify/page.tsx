@@ -6,6 +6,9 @@ import ActionContainer from "@c/ActionContainer";
 import EncodedImage from "@a/encoded/encoded_image.png";
 import StepProgressBar from "@c/StepProgressBar";
 import Link from "next/link";
+import Header from "@c/Header";
+import Footer from "@c/Footer";
+import "@a/globals.css";
 
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
@@ -57,6 +60,7 @@ export function Page({ onSuccessfulUpload }) {
 
   return (
     <>
+      <Header />
       <div className="container">
         {file ? (
           <>
@@ -111,6 +115,7 @@ export function Page({ onSuccessfulUpload }) {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 }

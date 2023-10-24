@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import "./globals.css";
+import "@a/globals.css";
 import Image from "next/image";
 import { Account } from "@c/Account";
 import { Balance } from "@c/Balance";
