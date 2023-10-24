@@ -1,6 +1,5 @@
 "use client";
 
-// import { watermarkedAddress } from "wagmi";
 import { useState } from "react";
 import { BaseError } from "viem";
 import {

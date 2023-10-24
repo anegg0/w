@@ -10,19 +10,18 @@ const client = new NFTStorage({ token: API_KEY });
 
 async function uploadImageAndGetIPFSUri(filePath: string): Promise<string> {
   const data = await fs.promises.readFile(filePath);
-  const file = new File([data], filePath, { type: "image/png" }); // You can adjust the type if it's not png
+  const file = new File([data], filePath, { type: "image/png" });
   const uploadedImageUri: string = await client.storeBlob(file);
   return uploadedImageUri;
 }
 
 async function uploadMetadataAndGetUri(
-  uploadedImageUri: string
+  uploadedImageUri: string,
 ): Promise<string> {
   const metadata = {
     name: "Your NFT Name",
     description: "Your NFT Description",
     image: uploadedImageUri,
-    // Include other properties as per OpenSea's metadata standards
   };
   const uri = await client.store(metadata);
   return uri;

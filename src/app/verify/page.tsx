@@ -4,11 +4,11 @@ import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
 import ActionContainer from "@c/ActionContainer";
 import EncodedImage from "@a/encoded/encoded_image.png";
-import StepProgressBar from "@c/StepProgressBar";
 import Link from "next/link";
 import Header from "@c/Header";
 import Footer from "@c/Footer";
 import "@a/globals.css";
+import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
 
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);

@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
-import ActionContainer from "@c/ActionContainer";
 import EncodedImage from "@a/encoded/encoded_image.png";
-import StepProgressBar from "@c/StepProgressBar";
+import EncodeStepProgressBar from "@c/EncodeStepProgressBar";
 
 export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
@@ -56,7 +55,7 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
 
   return (
     <div className="container">
-      <StepProgressBar steps={steps} currentStep={currentStep} />
+      <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
       {file ? (
         <>
           <div className="action-prompt">

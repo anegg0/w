@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa";
 
-const StepProgressBar = ({ steps, currentStep, id }) => {
+const VerifyStepProgressBar = ({ steps, currentStep, id }) => {
   return (
     <div id={id} className="max-w-xl mx-auto my-2 border-b-2 pb-2 w-full">
       <div className="flex w-full justify-between">
@@ -28,4 +28,4 @@ const StepProgressBar = ({ steps, currentStep, id }) => {
   );
 };
 
-export default StepProgressBar;
+export default VerifyStepProgressBar;
