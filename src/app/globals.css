@@ -87,7 +87,8 @@ flexInnerHeader {
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
-  z-index: 1000;
+  z-index: 2;
+  opacity: 0.9;
 }
 
 .action-prompt {
@@ -106,7 +107,7 @@ flexInnerHeader {
   align-items: center;
   position: fixed;
   background: #333 url("./space.gif") center no-repeat;
-  z-index: 1;
+  z-index: 3;
 }
 
 .popol-loader-container {
@@ -117,7 +118,7 @@ flexInnerHeader {
   align-items: center;
   position: fixed;
   background: #333 url("./popol-vuh.gif") center no-repeat;
-  z-index: 1;
+  z-index: 3;
 }
 
 @tailwind utilities;
