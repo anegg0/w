@@ -13,6 +13,8 @@ import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [verificationData, setVerificationData] = useState(null);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -23,9 +25,10 @@ export function Page({ onSuccessfulUpload }) {
       setPreviewUrl(objectUrl);
     }
   };
-  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
-  const currentStep = 0;
-  const id = "upload";
+
+  const steps = ["Upload Image", "Verify Image"];
+  const id = "verify";
+  const currentStep = file ? 1 : 0;
 
   const handleRemove = () => {
     setFile(null);
@@ -38,23 +41,28 @@ export function Page({ onSuccessfulUpload }) {
       return;
     }
 
+    setLoading(true);
+
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      const response = await fetch("/api/file/upload", {
+      const response = await fetch("/api/decodewm", {
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
-        onSuccessfulUpload(2);
+        const data = await response.json();
+        setVerificationData(data);
       } else {
-        alert("File upload failed.");
+        alert("File verification failed.");
       }
     } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("An error occurred while uploading the file.");
+      console.error("Error verifying file:", error);
+      alert("An error occurred while verifying the file.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,10 +70,19 @@ export function Page({ onSuccessfulUpload }) {
     <>
       <Header />
       <div className="container">
+        <VerifyStepProgressBar
+          steps={steps}
+          currentStep={currentStep}
+          id={id}
+        />
         {file ? (
           <>
             <div className="action-prompt">
-              This is your image. Like What You See?
+              This is the image you're about to verify.
+            </div>
+            <div className="paragraph-prompt">
+              You can reupload a different image by hitting{" "}
+              <strong>Remove</strong>.
             </div>
             <div className="image-preview">
               <Image
@@ -87,13 +104,19 @@ export function Page({ onSuccessfulUpload }) {
                 onClick={handleUpload}
                 className="btn bg-orange-400 text-gray rounded-sm p-1"
               >
-                Upload
+                Verify
               </button>
             </div>
           </>
         ) : (
           <>
             <div className="action-prompt">Verify an Image (PNG)</div>
+            <div className="paragraph-prompt">
+              This allows you to verify what address watermarked this image.
+              <br />
+              You can verify any image that has been watermarked with{" "}
+              <strong>W</strong>.
+            </div>
             <div className="input-wrapper">
               <input
                 type="file"
@@ -114,9 +137,23 @@ export function Page({ onSuccessfulUpload }) {
             </div>
           </>
         )}
+
+        {verificationData && (
+          <div>
+            <h2>Verification Results:</h2>
+            <p>
+              <strong>Message:</strong> {verificationData.message}
+            </p>
+            <p>
+              <strong>Signature:</strong> {verificationData.signature}
+            </p>
+          </div>
+        )}
+        {loading && <div>Verifying... Please wait.</div>}
       </div>
       <Footer />
     </>
   );
 }
+
 export default Page;
