@@ -82,7 +82,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
           onSubmit={handleSubmit}
           className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
         >
-          <label className="action-paragraph">
+          <label>
             Name:
             <input
               placeholder="Short description of your image"
@@ -93,7 +93,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
               className="w-full p-2 border rounded text-gray-500"
             />
           </label>
-          <label className="action-paragraph">
+          <label>
             Description:
             <input
               type="text"
