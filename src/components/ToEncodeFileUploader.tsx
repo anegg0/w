@@ -1,26 +1,41 @@
 "use client";
 import React, { useState } from "react";
-import { FaCheck } from "react-icons/fa";
-import Image from "next/image";
-import EncodedImage from "@a/encoded/encoded_image.png";
 import EncodeStepProgressBar from "@c/EncodeStepProgressBar";
 
 export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
-      const objectUrl = URL.createObjectURL(selectedFile);
-      setFile(selectedFile);
-      setPreviewUrl(objectUrl);
+      if (
+        selectedFile.type === "image/png" &&
+        selectedFile.size >= 1000000 && // At least 1 MB
+        (await isImageSizeValid(selectedFile)) // Check image dimensions
+      ) {
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setFile(selectedFile);
+        setPreviewUrl(objectUrl);
+      } else {
+        alert(
+          "Please select a PNG image that is at least 1000px x 1000px and at least 1 MB in size.",
+        );
+      }
     }
   };
-  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
-  const currentStep = 0;
-  const id = "upload";
+
+  // Function to check image dimensions
+  const isImageSizeValid = async (selectedFile) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = URL.createObjectURL(selectedFile);
+      img.onload = () => {
+        resolve(img.width >= 1000 && img.height >= 1000);
+      };
+    });
+  };
 
   const handleRemove = () => {
     setFile(null);
@@ -37,6 +52,7 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
     formData.append("file", file);
 
     try {
+      // Send the formData to your server-side API for file handling
       const response = await fetch("/api/file/upload", {
         method: "POST",
         body: formData,
@@ -53,6 +69,10 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
     }
   };
 
+  const steps = ["Upload Image", "Sign Image", "Define Image", "Mint Image"];
+  const currentStep = 0;
+  const id = "upload";
+
   return (
     <div className="container">
       <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
@@ -67,13 +87,13 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
           <div
             style={{ position: "relative", width: "800px", height: "500px" }}
           >
-            <Image
+            <img
               src={previewUrl}
               alt="Preview"
-              sizes="500px"
-              fill
               style={{
                 objectFit: "contain",
+                width: "100%",
+                height: "100%",
               }}
             />
           </div>
