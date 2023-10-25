@@ -19,7 +19,7 @@ function ConnectWallet({ show = "always" }) {
 
 export function Header() {
   return (
-    <div className="header">
+    <div className="header ">
       <Link href="/">
         <Image src={logo} width={52} height={52} alt="W Logo" />
       </Link>
