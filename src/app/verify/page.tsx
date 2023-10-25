@@ -10,6 +10,7 @@ import Footer from "@c/Footer";
 import "@a/globals.css";
 import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
 import { ethers } from "ethers";
+import { hashMessage } from "@ethersproject/hash";
 
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
@@ -58,9 +59,13 @@ export function Page({ onSuccessfulUpload }) {
         const data = await response.json();
         setVerificationData(data);
         const message = data.message;
+        console.log("message", message);
         const signature = data.signature;
-        const hash = await ethers.keccak256(message);
+        console.log("signature", signature);
+        const hash = await hashMessage(message);
+        console.log("hash", hash);
         const recoveredAddress = await ethers.recoverAddress(hash, signature);
+        console.log("recoveredAddress", recoveredAddress);
         setRecoveredAddress(recoveredAddress);
       } else {
         alert("File verification failed.");
