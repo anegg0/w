@@ -25,32 +25,32 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const originalImageDirPath = path.join(
       process.cwd(),
-      process.env.STORE_IMAGE_PATH!
+      process.env.STORE_IMAGE_PATH!,
     );
     const unwatermarkedFilePath = path.join(
       originalImageDirPath,
-      "original_image.png"
+      "original_image.png",
     );
     const signatureDirectory = path.join(
       process.cwd(),
-      process.env.STORE_SIGNATURE_PATH!
+      process.env.STORE_SIGNATURE_PATH!,
     );
     const signatureFilePath = await createFilePath(
       signatureDirectory,
-      "signature.json"
+      "signature.json",
     );
     await fs.writeFile(signatureFilePath, signature);
 
     const EncodedImageFilesDirectory = path.join(
       process.cwd(),
-      process.env.STORE_ENCODED_IMAGE_PATH!
+      process.env.STORE_ENCODED_IMAGE_PATH!,
     );
     const EncodedImageFilePath = path.join(
       EncodedImageFilesDirectory,
-      "encoded_image.png"
+      "encoded_image.png",
     );
     await asyncExec(
-      `java -jar openstego.jar embed -a randomlsb -mf ./src/app/signatures/signature.json -cf ./src/app/uploads/original_image.png -sf ./src/app/encoded/encoded_image.png`
+      `java -jar openstego.jar embed -a randomlsb -mf ./src/app/signatures/signature.json -cf ./src/app/uploads/original_image.png -sf ./src/app/encoded/encoded_image.png`,
     );
 
     console.log("Background execution completed");

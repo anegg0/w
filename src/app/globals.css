@@ -47,6 +47,7 @@ flexInnerHeader {
   justify-content: center;
   margin-bottom: 0; /* No margin at the bottom since it's the last item */
   margin: 2em;
+  radius: 0.25rem;
 }
 
 .action-prompt {
@@ -75,6 +76,9 @@ flexInnerHeader {
   justify-content: center; /* Horizontal centering */
   align-items: center; /* Vertical centering */
   height: 100%; /* Take up full available height */
+
+  margin-top: 1rem; /* No margin at the bottom since it's the last item */
+  margin-bottom: 0.5rem; /* No margin at the bottom since it's the last item */
 }
 
 .hidden-file-input {
