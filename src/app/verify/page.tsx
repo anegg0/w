@@ -9,12 +9,14 @@ import Header from "@c/Header";
 import Footer from "@c/Footer";
 import "@a/globals.css";
 import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
+import { ethers } from "ethers";
 
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [verificationData, setVerificationData] = useState(null);
+  const [recoveredAddress, setRecoveredAddress] = useState(null);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -55,6 +57,11 @@ export function Page({ onSuccessfulUpload }) {
       if (response.ok) {
         const data = await response.json();
         setVerificationData(data);
+        const message = data.message;
+        const signature = data.signature;
+        const hash = await ethers.keccak256(message);
+        const recoveredAddress = await ethers.recoverAddress(hash, signature);
+        setRecoveredAddress(recoveredAddress);
       } else {
         alert("File verification failed.");
       }
@@ -150,10 +157,7 @@ export function Page({ onSuccessfulUpload }) {
           <div>
             <h2>Verification Results:</h2>
             <p>
-              <strong>Message:</strong> {verificationData.message}
-            </p>
-            <p>
-              <strong>Signature:</strong> {verificationData.signature}
+              <strong>recoveredAddress:</strong> {recoveredAddress}
             </p>
           </div>
         )}
