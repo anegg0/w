@@ -11,6 +11,7 @@ import "@a/globals.css";
 import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
 import { ethers } from "ethers";
 import { hashMessage } from "@ethersproject/hash";
+import { useNetwork } from "wagmi";
 
 export function Page({ onSuccessfulUpload }) {
   const [file, setFile] = useState(null);
@@ -18,6 +19,7 @@ export function Page({ onSuccessfulUpload }) {
   const [loading, setLoading] = useState(false);
   const [verificationData, setVerificationData] = useState(null);
   const [recoveredAddress, setRecoveredAddress] = useState(null);
+  const { chain, chains } = useNetwork();
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -159,12 +161,27 @@ export function Page({ onSuccessfulUpload }) {
         )}
 
         {verificationData && (
-          <div>
-            <h2>Verification Results:</h2>
-            <p>
-              <strong>recoveredAddress:</strong> {recoveredAddress}
-            </p>
-          </div>
+          <>
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <div className="action-prompt text-center">
+                The image has been verified.
+              </div>
+              <div className="paragraph-prompt">
+                The address which signed this image is{" "}
+                <strong>{recoveredAddress}</strong>
+                <br />
+                Follow a link to this account on the {chain.name} chain
+              </div>
+              <a
+                href={`https://${chain.name}.etherscan.io/address/${recoveredAddress}`}
+                className="text-blue-300 font-normal text-center"
+              ></a>
+            </div>
+            <div>
+              <h2>Verification Results:</h2>
+              <p></p>
+            </div>
+          </>
         )}
         {loading && <div>Verifying... Please wait.</div>}
       </div>
