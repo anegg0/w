@@ -8,35 +8,29 @@
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   box-sizing: border-box;
-  margin-bottom: 0.1rem;
-  margin-bottom: 0.1rem;
+  margin: auto;
+  min-height: 400px;
 }
 
 .header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 5rem;
-  margin-left: 3rem;
-  margin-right: 5rem;
+  margin: 2em;
+  padding-right: 13em;
+  padding-left: 10em;
 }
 
 .footer {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-.flexCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(50% - 2em);
-  margin: 1em;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 flexInnerHeader {
@@ -72,6 +66,10 @@ flexInnerHeader {
   line-height: 250%;
 }
 
+.connect-button-wrapper {
+  margin-right: 8.5rem; /* No margin at the bottom since it's the last item */
+  padding-right: 8.5rem; /* No margin at the bottom since it's the last item */
+}
 .input-wrapper {
   display: flex;
   justify-content: center; /* Horizontal centering */
