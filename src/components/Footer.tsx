@@ -5,7 +5,7 @@ import Image from "next/image";
 export const Footer: React.FC = () => {
   return (
     <footer id="subscribe" aria-label="Site Footer">
-      <div className="max-w-screen-xl px-2 py-20 mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl px-2 py-4 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:gap-8">
           <ul className="flex flex-grow justify-end col-span-2 gap-6 lg:col-span-5">
             <li>
