@@ -9,7 +9,7 @@ import {
 import { useAccount } from "wagmi";
 import { useDebounce } from "@s/hooks/useDebounce";
 import { watermarkedConfig } from "@s/generated";
-import { stringify } from "../utils/stringify";
+import { stringify } from "@s/utils/stringify";
 import { useNetwork } from 'wagmi';
 import axios from 'axios';
 import Image from "next/image";
@@ -48,11 +48,8 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
     <div className="p-4">
       {!isSuccess && (
         <>
-
     <div className="container">
-
       <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
-
           <div className="action-prompt">
             Mint a Watermarked NFT
           </div>
@@ -80,7 +77,7 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
       {isPending && (
         <div className="loader-container">
           <div className="popol-loader-container text-2xl font-bold text-white">
-            Carving your Image Into the Blockchain..
+            Carving your Image Into the Blockchain...
           </div>
         </div>
       )}
@@ -102,9 +99,19 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
             </a>
         </div>
         <div className="flex justify-center mt-4">
-            <div className="image-preview">
-                <Image src={EncodedImage} width={500} height={500} alt="watermarked image"/>
-            </div>
+          <div
+            style={{ position: "relative", width: "800px", height: "500px" }}
+          >
+            <Image
+              src={EncodedImage}
+              alt="watermarked image"
+              sizes="500px"
+              fill
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </div>
         </div>
         </>
       )}

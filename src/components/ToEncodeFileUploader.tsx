@@ -64,13 +64,17 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
           <div className="action-paragraph">
             You can reupload a different image by hitting "Remove".
           </div>
-          <div className="image-preview">
+          <div
+            style={{ position: "relative", width: "800px", height: "500px" }}
+          >
             <Image
               src={previewUrl}
-              width={550}
-              height={550}
               alt="Preview"
-              unoptimized={true}
+              sizes="500px"
+              fill
+              style={{
+                objectFit: "contain",
+              }}
             />
           </div>
           <div className="action-buttons">
