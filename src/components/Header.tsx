@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
@@ -20,8 +20,7 @@ function ConnectWallet({ show = "always" }) {
 export function Header() {
   return (
     <div className="header">
-      <Link href="/" className="block text-teal-600">
-        <span className="sr-only">Home</span>
+      <Link href="/">
         <Image src={logo} width={52} height={52} alt="W Logo" />
       </Link>
       <nav aria-label="Site Nav">
