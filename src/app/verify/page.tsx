@@ -80,7 +80,7 @@ export function Page({ onSuccessfulUpload }) {
             <div className="action-prompt">
               This is the image you're about to verify.
             </div>
-            <div className="paragraph-prompt">
+            <div className="action-paragraph">
               You can reupload a different image by hitting{" "}
               <strong>Remove</strong>.
             </div>
@@ -119,7 +119,7 @@ export function Page({ onSuccessfulUpload }) {
         ) : (
           <>
             <div className="action-prompt">Verify an Image (PNG)</div>
-            <div className="paragraph-prompt">
+            <div className="action-paragraph">
               This allows you to verify what address watermarked this image.
               <br />
               You can verify any image that has been watermarked with{" "}

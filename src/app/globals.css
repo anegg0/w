@@ -76,9 +76,18 @@ flexInnerHeader {
   justify-content: center; /* Horizontal centering */
   align-items: center; /* Vertical centering */
   height: 100%; /* Take up full available height */
-
-  margin-top: 1rem; /* No margin at the bottom since it's the last item */
-  margin-bottom: 0.5rem; /* No margin at the bottom since it's the last item */
+}
+image-preview {
+  border: 1px solid lightgray;
+  padding: 8px;
+  display: inline-block;
+  margin: 1rem auto;
+  align-items: center;
+  justify-content: center;
+}
+.connect-button-wrapper {
+  margin-right: 8.5rem; /* No margin at the bottom since it's the last item */
+  padding-right: 8.5rem; /* No margin at the bottom since it's the last item */
 }
 
 .hidden-file-input {

@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const file = f as File;
   const newFileName = "toverify.png";
 
-  const destinationDirPath = path.join(process.cwd(), "src/app/encoded");
+  const destinationDirPath = path.join(process.cwd(), "src/app/toverify");
   const existingFilePath = path.join(destinationDirPath, newFileName);
 
   if (existsSync(existingFilePath)) {
@@ -43,25 +43,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     process.env.STORE_VERIFIED_SIGNATURE_PATH!,
     "signature.json",
   );
-  // Check if signature.json exists, if not create it with the given content
-  if (!existsSync(jsonFilePath)) {
-    const defaultData = {
-      message: "test",
-      signature: "test",
-    };
-    await fs.writeFile(jsonFilePath, JSON.stringify(defaultData, null, 2));
-  }
-  // Execute the openstego.jar command
   await asyncExec(
-    `java -jar openstego.jar extract --algorithm=randomlsb --stegofile=../../toverify/toverify.png --extractdir=../../decodedSignature`,
+    `java -jar openstego.jar extract --algorithm=randomlsb --stegofile=./src/app/toverify/toverify.png --extractdir=./src/app/decodedSignature`,
   );
-
-  // Parse the JSON file generated
-  // const jsonFilePath = path.join(
-  //   process.cwd(),
-  //   "../../decodedSignature",
-  //   "signature.json",
-  // );
 
   const jsonData = await fs.readFile(jsonFilePath, "utf-8");
   const parsedData = JSON.parse(jsonData);
