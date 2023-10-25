@@ -85,7 +85,11 @@ export function Page({ onSuccessfulUpload }) {
               <strong>Remove</strong>.
             </div>
             <div
-              style={{ position: "relative", width: "800px", height: "500px" }}
+              style={{
+                position: "relative",
+                width: "800px",
+                height: "500px",
+              }}
             >
               <Image
                 src={previewUrl}
