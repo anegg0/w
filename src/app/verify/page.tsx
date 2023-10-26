@@ -38,6 +38,7 @@ export function Page({ onSuccessfulUpload }) {
   const handleRemove = () => {
     setFile(null);
     setPreviewUrl(null);
+    setRecoveredAddress(null); // Clear the recovered address when removing the file
   };
 
   const handleUpload = async () => {
@@ -61,13 +62,9 @@ export function Page({ onSuccessfulUpload }) {
         const data = await response.json();
         setVerificationData(data);
         const message = data.message;
-        console.log("message", message);
         const signature = data.signature;
-        console.log("signature", signature);
         const hash = await hashMessage(message);
-        console.log("hash", hash);
         const recoveredAddress = await ethers.recoverAddress(hash, signature);
-        console.log("recoveredAddress", recoveredAddress);
         setRecoveredAddress(recoveredAddress);
       } else {
         alert("File verification failed.");
@@ -82,86 +79,11 @@ export function Page({ onSuccessfulUpload }) {
 
   return (
     <>
-      <Header />
-      <div className="container">
-        <VerifyStepProgressBar
-          steps={steps}
-          currentStep={currentStep}
-          id={id}
-        />
-        {file ? (
-          <>
-            <div className="action-prompt">
-              This is the image you're about to verify.
-            </div>
-            <div className="action-paragraph">
-              You can reupload a different image by hitting{" "}
-              <strong>Remove</strong>.
-            </div>
-            <div
-              style={{
-                position: "relative",
-                width: "800px",
-                height: "500px",
-              }}
-            >
-              <Image
-                src={previewUrl}
-                alt="Preview"
-                sizes="500px"
-                fill
-                style={{
-                  objectFit: "contain",
-                }}
-              />
-            </div>
-            <div className="action-buttons">
-              <button
-                onClick={handleRemove}
-                className="btn bg-gray-400 text-gray rounded-sm p-1"
-              >
-                Remove
-              </button>
-              <button
-                onClick={handleUpload}
-                className="btn bg-orange-400 text-gray rounded-sm p-1"
-              >
-                Verify
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="action-prompt">Verify an Image (PNG)</div>
-            <div className="action-paragraph">
-              This allows you to verify what address watermarked this image.
-              <br />
-              You can verify any image that has been watermarked with{" "}
-              <strong>W</strong>.
-            </div>
-            <div className="input-wrapper">
-              <input
-                type="file"
-                name="file"
-                required
-                onChange={handleFileChange}
-                accept=".png"
-                className="mt-4"
-              />
-            </div>
-            <div className="action-buttons">
-              <button
-                onClick={handleUpload}
-                className="btn bg-orange-400 text-gray rounded-sm p-1"
-              >
-                Upload
-              </button>
-            </div>
-          </>
-        )}
-
-        {verificationData && (
-          <>
+      {recoveredAddress ? ( // Render this block if the address is recovered
+        <>
+          <Header />
+          <div className="container">
+            <VerifyStepProgressBar steps={steps} currentStep={2} id={id} />
             <div className="flex flex-col items-center justify-center space-y-4">
               <div className="action-prompt text-center">
                 The image has been verified.
@@ -170,22 +92,97 @@ export function Page({ onSuccessfulUpload }) {
                 The address which signed this image is{" "}
                 <strong>{recoveredAddress}</strong>
                 <br />
-                Follow a link to this account on the {chain.name} chain
               </div>
               <a
                 href={`https://${chain.name}.etherscan.io/address/${recoveredAddress}`}
                 className="text-blue-300 font-normal text-center"
-              ></a>
+              >
+                Follow a link to this account on the {chain.name} chain
+              </a>
             </div>
-            <div>
-              <h2>Verification Results:</h2>
-              <p></p>
-            </div>
-          </>
-        )}
-        {loading && <div>Verifying... Please wait.</div>}
-      </div>
-      <Footer />
+          </div>
+          <Footer />
+        </>
+      ) : (
+        // Render this block if the address is not recovered
+        <>
+          <Header />
+          <div className="container">
+            <VerifyStepProgressBar steps={steps} currentStep={1} id={id} />
+            {file ? (
+              <>
+                <div className="action-prompt">
+                  This is the image you're about to verify.
+                </div>
+                <div className="action-paragraph">
+                  You can reupload a different image by hitting{" "}
+                  <strong>Remove</strong>.
+                </div>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "800px",
+                    height: "500px",
+                  }}
+                >
+                  <Image
+                    src={previewUrl}
+                    alt="Preview"
+                    sizes="500px"
+                    fill
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <div className="action-buttons">
+                  <button
+                    onClick={handleRemove}
+                    className="btn bg-gray-400 text-gray rounded-sm p-1"
+                  >
+                    Remove
+                  </button>
+                  <button
+                    onClick={handleUpload}
+                    className="btn bg-orange-400 text-gray rounded-sm p-1"
+                  >
+                    Verify
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="action-prompt">Verify an Image (PNG)</div>
+                <div className="action-paragraph">
+                  This allows you to verify what address watermarked this image.
+                  <br />
+                  You can verify any image that has been watermarked with{" "}
+                  <strong>W</strong>.
+                </div>
+                <div className="input-wrapper">
+                  <input
+                    type="file"
+                    name="file"
+                    required
+                    onChange={handleFileChange}
+                    accept=".png"
+                    className="mt-4"
+                  />
+                </div>
+                <div className="action-buttons">
+                  <button
+                    onClick={handleUpload}
+                    className="btn bg-orange-400 text-gray rounded-sm p-1"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+          <Footer />
+        </>
+      )}
     </>
   );
 }

@@ -27,7 +27,7 @@ export function Header() {
         <ul className="flex justify-between gap-16 text-md">
           <li>
             <Link
-              href="/#about"
+              href="/about"
               className="text-gray-300 transition hover:text-gray-300/75"
             >
               How Does this Thing Work?
