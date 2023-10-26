@@ -1,8 +1,8 @@
 # **W**, Crypto-Assets Watermarking Using Steganography
 
-This repo helps you add an invsible watermark (using Steganography/Data-hiding) to graphical assets and mint them as NFTs on EVM chains.
+This repo helps you embed a crypto-signature (using Steganography/Data-hiding) to graphical assets and mint them as NFTs on EVM chains.
 
-The graphical asset itself can be verified on-chain using the watermark.
+The graphical asset itself can be verified on-chain using the watermark .
 
 This repository is based on:
 
@@ -32,14 +32,7 @@ This repository is based on:
 
 The included contract is bare bone (for clarity) but functional.
 
- :information_source: the contract is intended for training purpose, it hasn't been vetted for production, use at your own risk.
-
-3. **Example scripts for minting and testing**
-
-4. **Extra-functionalities thanks to [`Hardhat-deploy`](https://github.com/wighawag/hardhat-deploy)**
-   - `npx hardhat deploy` deploys only if your contract has changed
-   - `npx hardhat test` enable test fixtures for faster tests
-   - `npx hardhat sourcify` simplifies the process of contract verification with Sourcify.dev
+ :information_source: the contract is intended for training purpose, its minting functionality is not protected, use at your own risk.
 
 ## Installation
 
@@ -57,7 +50,7 @@ The included contract is bare bone (for clarity) but functional.
         sudo apt update
         sudo apt install default-jre
         ```
-### [Install Metamask](https://metamask.io/download/)
+### [Install Metamask](https://metamask.io/download/), Coinbase Wallet, or any WalletConnect compatible Wallet 
 
 ### Install OpenStego
 
@@ -69,69 +62,24 @@ The included contract is bare bone (for clarity) but functional.
 
 Fill out your env values in `.example-env` then rename the file `.env`:
 
-# network specific node uri : `"ETH_NODE_URI_" + networkName.toUpperCase()`
-
-ETH_NODE_URI_MAINNET=https://eth-mainnet.alchemyapi.io/v2/<apiKey>
-
-# generic node uri (if no specific found) :
-
-ETH_NODE_URI=https://{{networkName}}.infura.io/v3/<apiKey>
-
-# network specific mnemonic : `"MNEMONIC_ " + networkName.toUpperCase()`
-
-MNEMONIC_MAINNET=<mnemonic for mainnet>
-
-# generic mnemonic (if no specific found):
-
-MNEMONIC=<mnemonic>
 
 ## Usage
 
-#### Compile contract:
+#### Launch Webapp
 
         ```bash
-        npx hardhat compile
+        yarn run dev
         ```
 
-#### Deploy contract to Hardhat's dev network:
+#### Follow the UI
 
-Start Hardhat's localhost network:
+Your instance should run on `http://localhost:3000`
 
-        ```bash
-        npx hardhat node
-        ```
+##### Deep Sign
+You can watermark a PNG image of 1mg  and 1000px/1000px in size or more (untested on JPG, yet) 
 
-Deploy on localhost network:
-
-> :information_source: You can choose the network you want to interact with by using the `--network` suffix.
-
-        ```bash
-        npx hardhat deploy --network localhost
-        ```
-
-#### Deploy contract to mainnet:
-
-        ```bash
-        npx hardhat deploy --network production
-        ```
-
-#### Mint an NFT on Ethereum mainnet:
-
-        ```bash
-        npx hardhat mint-nft --token-uri "the-URI-of-your-NFT" --network production
-        ```
-
-#### Run test(s):
-
-        ```bash
-        npx hardhat test
-        ```
-
-#### Verify a contract with sourcify.dev:
-
-        ```bash
-        npx  hardhat --network mainnet sourcify
-        ```
+##### Verifv signature formally
+You can formally verify any asset watermarked using **W** on the [verify](http://localhost:3000/verify) page, it will return the address used in the embedded signature.
 
 _Credits to [Ronan Sandford](https://github.com/wighawag) for creating Hardhat-deploy._
 _Credits to [Samir Vaidya](https://github.com/syvaidya) for creating OpenStego._
