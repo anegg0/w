@@ -5,8 +5,6 @@ import path from "path";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
-  console.log(formData);
-
   const f = formData.get("file");
 
   if (!f) {
@@ -21,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   // Get the destination directory path
   const destinationDirPath = path.join(
     process.cwd(),
-    process.env.STORE_IMAGE_PATH!
+    process.env.STORE_IMAGE_PATH!,
   );
   // Check if "wowm.png" already exists and delete it if so
   const existingFilePath = path.join(destinationDirPath, newFileName);
@@ -49,7 +47,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   await fs.writeFile(
     path.join(destinationDirPath, filename),
-    Buffer.from(fileArrayBuffer)
+    Buffer.from(fileArrayBuffer),
   );
 
   const [extension, ...name] = filename.split(".").reverse();
