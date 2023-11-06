@@ -47,7 +47,7 @@ async function uploadNft(): Promise<string> {
 
   if (allImages.length !== allMetadata.length) {
     return Promise.reject(
-      new Error("Error: Number of images and metadata files do not match")
+      new Error("Error: Number of images and metadata files do not match"),
     );
   }
 
@@ -63,7 +63,6 @@ async function uploadNft(): Promise<string> {
   const client = new NFTStorage({ token: typedConfig.nftStorageKey });
 
   const cid: string = await client.storeDirectory(allRequests);
-  console.log(cid);
 
   return new Promise((resolve, reject) => {
     fs.writeFile("cid.txt", cid, (err) => {
@@ -71,7 +70,6 @@ async function uploadNft(): Promise<string> {
         console.error(err);
         reject(err);
       } else {
-        console.log("cid saved to cid.txt");
         resolve(cid);
       }
     });
