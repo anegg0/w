@@ -21,7 +21,6 @@ export function MintNFT({ onSuccessfulTokenUriCreation }) {
   const [tokenURI, setTokenURI] = useState<string>(
     onSuccessfulTokenUriCreation,
   );
-  // console.log(`tokenURI at minNFT level is: ${tokenURI}`);
   const debouncedTokenUri = useDebounce(tokenURI);
   const { address } = useAccount();
   const debouncedCreatorAddress = useDebounce(address);
