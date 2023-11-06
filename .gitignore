@@ -54,3 +54,4 @@ next-env.d.ts
 /src/app/signatures/
 /src/app/tmp/not-working-pics/2.PNG
 /src/app/tmp/not-working-pics/resized/
+/src/app/toverify/toverify.png
