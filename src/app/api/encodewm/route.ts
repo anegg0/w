@@ -18,18 +18,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const signature = await req.json();
 
   // try {
-  const originalImageDirPath = path.join(
-    process.cwd(),
-    process.env.STORE_IMAGE_PATH!,
-  );
+  const originalImageDirPath = path.join(process.cwd(), "/src/app/uploads/");
   const unwatermarkedFilePath = path.join(
     originalImageDirPath,
     "original_image.png",
   );
-  const signatureDirectory = path.join(
-    process.cwd(),
-    process.env.STORE_SIGNATURE_PATH!,
-  );
+  const signatureDirectory = path.join(process.cwd(), "/src/app/signatures/");
   const signatureFilePath = await createFilePath(
     signatureDirectory,
     "signature.json",
