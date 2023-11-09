@@ -3,12 +3,7 @@ import * as crypto from "crypto";
 import path from "path";
 import { rm } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
-import { exec } from "child_process";
-import { promisify } from "util";
-import axios from "axios";
-
-const asyncExec = promisify(exec);
-
+import { encode } from "@s/utils/encodeModule.js";
 async function createFilePath(directoryPath: string, fileName: string) {
   const filePath = path.join(directoryPath, fileName);
   try {
@@ -22,41 +17,41 @@ async function createFilePath(directoryPath: string, fileName: string) {
 export async function POST(req: NextRequest, res: NextResponse) {
   const signature = await req.json();
 
-  try {
-    const originalImageDirPath = path.join(
-      process.cwd(),
-      process.env.STORE_IMAGE_PATH!,
-    );
-    const unwatermarkedFilePath = path.join(
-      originalImageDirPath,
-      "original_image.png",
-    );
-    const signatureDirectory = path.join(
-      process.cwd(),
-      process.env.STORE_SIGNATURE_PATH!,
-    );
-    const signatureFilePath = await createFilePath(
-      signatureDirectory,
-      "signature.json",
-    );
-    await fs.writeFile(signatureFilePath, signature);
+  // try {
+  const originalImageDirPath = path.join(
+    process.cwd(),
+    process.env.STORE_IMAGE_PATH!,
+  );
+  const unwatermarkedFilePath = path.join(
+    originalImageDirPath,
+    "original_image.png",
+  );
+  const signatureDirectory = path.join(
+    process.cwd(),
+    process.env.STORE_SIGNATURE_PATH!,
+  );
+  const signatureFilePath = await createFilePath(
+    signatureDirectory,
+    "signature.json",
+  );
+  await fs.writeFile(signatureFilePath, signature);
 
-    const EncodedImageFilesDirectory = path.join(
-      process.cwd(),
-      process.env.STORE_ENCODED_IMAGE_PATH!,
-    );
-    const EncodedImageFilePath = path.join(
-      EncodedImageFilesDirectory,
-      "encoded_image.png",
-    );
-    await asyncExec(
-      `java -jar openstego.jar embed -a randomlsb -mf ./src/app/signatures/signature.json -cf ./src/app/uploads/original_image.png -sf ./src/app/encoded/encoded_image.png`,
-    );
+  const EncodedImageFilesDirectory = path.join(
+    process.cwd(),
+    "/src/app/encoded/",
+  );
+  const EncodedImageFilePath = path.join(
+    EncodedImageFilesDirectory,
+    "encoded_image.png",
+  );
 
-    console.log("Background execution completed");
-  } catch (error) {
-    console.error("Error in background execution:", error);
-  }
+  const embeddedImage = encode(
+    unwatermarkedFilePath,
+    signatureFilePath,
+    EncodedImageFilePath,
+  )
+    .then(() => console.log("Embedding process completed."))
+    .catch((err) => console.error("An error occurred:", err));
 
   return NextResponse.json({
     status: 200,
