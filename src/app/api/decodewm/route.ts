@@ -2,10 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
-import { exec } from "child_process";
-import { promisify } from "util";
-
-const asyncExec = promisify(exec);
+import { decode } from "@s/utils/decodeModule.js";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
@@ -40,12 +37,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
   await fs.writeFile(existingFilePath, Buffer.from(fileArrayBuffer));
   const jsonFilePath = path.join(
     process.cwd(),
-    process.env.STORE_VERIFIED_SIGNATURE_PATH!,
+    "/src/app/decodedSignature/",
     "signature.json",
   );
-  await asyncExec(
-    `java -jar openstego.jar extract --algorithm=randomlsb --stegofile=./src/app/toverify/toverify.png --extractdir=./src/app/decodedSignature`,
-  );
+
+  const decodedSignature = decode(existingFilePath, jsonFilePath)
+    .then(() => console.log("Decoding process completed."))
+    .catch((err) => console.error("An error occurred:", err));
 
   const jsonData = await fs.readFile(jsonFilePath, "utf-8");
   const parsedData = JSON.parse(jsonData);

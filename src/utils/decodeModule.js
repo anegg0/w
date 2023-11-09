@@ -40,7 +40,7 @@ async function decode(inputImagePath, outputJsonPath) {
       const messageJson = JSON.stringify(secretMessageObj, null, 2);
       await fs.writeFile(outputJsonPath, messageJson);
       console.log(
-        `The secret JSON message has been extracted to ${outputJsonPath}`
+        `The secret JSON message has been extracted to ${outputJsonPath}`,
       );
     } catch (e) {
       console.error("The extracted message is not valid JSON:", e);
