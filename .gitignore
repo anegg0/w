@@ -46,7 +46,6 @@ yarn-error.log*
 next-env.d.ts
 
 # user-specific files
-/src/app/encoded/
 /src/app/decoded/
 /src/app/hashes/
 /src/app/metadata/
