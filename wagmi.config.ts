@@ -8,7 +8,6 @@ export default defineConfig({
 	contracts: [],
 	env: [
 		loadEnv({
-			mode: process.env.NODE_ENV,
 			envDir: process.cwd(),
 		}),
 	],

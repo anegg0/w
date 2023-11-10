@@ -17,10 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const newFileName = "original_image.png";
 
   // Get the destination directory path
-  const destinationDirPath = path.join(
-    process.cwd(),
-    process.env.STORE_IMAGE_PATH!,
-  );
+  const destinationDirPath = path.join(process.cwd(), "/src/app/uploads/");
   // Check if "wowm.png" already exists and delete it if so
   const existingFilePath = path.join(destinationDirPath, newFileName);
 
