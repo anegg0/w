@@ -97,6 +97,7 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
               }}
             />
           </div>
+
           <div className="action-buttons">
             <button
               onClick={handleRemove}
