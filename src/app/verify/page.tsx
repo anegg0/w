@@ -12,8 +12,10 @@ import VerifyStepProgressBar from "@c/VerifyStepProgressBar";
 import { ethers } from "ethers";
 import { hashMessage } from "@ethersproject/hash";
 import { useNetwork } from "wagmi";
+import { NextPage } from "next";
 
-export function Page({ onSuccessfulUpload }) {
+const Page: NextPage = ({ onSuccessfulUpload }) => {
+  /* export function Page({ onSuccessfulUpload }) { */
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -185,6 +187,6 @@ export function Page({ onSuccessfulUpload }) {
       )}
     </>
   );
-}
+};
 
 export default Page;

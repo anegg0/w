@@ -12,8 +12,10 @@ import { ToEncodeFileUploader } from "@c/ToEncodeFileUploader";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
 import logo from "@a/logo.png";
+import { NextPage } from 'next';
 
-export function Page({ newStep }) {
+const Page: NextPage = ({ newStep }) => {
+  /* export function Page({ newStep }) { */
   let [step, setStep] = useState(1);
   let { address, isConnecting, isDisconnected } = useAccount();
   let [loadingInProgress, setLoading] = useState(false);
