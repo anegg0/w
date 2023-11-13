@@ -15,7 +15,6 @@ import { useNetwork } from "wagmi";
 import { NextPage } from "next";
 
 const Page: NextPage = ({ onSuccessfulUpload }) => {
-  /* export function Page({ onSuccessfulUpload }) { */
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
