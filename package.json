@@ -6,8 +6,8 @@
                 "lit": "3.0.0"
         },
         "scripts": {
-                "dev": "yarn run wagmi && next dev",
-                "build": "yarn run wagmi && next build",
+                "dev": "yarn wagmi && next dev",
+                "build": "yarn wagmi && next build",
                 "wagmi": "wagmi generate",
                 "lint": "next lint"
         },
