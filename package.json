@@ -1,6 +1,7 @@
 {
         "name": "W",
         "version": "0.0.1",
+        "description": "Steganography + Crypto + NFTs",
         "private": true,
         "resolutions": {
                 "lit": "3.0.0"
