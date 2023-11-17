@@ -11,8 +11,8 @@ import { useAccount } from "wagmi";
 import { ToEncodeFileUploader } from "@c/ToEncodeFileUploader";
 import { SignMessage2api } from "@c/SignMessage2api";
 import { MetadataBuilder } from "@c/MetadataBuilder";
-import logo from "@a/logo.png";
-import { NextPage } from 'next';
+import logo from "@p/logo.png";
+import { NextPage } from "next";
 
 const Page: NextPage = ({ newStep }) => {
   /* export function Page({ newStep }) { */
@@ -66,6 +66,6 @@ const Page: NextPage = ({ newStep }) => {
       </>
     );
   }
-}
+};
 
 export default Page;
