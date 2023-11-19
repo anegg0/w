@@ -98,20 +98,18 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
             />
           </div>
 
-          <div className="action-buttons">
-            <button
-              onClick={handleRemove}
-              className="btn bg-gray-400 text-gray rounded-sm p-1"
-            >
-              Remove
-            </button>
-            <button
-              onClick={handleUpload}
-              className="btn bg-orange-400 text-gray rounded-sm p-1"
-            >
-              Upload
-            </button>
-          </div>
+          <button
+            onClick={handleRemove}
+            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
+          >
+            Remove
+          </button>
+          <button
+            onClick={handleUpload}
+            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
+          >
+            Upload
+          </button>
         </>
       ) : (
         <>
@@ -128,14 +126,12 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
               className="mt-4"
             />
           </div>
-          <div className="action-buttons">
-            <button
-              onClick={handleUpload}
-              className="btn bg-orange-400 text-gray rounded-sm p-1"
-            >
-              Upload
-            </button>
-          </div>
+          <button
+            onClick={handleUpload}
+            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
+          >
+            Upload
+          </button>
         </>
       )}
     </div>

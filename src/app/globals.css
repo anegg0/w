@@ -41,15 +41,6 @@ flexInnerHeader {
   margin: 1em;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 1rem; /* Space between the buttons */
-  justify-content: center;
-  margin-bottom: 0; /* No margin at the bottom since it's the last item */
-  margin: 2em;
-  radius: 0.25rem;
-}
-
 .action-prompt {
   font-size: 1.5rem;
   font-weight: normal;

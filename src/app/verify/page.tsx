@@ -136,20 +136,18 @@ const Page: NextPage = ({ onSuccessfulUpload }) => {
                     }}
                   />
                 </div>
-                <div className="action-buttons">
-                  <button
-                    onClick={handleRemove}
-                    className="btn bg-gray-400 text-gray rounded-sm p-1"
-                  >
-                    Remove
-                  </button>
-                  <button
-                    onClick={handleUpload}
-                    className="btn bg-orange-400 text-gray rounded-sm p-1"
-                  >
-                    Verify
-                  </button>
-                </div>
+                <button
+                  onClick={handleRemove}
+                  className="btn bg-gray-400 text-gray rounded-sm p-1"
+                >
+                  Remove
+                </button>
+                <button
+                  onClick={handleUpload}
+                  className="btn bg-orange-400 text-gray rounded-sm p-1"
+                >
+                  Verify
+                </button>
               </>
             ) : (
               <>
@@ -170,14 +168,12 @@ const Page: NextPage = ({ onSuccessfulUpload }) => {
                     className="mt-4"
                   />
                 </div>
-                <div className="action-buttons">
-                  <button
-                    onClick={handleUpload}
-                    className="btn bg-orange-400 text-gray rounded-sm p-1"
-                  >
-                    Upload
-                  </button>
-                </div>
+                <button
+                  onClick={handleUpload}
+                  className="btn bg-orange-400 text-gray rounded-sm p-1"
+                >
+                  Upload
+                </button>
               </>
             )}
           </div>
