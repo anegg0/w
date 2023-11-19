@@ -80,7 +80,7 @@ const Page: NextPage = ({ onSuccessfulUpload }) => {
 
   return (
     <>
-      {recoveredAddress ? ( // Render this block if the address is recovered
+      {typeof recoveredAddress === "string" && recoveredAddress ? (
         <>
           <Header />
           <div className="container">

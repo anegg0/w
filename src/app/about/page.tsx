@@ -57,9 +57,11 @@ const Page: NextPage = () => {
               How do I use it?
             </h2>
             <div className="py-4 px-5 text-neutral-500 dark:text-neutral-300">
-              <a href="/" className="text-blue-300 font-normal text-center">
-                Just upload an image
-              </a>
+              <Link href="/" passHref>
+                <a className="text-blue-300 font-normal text-center">
+                  Just upload an image
+                </a>
+              </Link>
               , sign it, and mint it as an NFT. The app will guide you through
               the process, all you need is a crypto wallet.
             </div>

@@ -1,13 +1,14 @@
 {
         "name": "W",
         "version": "0.0.1",
+        "description": "Steganography + Crypto + NFTs",
         "private": true,
         "resolutions": {
                 "lit": "3.0.0"
         },
         "scripts": {
-                "dev": "yarn run wagmi && next dev",
-                "build": "yarn run wagmi && next build",
+                "dev": "pnpm wagmi && next dev",
+                "build": "pnpm wagmi && next build",
                 "wagmi": "wagmi generate",
                 "lint": "next lint"
         },

@@ -4,7 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { Navbar, Text, Avatar } from "@nextui-org/react";
 import Link from "next/link";
-import logo from "@a/logo-sm.png";
+import logo from "@p/logo-sm.png";
 import Image from "next/image";
 
 function ConnectWallet({ show = "always" }) {

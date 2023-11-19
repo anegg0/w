@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "@a/logo-sm.png";
+import logo from "@p/logo-sm.png";
 import Image from "next/image";
 
 export const Footer: React.FC = () => {

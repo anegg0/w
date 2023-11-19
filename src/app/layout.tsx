@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { Providers } from "@a/providers";
 import "@rainbow-me/rainbowkit/styles.css";
+import type { Metadata } from "next";
+
 export default function RootLayout({
   children,
 }: {
