@@ -133,7 +133,7 @@ image-preview {
   justify-content: center;
   align-items: center;
   position: fixed;
-  background: #333 url("./popol-vuh.gif") center no-repeat;
+  background: #333 url("../public/popol-vuh.gif") center no-repeat;
   z-index: 3;
 }
 
