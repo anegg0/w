@@ -31,7 +31,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("/api/mint", {
+      const response = await fetch("/api/ipfs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
         }
       }
     } catch (error) {
-      console.error("Error response from /api/mint:", error);
+      console.error("Error response from /api/ipfs:", error);
     }
     setIsLoading(false);
   };

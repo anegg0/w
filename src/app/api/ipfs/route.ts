@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import { NFTStorage, File } from "nft.storage";
 import mime from "mime";
+
 export async function POST(req: NextRequest, res: NextResponse) {
 	const { name, description } = await req.json();
 	async function fileFromPath(filePath: string) {
