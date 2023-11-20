@@ -3,6 +3,7 @@
         "version": "0.0.1",
         "description": "Steganography + Crypto + NFTs",
         "private": true,
+        "license": "BUSL-1.1",
         "resolutions": {
                 "lit": "3.0.0"
         },
