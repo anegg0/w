@@ -82,7 +82,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
           onSubmit={handleSubmit}
           className="p-6 rounded shadow-md bg-gradient-to-b from-transparent to-[rgba(var(--background-end-rgb),1)]"
         >
-          <label>
+          <label className="block text-sm font-medium text-gray-200">
             Name:
             <input
               placeholder="Short description of your image"
@@ -93,7 +93,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
               className="w-full p-2 border rounded text-gray-500"
             />
           </label>
-          <label>
+          <label className="block text-sm font-medium text-neutral-200">
             Description:
             <input
               type="text"
@@ -108,7 +108,7 @@ export function MetadataBuilder({ onSuccessfulTokenUriCreation }) {
           <div className="action-buttons">
             <button
               type="submit"
-              className="btn bg-orange-400 text-gray rounded-sm p-1"
+              className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Store image on IPFS
             </button>
