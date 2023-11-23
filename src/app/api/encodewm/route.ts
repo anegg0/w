@@ -3,7 +3,7 @@ import * as crypto from "crypto";
 import path from "path";
 import { rm } from "fs/promises";
 import { NextRequest, NextResponse } from "next/server";
-import { encode } from "@s/utils/encodeModule.js";
+import { encode } from "@u/encodeModule.js";
 async function createFilePath(directoryPath: string, fileName: string) {
   const filePath = path.join(directoryPath, fileName);
   try {

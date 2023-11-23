@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { existsSync, unlinkSync } from "fs";
 import fs from "fs/promises";
 import path from "path";
-import { decode } from "@s/utils/decodeModule.js";
+import { decode } from "@u/decodeModule.js";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
