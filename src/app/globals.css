@@ -42,7 +42,7 @@ flexInnerHeader {
 }
 
 .action-prompt {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: normal;
   text-align: center;
   margin-top: 1rem; /* No margin at the bottom since it's the last item */

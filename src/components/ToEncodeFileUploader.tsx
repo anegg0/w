@@ -74,66 +74,70 @@ export function ToEncodeFileUploader({ onSuccessfulUpload }) {
   const id = "upload";
 
   return (
-    <div className="container">
-      <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
-      {file ? (
-        <>
-          <div className="action-prompt">
-            This is your image. Like What You See?
-          </div>
-          <div className="action-paragraph">
-            You can reupload a different image by hitting "Remove".
-          </div>
-          <div
-            style={{ position: "relative", width: "800px", height: "500px" }}
-          >
-            <img
-              src={previewUrl}
-              alt="Preview"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </div>
+    <div className="flex items-center px-5 py-12 lg:px-20">
+      <div className="flex-col w-full max-w-3xl p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-gray-700 rounded-lg md:mt-0">
+        <EncodeStepProgressBar steps={steps} currentStep={currentStep} />
+        <div className="max-w-xl mx-auto my-2 border-b-2 border-gray-200 pb-2 w-full flex-col items-center">
+          {file ? (
+            <>
+              <div className="text-lg font-normal text-center m-4 mb-2">
+                This is your image. Like What You See?
+              </div>
+              <div className="items-center text-base text-center max-w-3/4 m-4 mb-2 leading-loose">
+                You can reupload a different image by hitting "Remove".
+              </div>
+              <div className="max-w-xl mx-auto my-2 border-b-2 pb-2 w-full flex-col items-center">
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  style={{
+                    objectFit: "contain",
+                    width: "70%",
+                    height: "70%",
+                  }}
+                />
+              </div>
 
-          <button
-            onClick={handleRemove}
-            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
-          >
-            Remove
-          </button>
-          <button
-            onClick={handleUpload}
-            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
-          >
-            Upload
-          </button>
-        </>
-      ) : (
-        <>
-          <div className="action-prompt">
-            Get started by uploading your file (PNG)
-          </div>
-          <div className="input-wrapper">
-            <input
-              type="file"
-              name="file"
-              required
-              onChange={handleFileChange}
-              accept=".png"
-              className="mt-4"
-            />
-          </div>
-          <button
-            onClick={handleUpload}
-            className="block mt-4 px-3 py-2 bg-orange-400 text-white rounded-md"
-          >
-            Upload
-          </button>
-        </>
-      )}
+              <button
+                onClick={handleRemove}
+                className="m-3 p-2 bg-orange-400 text-white rounded place-content-center"
+              >
+                Remove
+              </button>
+              <button
+                onClick={handleUpload}
+                className="m-3 p-2  py-3 bg-orange-400 text-white rounded place-content-center"
+              >
+                Upload
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="max-w-xl mx-auto my-2 border-b-2 pb-2 w-full flex-col items-center">
+                <div className="items-center text-base text-center max-w-3/4 m-4 mb-2 leading-loose">
+                  Get started by uploading your file (PNG)
+                </div>
+                <div className="input-wrapper">
+                  <input
+                    type="file"
+                    name="file"
+                    required
+                    onChange={handleFileChange}
+                    accept=".png"
+                    className="m-4"
+                  />
+                </div>
+                <button
+                  onClick={handleUpload}
+                  className="flex m-3 p-2  bg-orange-400 text-white rounded  place-content-center"
+                >
+                  Upload
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
