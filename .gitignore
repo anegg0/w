@@ -47,6 +47,7 @@ next-env.d.ts
 
 # user-specific files
 /src/app/decoded/
+/src/app/encoded/
 /src/app/hashes/
 /src/app/metadata/
 /src/app/uploads/
