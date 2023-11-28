@@ -1,7 +1,6 @@
 # **W** - Crypto-Assets Watermarking Using Steganography
 
-
-**NOTE**: This is a WIP being actively developed and not functional at this time, come back soon for more :)
+❗***NOTE**: This is a WIP being actively developed and not functional at this time, come back soon for more :)
 
 This repo helps you embed a crypto-signature (using Steganography/Data-hiding) to graphical assets and mint them as NFTs on EVM chains.
 
